@@ -14,7 +14,7 @@
 			android:theme="@style/Theme.HealthySoul"
 			tools:targetApi="31">
 		<activity
-				android:name=".HealthySoulActivity"
+				android:name=".ui.main.HealthySoulActivity"
 				android:exported="true">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
