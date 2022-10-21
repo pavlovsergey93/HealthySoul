@@ -7,7 +7,16 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.gmail.pavlovsv93.healthysoul.ui.splash.SplashFragment"
+        android:name="com.gmail.pavlovsv93.healthysoul.ui.splash_screen.SplashFragment"
         android:label="SplashFragment"
-        tools:layout="@layout/fragment_splash" />
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_greetingFragment"
+            app:destination="@id/greetingFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_greeting"
+        android:id="@+id/greetingFragment"
+        android:name="com.gmail.pavlovsv93.healthysoul.ui.greeting_screen.GreetingFragment"
+        android:label="GreetingFragment" />
 </navigation>
