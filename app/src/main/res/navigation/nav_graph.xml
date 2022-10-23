@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.gmail.pavlovsv93.healthysoul.ui.splash_screen.SplashFragment"
+        android:name="com.gmail.pavlovsv93.healthysoul.ui.splash.SplashFragment"
         android:label="SplashFragment"
         tools:layout="@layout/fragment_splash" >
         <action
