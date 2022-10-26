@@ -2,16 +2,12 @@ package com.gmail.pavlovsv93.healthysoul.ui.greeting_screen
 
 import android.content.Context
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.gmail.pavlovsv93.healthysoul.R
-import com.gmail.pavlovsv93.healthysoul.ui.splash.SplashFragmentDirections
 
 class GreetingFragment : Fragment() {
 
@@ -75,9 +71,6 @@ class GreetingFragment : Fragment() {
     }
 
     companion object {
-
         private const val TAG = "GreetingFragment"
-
     }
-
 }
