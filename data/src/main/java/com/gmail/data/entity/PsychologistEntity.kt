@@ -9,7 +9,7 @@ data class PsychologistEntity(
 	val profile: String,                    // Информация о том, чем ты можешь помочь человеку
 	val country: String,                    // Страна
 	val city: String,                        // Город
-	val contact: List<Contact>,                // Контакты
+	val contacts: List<Contact>,                // Контакты
 	val education: List<Education>,            // Образование
 	val specialization: Specialization,        //Специализация
 	val experience: Int,                       // Опыт работы в количестве лет

@@ -3,10 +3,19 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
+	//id("com.google.gms.google-services")
 }
 
 android {
-    compileSdk = 32
+    signingConfigs {
+		create("healthySoul") {
+			storeFile = file(".\\keyhealthysoul.jks")
+			storePassword = "Mp2630547"
+			keyAlias = "keyHealthySoul"
+			keyPassword = "Mp2630547"
+		}
+	}
+	compileSdk = 32
 
     defaultConfig {
         applicationId = "com.gmail.pavlovsv93.healthysoul"
@@ -16,7 +25,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
+		signingConfig = signingConfigs.getByName("healthySoul")
+	}
 
     buildTypes {
         release {
@@ -26,6 +36,9 @@ android {
                 "proguard-rules.pro"
             )
         }
+		debug{
+			signingConfig = signingConfigs.getByName("healthySoul")
+		}
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -50,17 +63,14 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.5.1")
     implementation("com.google.android.material:material:1.6.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    testImplementation("junit:junit:4.13.2")
+	implementation("com.google.firebase:firebase-firestore:24.4.0")
+	testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
 
     //Firebase
     implementation(platform("com.google.firebase:firebase-bom:30.2.0"))
-    implementation("com.google.firebase:firebase-firestore:24.4.0")
-    implementation("com.google.firebase:firebase-database-ktx")
-    implementation("com.google.firebase:firebase-analytics-ktx")
-    implementation("com.google.gms:google-services:4.3.14")
-    implementation("com.google.firebase:firebase-database-ktx:20.1.0")
+	implementation("com.google.firebase:firebase-firestore-ktx")
 
     //Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
@@ -91,3 +101,5 @@ dependencies {
     //lottie
     implementation("com.airbnb.android:lottie:5.2.0")
 }
+
+apply(plugin = "com.google.gms.google-services")
