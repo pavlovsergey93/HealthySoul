@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "311848037486",
+    "project_id": "healthysoul-7f02f",
+    "storage_bucket": "healthysoul-7f02f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311848037486:android:fd49129c26cb43265f8a7f",
+        "android_client_info": {
+          "package_name": "com.gmail.pavlovsv93.healthysoul"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "311848037486-03h89l49h5g2kft85ck6lg0cciajjtdi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gmail.pavlovsv93.healthysoul",
+            "certificate_hash": "8df07e7de472e62d3a851e6077aa66786d738d85"
+          }
+        },
+        {
+          "client_id": "311848037486-f6rti5l2f6jls11kv1l2ga6lt9cl6hnq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnyrYNDcVEWM6fVV7lGLykTSMRj8dILeI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "311848037486-f6rti5l2f6jls11kv1l2ga6lt9cl6hnq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
