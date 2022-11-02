@@ -14,19 +14,21 @@
 
 		<com.google.android.material.imageview.ShapeableImageView
 				android:id="@+id/iv_icon"
+				android:padding="@dimen/_4dp"
 				android:layout_width="wrap_content"
-				android:layout_height="0dp"
+				android:layout_height="wrap_content"
 				app:layout_constraintBottom_toBottomOf="parent"
 				app:layout_constraintEnd_toStartOf="@id/tv_title"
 				app:layout_constraintStart_toStartOf="parent"
-				app:layout_constraintTop_toTopOf="parent" />
+				app:layout_constraintTop_toTopOf="parent"
+				app:srcCompat="@drawable/ic_baseline_category_24" />
 
 		<com.google.android.material.textview.MaterialTextView
-				android:paddingStart="6dp"
 				android:id="@+id/tv_title"
 				android:layout_width="0dp"
 				android:layout_height="0dp"
 				android:hint="dfgfadasf"
+				android:paddingStart="6dp"
 				app:autoSizeMaxTextSize="35sp"
 				app:autoSizeMinTextSize="20sp"
 				app:autoSizeTextType="uniform"
