@@ -39,7 +39,8 @@ class SplashFragment : Fragment() {
         Log.d(TAG, "onViewCreated")
         Handler(Looper.getMainLooper()).postDelayed(object : Runnable {
             override fun run() {
-                findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToGreetingFragment())
+				findNavController().navigate(SplashFragmentDirections.actionGreetingFragmentToTestsFragment())
+                //findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToGreetingFragment())
             }
         }, 3000)
     }
