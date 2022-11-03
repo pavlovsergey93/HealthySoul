@@ -40,8 +40,6 @@ class TestsAdapter(private val onClick: ClickedOnTest) : RecyclerView.Adapter<Re
 					} else if (data.isExpanded && !data.subList.isNullOrEmpty()) {
 						data.isExpanded = false
 						hideSublist(data.subList!!, adapterPosition)
-					} else {
-						onClick.onClick(data)
 					}
 				}
 			}
@@ -53,7 +51,7 @@ class TestsAdapter(private val onClick: ClickedOnTest) : RecyclerView.Adapter<Re
 			val binding = FragmentTestsRecyclerviewItemChildBinding.bind(itemView)
 			with(binding) {
 				cvChild.setOnClickListener {
-					onClick.onClick(data)
+					onClick.onClick(data.questionId)
 				}
 				tvTitleChild.text = data.title
 			}

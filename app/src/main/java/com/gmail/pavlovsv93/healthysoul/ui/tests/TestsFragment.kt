@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentTestsBinding
 import com.gmail.pavlovsv93.healthysoul.ui.tests.testsadapter.TestsAdapter
 import my.categoryListTests
@@ -16,8 +16,10 @@ class TestsFragment : Fragment() {
 	private val binding get() = _binding!!
 
 	private val adapter: TestsAdapter = TestsAdapter { data ->
-		// todo обработка нажатий по элементам списка
-		Toast.makeText(requireContext(), data.type.toString(), Toast.LENGTH_SHORT).show()
+		parentFragmentManager.beginTransaction()
+			.replace(R.id.nav_host_fragment, TestQuestionFragment.newInstance(data))
+			.addToBackStack(null)
+			.commit()
 	}
 
 	override fun onCreateView(

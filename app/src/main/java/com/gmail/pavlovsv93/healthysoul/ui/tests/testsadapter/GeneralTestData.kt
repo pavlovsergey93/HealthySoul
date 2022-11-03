@@ -11,6 +11,7 @@ data class ParentData(
 ) : GeneralTestData(type)
 
 data class ChildData(
+	val questionId: String = "fdsjkf",
 	val title: String,
 	override var type: Int = CHILD_TYPE
 ) : GeneralTestData(type)
