@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentTestQuestionItemBinding
-import com.gmail.pavlovsv93.healthysoul.ui.tests.questionsadapter.questionentity.QuestionEntity
+import com.gmail.data.entity.tests.questionentity.QuestionEntity
 
 class AnswerAdapter(private val onClick: OnClickOnAnswer) :
 	RecyclerView.Adapter<AnswerAdapter.AnswerViewHolder>() {
@@ -38,9 +38,9 @@ class AnswerAdapter(private val onClick: OnClickOnAnswer) :
 				rbAnswerItem.text = data.answer
 				rbAnswerItem.setOnClickListener {
 					if (!data.nextQuestionId.isNullOrEmpty()) {
-						onClick.showNextQuestion(data.nextQuestionId)
+						onClick.showNextQuestion(data.nextQuestionId!!)
 					} else if (!data.hintId.isNullOrEmpty()) {
-						onClick.showHint(data.hintId)
+						onClick.showHint(data.hintId!!)
 					}
 				}
 			}

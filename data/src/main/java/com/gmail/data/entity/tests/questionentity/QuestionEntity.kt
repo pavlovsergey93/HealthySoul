@@ -1,4 +1,4 @@
-package com.gmail.pavlovsv93.healthysoul.ui.tests.questionsadapter.questionentity
+package com.gmail.data.entity.tests.questionentity
 
 data class QuestionEntity(
 	val questionId: String,
