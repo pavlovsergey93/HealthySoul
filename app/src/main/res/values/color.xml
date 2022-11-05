@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color">#EDF5F8</color>
+	<color name="blue_grey_50">#cde3ec</color>
+	<color name="blue_grey_100">#aed2df</color>
+	<color name="blue_grey_200">#8ec0d3</color>
+	<color name="blue_grey_300">#6eaec7</color>
+	<color name="blue_grey_400">#4e9dba</color>
+	<color name="blue_grey_500">#3e849f</color>
+	<color name="blue_grey_600">#316a7f</color>
+	<color name="blue_grey_700">#254f5f</color>
+	<color name="blue_grey_800">#19353f</color>
+	<color name="blue_grey_900">#0b181d</color>
+</resources>

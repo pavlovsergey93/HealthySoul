@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.gmail.pavlovsv93.healthysoul.R
@@ -37,6 +38,8 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.d(TAG, "onViewCreated")
+		view.findViewById<ImageView>(R.id.iv_logotype).animate()
+			.rotationBy(720f).setDuration(4000L).start()
         Handler(Looper.getMainLooper()).postDelayed(object : Runnable {
             override fun run() {
 				findNavController().navigate(SplashFragmentDirections.actionGreetingFragmentToTestsFragment())
