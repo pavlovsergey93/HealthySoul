@@ -8,10 +8,10 @@ import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.gmai.pavlovsv93.healtysoul.domain.models.notebook.Notebook
 import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.adapters.NotebookAdapter
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentNotebookBinding
-import com.gmail.pavlovsv93.healthysoul.models.Notebook
 import com.gmail.pavlovsv93.healthysoul.utils.DividerItemDecorator
 
 class NotebookFragment : Fragment() {

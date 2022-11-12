@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.gmai.pavlovsv93.healtysoul.domain.models.notebook.Notebook
 import com.gmail.pavlovsv93.healthysoul.databinding.ItemNotebookBinding
-import com.gmail.pavlovsv93.healthysoul.models.Notebook
 
 class NotebookAdapter(private val listener: Listener) :
     ListAdapter<Notebook, NotebookAdapter.NotebookViewHolder>(ItemCallback),
