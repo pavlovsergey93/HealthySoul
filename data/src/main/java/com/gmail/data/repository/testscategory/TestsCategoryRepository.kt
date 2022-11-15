@@ -7,10 +7,12 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 
-class TestsCategoryRepository(private val db: FirebaseFirestore): TestsCategoryRepositoryInterface {
-	companion object{
+class TestsCategoryRepository(private val db: FirebaseFirestore) :
+	TestsCategoryRepositoryInterface {
+	companion object {
 		private const val CATEGORY_COLLECTION = "category"
 	}
+
 	override suspend fun getListCategory(): Flow<List<DocumentSnapshot>> = callbackFlow {
 		var eventCollection: CollectionReference? = null
 		try {

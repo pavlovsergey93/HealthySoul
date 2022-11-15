@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentTestQuestionBinding
-import com.gmail.pavlovsv93.healthysoul.ui.tests.questionsadapter.questionadapter.AnswerAdapter
-import com.gmail.pavlovsv93.healthysoul.ui.tests.questionsadapter.questionadapter.OnClickOnAnswer
+import com.gmail.pavlovsv93.healthysoul.ui.tests.questionsadapter.AnswerAdapter
+import com.gmail.pavlovsv93.healthysoul.ui.tests.questionsadapter.OnClickOnAnswer
 
 class TestQuestionFragment : Fragment() {
 	companion object {

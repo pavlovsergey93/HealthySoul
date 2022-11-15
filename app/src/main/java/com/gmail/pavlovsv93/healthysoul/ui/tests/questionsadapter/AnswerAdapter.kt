@@ -1,12 +1,12 @@
-package com.gmail.pavlovsv93.healthysoul.ui.tests.questionsadapter.questionadapter
+package com.gmail.pavlovsv93.healthysoul.ui.tests.questionsadapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.gmail.data.entity.tests.questionentity.QuestionEntity
 import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentTestQuestionItemBinding
-import com.gmail.data.entity.tests.questionentity.QuestionEntity
 
 class AnswerAdapter(private val onClick: OnClickOnAnswer) :
 	RecyclerView.Adapter<AnswerAdapter.AnswerViewHolder>() {

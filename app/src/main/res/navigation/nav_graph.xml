@@ -29,6 +29,6 @@
 	<fragment
 			tools:layout="@layout/fragment_tests"
 			android:id="@+id/testsFragment"
-			android:name="com.gmail.pavlovsv93.healthysoul.ui.tests.TestsFragment"
+			android:name="com.gmail.pavlovsv93.healthysoul.ui.tests.testscategory.TestsFragment"
 			android:label="TestsFragment" />
 </navigation>
