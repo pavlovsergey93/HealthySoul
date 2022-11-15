@@ -10,4 +10,6 @@
     <string name="welcome_message">Привет, %1$s!</string>
     <string name="login_unsuccessful_msg">Вход не выполнен</string>
     <string name="login_successful_msg">Вход успешно выполнен</string>
+	<string name="psychologists">Psychologists</string>
+	<string name="tests">Tests</string>
 </resources>

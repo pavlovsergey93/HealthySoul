@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		android:id="@+id/tests"
+		app:startDestination="@id/testsFragment">
+
+	<fragment
+			android:id="@+id/testsFragment"
+			android:name="com.gmail.pavlovsv93.healthysoul.ui.tests.TestsFragment"
+			android:label="TestsFragment" />
+</navigation>

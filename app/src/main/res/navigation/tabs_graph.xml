@@ -6,5 +6,7 @@
 
     <include app:graph="@navigation/notebook" />
     <include app:graph="@navigation/profile" />
+	<include app:graph="@navigation/tests" />
+	<include app:graph="@navigation/psychologists" />
 
 </navigation>
