@@ -70,7 +70,7 @@ class RemoteDataSource(private val repository: RepositoryInterface) : DataSource
         val numberOfVotes = item.data?.get(KEY_NUMBER_OF_VOTES)
 
         return PsychologistEntity(
-            id = id as String,
+            id = id,
             avatar = avatar as String,
             name = name as String,
             surname = surname as String,
