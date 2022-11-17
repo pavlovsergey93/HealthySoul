@@ -7,6 +7,7 @@ data class QuestionEntity(
 ) {
 	data class Answer(
 		val answer: String,
+		val backQuestionId: String?,
 		val nextQuestionId: String?,
 		val hintId: String? = null
 	)

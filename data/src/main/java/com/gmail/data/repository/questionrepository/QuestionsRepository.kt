@@ -8,7 +8,7 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 
-class QuestionRepository(private val db: FirebaseFirestore) : QuestionRepositoryInterface {
+class QuestionsRepository(private val db: FirebaseFirestore) : QuestionsRepositoryInterface {
 
 	companion object{
 		const val QUESTIONS_COLLECTION = "questions"

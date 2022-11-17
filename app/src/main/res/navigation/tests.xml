@@ -13,6 +13,6 @@
 	</fragment>
 	<fragment
 			android:id="@+id/testQuestionFragment"
-			android:name="com.gmail.pavlovsv93.healthysoul.ui.tests.questions.questionsadapter.TestQuestionFragment"
+			android:name="com.gmail.pavlovsv93.healthysoul.ui.tests.questions.TestQuestionFragment"
 			android:label="TestQuestionFragment" />
 </navigation>

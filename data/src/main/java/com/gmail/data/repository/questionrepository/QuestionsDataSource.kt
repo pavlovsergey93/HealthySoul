@@ -4,8 +4,8 @@ import com.gmail.data.entity.tests.questionentity.HintEntity
 import com.gmail.data.entity.tests.questionentity.QuestionEntity
 import kotlinx.coroutines.flow.Flow
 
-class QuestionDataSource(private val repository: QuestionRepositoryInterface) :
-	DataSourceInterface {
+class QuestionsDataSource(private val repository: QuestionsRepositoryInterface) :
+	QuestionsDataSourceInterface {
 
 	companion object{
 		private const val KEY_HINT = "hint"
