@@ -5,6 +5,14 @@
 		app:startDestination="@id/testsFragment">
 	<fragment
 			android:id="@+id/testsFragment"
-			android:name="com.gmail.pavlovsv93.healthysoul.ui.tests.testscategory.TestsFragment"
-			android:label="TestsFragment" />
+			android:name="com.gmail.pavlovsv93.healthysoul.ui.tests.tests.TestsFragment"
+			android:label="TestsFragment" >
+		<action
+				android:id="@+id/action_testsFragment_to_testQuestionFragment"
+				app:destination="@id/testQuestionFragment" />
+	</fragment>
+	<fragment
+			android:id="@+id/testQuestionFragment"
+			android:name="com.gmail.pavlovsv93.healthysoul.ui.tests.questions.questionsadapter.TestQuestionFragment"
+			android:label="TestQuestionFragment" />
 </navigation>

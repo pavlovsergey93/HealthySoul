@@ -8,11 +8,12 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 
-
-const val QUESTIONS_COLLECTION = "questions"
-const val HINT_COLLECTION = "hints"
-
 class QuestionRepository(private val db: FirebaseFirestore) : QuestionRepositoryInterface {
+
+	companion object{
+		const val QUESTIONS_COLLECTION = "questions"
+		const val HINT_COLLECTION = "hints"
+	}
 
 	override suspend fun getQuestion(questionId: String): Flow<DocumentSnapshot> =
 		callbackFlow {

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentPsychologistsBinding
-import com.gmail.pavlovsv93.healthysoul.databinding.FragmentTestsBinding
 
 class PsychologistsFragment: Fragment() {
 

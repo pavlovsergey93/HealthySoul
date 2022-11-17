@@ -2,10 +2,20 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:paddingVertical="@dimen/_8dp"
-		android:paddingHorizontal="@dimen/_4dp">
+		android:paddingHorizontal="@dimen/_4dp"
+		android:paddingVertical="@dimen/_8dp">
+
 	<androidx.recyclerview.widget.RecyclerView
 			android:id="@+id/rv_list_tests"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"/>
+			android:layout_height="match_parent" />
+
+	<com.google.android.material.progressindicator.LinearProgressIndicator
+			android:id="@+id/lpiProgress"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center|top"
+			android:indeterminate="true" />
+<!--			app:showAnimationBehavior="inward"-->
+<!--			app:hideAnimationBehavior="inward"/>-->
 </FrameLayout>

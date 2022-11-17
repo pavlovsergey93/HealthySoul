@@ -1,4 +1,4 @@
-package com.gmail.pavlovsv93.healthysoul.ui.tests.questionsadapter
+package com.gmail.pavlovsv93.healthysoul.ui.tests.questions.questionsadapter
 
 import android.view.LayoutInflater
 import android.view.View

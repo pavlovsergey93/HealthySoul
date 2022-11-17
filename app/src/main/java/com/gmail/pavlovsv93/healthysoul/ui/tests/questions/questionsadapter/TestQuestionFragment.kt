@@ -1,4 +1,4 @@
-package com.gmail.pavlovsv93.healthysoul.ui.tests
+package com.gmail.pavlovsv93.healthysoul.ui.tests.questions.questionsadapter
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,19 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentTestQuestionBinding
-import com.gmail.pavlovsv93.healthysoul.ui.tests.questionsadapter.AnswerAdapter
-import com.gmail.pavlovsv93.healthysoul.ui.tests.questionsadapter.OnClickOnAnswer
 
 class TestQuestionFragment : Fragment() {
 	companion object {
-		private const val ARG_ID_QUESTION = "TestQuestionFragment.ARG_ID_QUESTION"
-		fun newInstance(questionId: String): TestQuestionFragment {
-			return TestQuestionFragment().apply {
-				arguments = Bundle().apply {
-					putString(ARG_ID_QUESTION, questionId)
-				}
-			}
-		}
+		const val ARG_ID_QUESTION = "TestQuestionFragment.ARG_ID_QUESTION"
+//		fun newInstance(questionId: String): TestQuestionFragment {
+//			return TestQuestionFragment().apply {
+//				arguments = Bundle().apply {
+//					putString(ARG_ID_QUESTION, questionId)
+//				}
+//			}
+//		}
 	}
 
 	private var _binding: FragmentTestQuestionBinding? = null
@@ -48,6 +46,7 @@ class TestQuestionFragment : Fragment() {
 		val id = arguments?.getString(ARG_ID_QUESTION)
 		id?.let {
 			//todo Обработка запроса на получение данных вопроса
+			binding.tvQuestion.text = id
 		}
 		val recyclerView = binding.rvAnswers
 		recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)

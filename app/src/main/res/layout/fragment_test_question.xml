@@ -11,8 +11,8 @@
 			android:id="@+id/tv_question"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			app:fontFamily="@font/roboto"
 			android:textSize="22sp"
+			app:fontFamily="@font/roboto"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent" />
@@ -27,4 +27,13 @@
 			app:layout_constraintTop_toBottomOf="@id/tv_question"
 			app:layout_constraintVertical_bias="0.0"
 			tools:listitem="@layout/fragment_test_question_item" />
+
+	<com.google.android.material.progressindicator.LinearProgressIndicator
+			android:id="@+id/lpiProgress"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:indeterminate="true"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

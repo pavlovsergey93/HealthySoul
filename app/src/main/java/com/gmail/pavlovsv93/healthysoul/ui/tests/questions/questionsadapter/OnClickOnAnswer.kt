@@ -1,4 +1,4 @@
-package com.gmail.pavlovsv93.healthysoul.ui.tests.questionsadapter
+package com.gmail.pavlovsv93.healthysoul.ui.tests.questions.questionsadapter
 
 interface OnClickOnAnswer {
 	fun showNextQuestion(id: String)
