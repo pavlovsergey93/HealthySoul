@@ -15,6 +15,7 @@ class FirebaseRepository() {
 			.get(Source.SERVER)
 			.addOnSuccessListener { documents ->
 				for (document in documents) {
+					document
 					Log.d("WWW.FirestoreResult ${document.id}", document.data.toString())
 				}
 			}

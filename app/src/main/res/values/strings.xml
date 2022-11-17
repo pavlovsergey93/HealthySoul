@@ -4,4 +4,13 @@
     <string name="notebook">Notebook</string>
     <string name="profile">Profile</string>
     <string name="my_notebook">My notebook</string>
+    <string name="personal_account_text">Личный кабинет</string>
+    <string name="login_button_text">Вход</string>
+    <string name="logout_button_text">Выход</string>
+    <string name="login_prompt">Выполните вход</string>
+    <string name="welcome_message">Привет, %1$s!</string>
+    <string name="login_unsuccessful_msg">Вход не выполнен</string>
+    <string name="login_successful_msg">Вход успешно выполнен</string>
+	<string name="psychologists">Psychologists</string>
+	<string name="tests">Tests</string>
 </resources>

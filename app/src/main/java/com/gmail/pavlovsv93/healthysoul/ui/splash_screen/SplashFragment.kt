@@ -42,6 +42,7 @@ class SplashFragment : Fragment() {
 			.rotationBy(720f).setDuration(4000L).start()
         Handler(Looper.getMainLooper()).postDelayed(object : Runnable {
             override fun run() {
+//				findNavController().navigate(SplashFragmentDirections.actionGreetingFragmentToTestsFragment())
                 findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToGreetingFragment())
             }
         }, 3000)

@@ -43,6 +43,12 @@ dependencies {
 	implementation("com.google.firebase:firebase-firestore-ktx")
     implementation ("com.google.firebase:firebase-database-ktx")
 
+	//Coroutines
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+	implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+	implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
+	implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
+
     implementation("androidx.core:core-ktx:1.7.0")
     implementation("androidx.appcompat:appcompat:1.5.1")
     implementation("com.google.android.material:material:1.6.1")
