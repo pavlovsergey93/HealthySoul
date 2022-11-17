@@ -17,6 +17,7 @@ import com.gmail.data.repository.testscategory.TestsCategoryRepository
 import com.gmail.data.repository.testscategory.TestsCategoryRepositoryInterface
 import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentTestsBinding
+import com.gmail.pavlovsv93.healthysoul.di.TESTS_VIEW_MODEL
 import com.gmail.pavlovsv93.healthysoul.ui.tests.AppState
 import com.gmail.pavlovsv93.healthysoul.ui.tests.questions.questionsadapter.TestQuestionFragment
 import com.gmail.pavlovsv93.healthysoul.ui.tests.tests.testsadapter.TestsAdapter
@@ -26,17 +27,14 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.qualifier.named
 
 class TestsFragment : Fragment() {
 	private var _binding: FragmentTestsBinding? = null
 	private val binding get() = _binding!!
 
-	private val viewModel: TestsViewModel by lazy {
-		val db: FirebaseFirestore = FirebaseFirestore.getInstance()
-		val repository: TestsCategoryRepositoryInterface = TestsCategoryRepository(db)
-		val dataSource: TestsCategoryDataSourceInterface = TestsCategoryDataSource(repository)
-		TestsViewModel(dataSource = dataSource)
-	}
+	private val viewModel: TestsViewModel by viewModel(named(TESTS_VIEW_MODEL))
 	private val adapter: TestsAdapter = TestsAdapter { idQuestion ->
 		val data = Bundle().apply {
 			putString(TestQuestionFragment.ARG_ID_QUESTION, idQuestion)
@@ -94,7 +92,6 @@ class TestsFragment : Fragment() {
 				binding.lpiProgress.visibility = View.GONE
 			}
 		}
-
 	}
 
 	private fun applyRecyclerView() {
