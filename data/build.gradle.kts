@@ -41,6 +41,7 @@ dependencies {
 	//Firebase
 	implementation(platform("com.google.firebase:firebase-bom:30.2.0"))
 	implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation ("com.google.firebase:firebase-database-ktx")
 
 	//Coroutines
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
