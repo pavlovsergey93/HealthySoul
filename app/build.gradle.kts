@@ -71,6 +71,7 @@ dependencies {
     //Firebase
     implementation(platform("com.google.firebase:firebase-bom:30.2.0"))
 	implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation ("com.google.firebase:firebase-database-ktx")
 
     //Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
@@ -80,8 +81,7 @@ dependencies {
 
     //Koin
     implementation("io.insert-koin:koin-android:3.1.6")
-    implementation("io.insert-koin:koin-androidx-workmanager:3.1.6")
-    implementation("io.insert-koin:koin-androidx-navigation:3.1.6")
+    implementation("io.insert-koin:koin-core:3.1.6")
 
     //Room
     implementation("androidx.room:room-runtime:2.4.3")
