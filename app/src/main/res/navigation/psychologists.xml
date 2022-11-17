@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		android:id="@+id/psychologists"
+		app:startDestination="@id/psychologistsFragment">
+
+	<fragment
+			android:id="@+id/psychologistsFragment"
+			android:name="com.gmail.pavlovsv93.healthysoul.ui.psychologists.PsychologistsFragment"
+			android:label="PsychologistsFragment" />
+</navigation>

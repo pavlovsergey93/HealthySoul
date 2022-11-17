@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/notebook"
+    app:startDestination="@id/notebookFragment">
+    <fragment
+        android:id="@+id/notebookFragment"
+        android:name="com.gmail.pavlovsv93.healthysoul.ui.notebook_screen.NotebookFragment"
+        android:label="NotebookFragment" >
+        <action
+            android:id="@+id/action_notebookFragment_to_noteFragment"
+            app:destination="@id/noteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/noteFragment"
+        android:name="com.gmail.pavlovsv93.healthysoul.ui.note_screen.NoteFragment"
+        android:label="NoteFragment" />
+</navigation>
