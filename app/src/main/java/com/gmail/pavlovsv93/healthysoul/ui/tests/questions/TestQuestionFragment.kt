@@ -100,7 +100,7 @@ class TestQuestionFragment : Fragment() {
 	private fun displayQuestion(question: QuestionEntity) {
 		with(binding){
 			tvQuestion.text = question.question
-			adapter.setData(question.answers)
+			question.answers?.let { adapter.setData(it) }
 		}
 	}
 

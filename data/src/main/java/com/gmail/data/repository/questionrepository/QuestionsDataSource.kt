@@ -29,14 +29,23 @@ class QuestionsDataSource(private val repository: QuestionsRepositoryInterface) 
 				val backQuestionId = answer[KEY_ANSWERS_BACK_QUESTION_ID]
 				val nextQuestionId = answer[KEY_ANSWERS_NEXT_QUESTION_ID]
 				val hintId = answer[KEY_ANSWERS_HINT_ID]
-				val item = QuestionEntity.Answer(itemAnswer.toString(), backQuestionId, nextQuestionId, hintId)
+				val item = QuestionEntity.Answer(
+					itemAnswer.toString(),
+					backQuestionId,
+					nextQuestionId,
+					hintId
+				)
 				listAnswer.add(item)
 			}
-			QuestionEntity(questionId,question,listAnswer)
+			QuestionEntity(questionId, question, listAnswer)
 		}
 	}
 
 	override suspend fun getHint(hintId: String): Flow<HintEntity> {
-		TODO("Not yet implemented")
+		return repository.getHint(hintId).map {
+			val hintId = it.id
+			val hint = it.data?.get(KEY_HINT) as String
+			HintEntity(hintId, hint)
+		}
 	}
 }
