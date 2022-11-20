@@ -15,19 +15,14 @@ import com.google.firebase.auth.FirebaseAuth
 
 class AccountFragment : Fragment() {
 
-    // Get a reference to the ViewModel scoped to this Fragment
     private val viewModel by viewModels<LoginViewModel>()
-
     private var _binding: FragmentAccountBinding? = null
     private  val binding: FragmentAccountBinding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-
-        // Inflate the layout for this fragment
         _binding = FragmentAccountBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -55,4 +50,10 @@ class AccountFragment : Fragment() {
             }
         })
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
 }

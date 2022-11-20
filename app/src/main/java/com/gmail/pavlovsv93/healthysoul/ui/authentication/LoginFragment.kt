@@ -7,25 +7,19 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.addCallback
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.auth.AuthUI.*
 import com.firebase.ui.auth.IdpResponse
 import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentLoginBinding
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
+import androidx.lifecycle.Observer as Observer1
 
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
@@ -33,7 +27,7 @@ class LoginFragment : Fragment() {
 
     companion object {
         const val TAG = "LoginFragment"
-        const val SIGN_IN_RESULT_CODE = 1001
+        const val SIGN_IN_RESULT_CODE = 1000
     }
 
     private val viewModel by viewModels<LoginViewModel>()
@@ -44,29 +38,26 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
-        val binding = DataBindingUtil.inflate<FragmentLoginBinding>(
-            inflater, R.layout.fragment_login, container, false
-        )
-
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
         binding.loginButton.setOnClickListener { launchSignInFlow() }
-
         return binding.root
     }
-
 
     private fun launchSignInFlow() {
 
         // Give users the option to sign in / register with their email or Google account. If users
         // choose to register with their email, they will need to create a password as well.
         val providers = arrayListOf(
-            AuthUI.IdpConfig.EmailBuilder().build(), AuthUI.IdpConfig.GoogleBuilder().build()
+            IdpConfig.EmailBuilder().build(),
+//            IdpConfig.GoogleBuilder().build(),
+            IdpConfig.AnonymousBuilder().build(),
+//            IdpConfig.PhoneBuilder().build()
         )
 
         // Create and launch sign-in intent. We listen to the response of this activity with the
         // SIGN_IN_RESULT_CODE code.
         startActivityForResult(
-            AuthUI.getInstance().createSignInIntentBuilder().setAvailableProviders(
+            getInstance().createSignInIntentBuilder().setAvailableProviders(
                 providers
             ).build(), SIGN_IN_RESULT_CODE
         )
@@ -97,18 +88,15 @@ class LoginFragment : Fragment() {
 
         navController = findNavController()
 
-        // If the user presses the back button, bring them back to the home screen.
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            navController.popBackStack(R.id.splashFragment, false)
-        }
+//
 
         // Observe the authentication state so we can know if the user has logged in successfully.
         // If the user has logged in successfully, bring them back to the home screen.
         // If the user did not log in successfully, display an error message.
-        viewModel.authenticationState.observe(viewLifecycleOwner, Observer { authenticationState ->
+        viewModel.authenticationState.observe(viewLifecycleOwner, Observer1 { authenticationState ->
             when (authenticationState) {
                 LoginViewModel.AuthenticationState.AUTHENTICATED -> {
-                    navController.popBackStack()
+//                    navController.popBackStack()
                     navController.navigate(R.id.accountFragment)
                 }
                 LoginViewModel.AuthenticationState.INVALID_AUTHENTICATION -> Snackbar.make(
@@ -121,6 +109,11 @@ class LoginFragment : Fragment() {
                 )
             }
         })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 }
