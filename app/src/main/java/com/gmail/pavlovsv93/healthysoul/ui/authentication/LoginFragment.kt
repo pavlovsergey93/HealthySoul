@@ -7,13 +7,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.firebase.ui.auth.AuthUI
-import com.firebase.ui.auth.AuthUI.*
+import com.firebase.ui.auth.AuthUI.IdpConfig
+import com.firebase.ui.auth.AuthUI.getInstance
 import com.firebase.ui.auth.IdpResponse
 import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentLoginBinding
