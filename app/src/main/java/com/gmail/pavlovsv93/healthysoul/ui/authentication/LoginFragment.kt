@@ -85,9 +85,9 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        navController = findNavController()
+        binding.loginButton.setOnClickListener { launchSignInFlow() }
 
-//
+        navController = findNavController()
 
         // Observe the authentication state so we can know if the user has logged in successfully.
         // If the user has logged in successfully, bring them back to the home screen.
