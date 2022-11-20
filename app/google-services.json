@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "311848037486",
-    "project_id": "healthysoul-7f02f",
-    "storage_bucket": "healthysoul-7f02f.appspot.com"
+    "project_number": "227126945840",
+    "project_id": "authentification-4d207",
+    "storage_bucket": "authentification-4d207.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:311848037486:android:fd49129c26cb43265f8a7f",
+        "mobilesdk_app_id": "1:227126945840:android:8619218fcaf898fcc4e5f5",
         "android_client_info": {
           "package_name": "com.gmail.pavlovsv93.healthysoul"
         }
       },
       "oauth_client": [
         {
-          "client_id": "311848037486-03h89l49h5g2kft85ck6lg0cciajjtdi.apps.googleusercontent.com",
+          "client_id": "227126945840-i4qmn6h4bb5jrsd0016giat6lf3k28sn.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.gmail.pavlovsv93.healthysoul",
-            "certificate_hash": "8df07e7de472e62d3a851e6077aa66786d738d85"
+            "certificate_hash": "e3becc20f6ab18eac8a64a803ff8a79946f3f265"
           }
         },
         {
-          "client_id": "311848037486-f6rti5l2f6jls11kv1l2ga6lt9cl6hnq.apps.googleusercontent.com",
+          "client_id": "227126945840-4jc9716114uhus3e96qs9fhk9mi5190s.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDnyrYNDcVEWM6fVV7lGLykTSMRj8dILeI"
+          "current_key": "AIzaSyBvfBKjKV7yCqaH8_QIfmtgVQ51X3Oln4M"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "311848037486-f6rti5l2f6jls11kv1l2ga6lt9cl6hnq.apps.googleusercontent.com",
+              "client_id": "227126945840-4jc9716114uhus3e96qs9fhk9mi5190s.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

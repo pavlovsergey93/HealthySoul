@@ -9,12 +9,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.constraintlayout.widget.ConstraintLayoutStates.TAG
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.gmail.pavlovsv93.healthysoul.R
-
+import com.gmail.pavlovsv93.healthysoul.databinding.FragmentSplashBinding
+import com.gmail.pavlovsv93.healthysoul.ui.authentication.LoginViewModel
 
 class SplashFragment : Fragment() {
+    private val viewModel by viewModels<LoginViewModel>()
+    private lateinit var binding: FragmentSplashBinding
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -23,6 +29,7 @@ class SplashFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = FragmentSplashBinding.inflate(layoutInflater)
         Log.d(TAG, "onCreate")
     }
 
@@ -42,51 +49,21 @@ class SplashFragment : Fragment() {
 			.rotationBy(720f).setDuration(4000L).start()
         Handler(Looper.getMainLooper()).postDelayed(object : Runnable {
             override fun run() {
-//				findNavController().navigate(SplashFragmentDirections.actionGreetingFragmentToTestsFragment())
-                findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToGreetingFragment())
+                viewModel.authenticationState.observe(viewLifecycleOwner) { authenticationState ->
+                    when (authenticationState) {
+                        LoginViewModel.AuthenticationState.AUTHENTICATED -> {
+                            findNavController().navigate(R.id.accountFragment)
+                        }
+                        LoginViewModel.AuthenticationState.UNAUTHENTICATED -> {
+                            findNavController().navigate(R.id.loginFragment)
+                        }
+                        LoginViewModel.AuthenticationState.INVALID_AUTHENTICATION -> {
+                            findNavController().navigate(R.id.loginFragment)
+                        }
+                    }
+                }
             }
-        }, 3000)
+        },3000)
     }
-
-    override fun onStart() {
-        super.onStart()
-        Log.d(TAG, "onStart")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d(TAG, "onResume")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d(TAG, "onPause")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d(TAG, "onStop")
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Log.d(TAG, "onDestroyView")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d(TAG, "onDestroy")
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        Log.d(TAG, "onDetach")
-    }
-
-    companion object {
-
-        private const val TAG = "SplashFragment"
-
-    }
-
 }
+

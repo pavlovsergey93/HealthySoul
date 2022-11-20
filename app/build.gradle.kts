@@ -3,19 +3,19 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
-	//id("com.google.gms.google-services")
+    //id("com.google.gms.google-services")
 }
 
 android {
     signingConfigs {
-		create("healthySoul") {
-			storeFile = file(".\\keyhealthysoul.jks")
-			storePassword = "Mp2630547"
-			keyAlias = "keyHealthySoul"
-			keyPassword = "Mp2630547"
-		}
-	}
-	compileSdk = 32
+        create("healthySoul") {
+            storeFile = file(".\\keyhealthysoul.jks")
+            storePassword = "Mp2630547"
+            keyAlias =  "keyHealthySoul"
+            keyPassword = "Mp2630547"
+        }
+    }
+    compileSdk = 32
 
     defaultConfig {
         applicationId = "com.gmail.pavlovsv93.healthysoul"
@@ -25,8 +25,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-		signingConfig = signingConfigs.getByName("healthySoul")
-	}
+        signingConfig = signingConfigs.getByName("healthySoul")
+    }
 
     buildTypes {
         release {
@@ -36,9 +36,9 @@ android {
                 "proguard-rules.pro"
             )
         }
-		debug{
-			signingConfig = signingConfigs.getByName("healthySoul")
-		}
+        debug{
+            signingConfig = signingConfigs.getByName("healthySoul")
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -50,6 +50,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        dataBinding = true
     }
 }
 
@@ -63,14 +64,18 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.5.1")
     implementation("com.google.android.material:material:1.6.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-	implementation("com.google.firebase:firebase-firestore:24.4.0")
-	testImplementation("junit:junit:4.13.2")
+    implementation("com.google.firebase:firebase-firestore:24.4.0")
+    implementation("com.google.firebase:firebase-auth-ktx:21.1.0")
+    testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
 
     //Firebase
     implementation(platform("com.google.firebase:firebase-bom:30.2.0"))
-	implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation ("com.google.firebase:firebase-database-ktx")
+    implementation ("com.google.firebase:firebase-auth:20.0.2")
+    implementation ("com.firebaseui:firebase-ui-auth:8.0.2")
 
     //Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
@@ -80,8 +85,7 @@ dependencies {
 
     //Koin
     implementation("io.insert-koin:koin-android:3.1.6")
-    implementation("io.insert-koin:koin-androidx-workmanager:3.1.6")
-    implementation("io.insert-koin:koin-androidx-navigation:3.1.6")
+    implementation("io.insert-koin:koin-core:3.1.6")
 
     //Room
     implementation("androidx.room:room-runtime:2.4.3")
