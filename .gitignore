@@ -8,9 +8,4 @@
 .externalNativeBuild
 .cxx
 local.properties
-/buildSrc/build/libs/buildSrc.jar
-/buildSrc/build/kotlin/buildSrcjar-classes.txt
-/buildSrc/build/tmp/jar/MANIFEST.MF
-/buildSrc/build/pluginUnderTestMetadata/plugin-under-test-metadata.properties
-/buildSrc/build/source-roots/buildSrc/source-roots.txt
-/buildSrc/build/reports/plugin-development/validation-report.txt
+/buildSrc/build/
