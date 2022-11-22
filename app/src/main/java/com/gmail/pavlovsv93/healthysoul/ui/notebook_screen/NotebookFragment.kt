@@ -43,6 +43,10 @@ class NotebookFragment : Fragment() {
         viewModel.initialization()
         initRecyclerView()
         initObserver()
+        database.document("1").set(Notebook(1,"Мой первый день разработчиком"))
+        database.document("2").set(Notebook(2,"Как я попал в GB(шок)"))
+        database.document("3").set(Notebook(3,"Как заработать миллион в секунду"))
+
     }
 
     private fun initRecyclerView() {
@@ -71,8 +75,14 @@ class NotebookFragment : Fragment() {
     }
 
     private fun renderState(state: NotebookDetails) {
-        if (state.isLoadingDone) {
-
+        if (!state.isLoadingDone) return
+        with(binding) {
+            groupLoading.visibility = View.GONE
+            notebookRecyclerView.visibility = View.VISIBLE
+        }
+        adapter.submitList(state.listNotes)
+        if (state.listNotes.isEmpty()) {
+            binding.noNotes.visibility = View.VISIBLE
         }
     }
 

@@ -7,9 +7,12 @@
 
     <TextView
         android:id="@+id/header_title"
+        android:layout_margin="@dimen/_8sdp"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/_26ssp"
+        android:textSize="@dimen/_16ssp"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Title" />
 
