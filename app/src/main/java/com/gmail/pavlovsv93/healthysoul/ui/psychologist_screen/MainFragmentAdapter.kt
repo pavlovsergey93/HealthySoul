@@ -8,7 +8,7 @@ import com.gmail.data.entity.PsychologistEntity
 
 class MainFragmentAdapter : RecyclerView.Adapter<MainViewHolder>() {
 
-    private val psychologistList = ArrayList<PsychologistEntity>()
+    private val psychologistList = mutableListOf<PsychologistEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder =
         MainViewHolder(parent)

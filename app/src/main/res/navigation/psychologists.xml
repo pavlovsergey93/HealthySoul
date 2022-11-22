@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-		xmlns:app="http://schemas.android.com/apk/res-auto"
-		android:id="@+id/psychologists"
-		app:startDestination="@id/psychologistsFragment">
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/psychologists"
+	app:startDestination="@id/psychologistFragment">
+
 
 	<fragment
-			android:id="@+id/psychologistsFragment"
-			android:name="com.gmail.pavlovsv93.healthysoul.ui.psychologists.PsychologistsFragment"
-			android:label="PsychologistsFragment" />
+		android:id="@+id/psychologistFragment"
+		android:name="com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen.PsychologistFragment"
+		android:label="PsychologistFragment"
+		tools:layout="@layout/fragment_psychologist"/>
 </navigation>
