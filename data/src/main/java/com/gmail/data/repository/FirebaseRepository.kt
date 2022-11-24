@@ -3,17 +3,16 @@ package com.gmail.data.repository
 import android.util.Log
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Source
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 
-const val COLLECTION = "psyhologists"
-
-class FirebaseRepository() : RepositoryInterface {
-    private val db = Firebase.firestore
+class FirebaseRepository(private val db: FirebaseFirestore) : RepositoryInterface {
+    companion object {
+        private const val COLLECTION = "psyhologists"
+    }
 
     override suspend fun getAllData(): Flow<List<DocumentSnapshot>> = callbackFlow {
         try {
@@ -31,9 +30,7 @@ class FirebaseRepository() : RepositoryInterface {
         } catch (exception: Exception) {
             close(exception)
         }
-
     }
-
 
     override suspend fun getItemData(idPsychologist: String): Flow<DocumentSnapshot> =
         callbackFlow {
@@ -55,7 +52,6 @@ class FirebaseRepository() : RepositoryInterface {
                 subscription?.remove()
             }
         }
-
 
     override suspend fun addData(data: Map<String, Any>): Flow<Any> = callbackFlow {
         try {

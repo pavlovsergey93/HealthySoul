@@ -11,7 +11,7 @@ val appModule = module {
         NotebookViewModel(getAllNotesUseCase = get())
     }
 
-    viewModel<PsychologistViewModel> {
-        PsychologistViewModel(repository = get())
-    }
+//    viewModel<PsychologistViewModel> {
+//        PsychologistViewModel(repository = get())
+//    }
 }

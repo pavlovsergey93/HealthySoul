@@ -6,14 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gmail.data.entity.PsychologistEntity
 
 
-class MainFragmentAdapter : RecyclerView.Adapter<MainViewHolder>() {
+class PsychologistFragmentAdapter : RecyclerView.Adapter<PsychologistViewHolder>() {
 
     private val psychologistList = mutableListOf<PsychologistEntity>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder =
-        MainViewHolder(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PsychologistViewHolder =
+        PsychologistViewHolder(parent)
 
-    override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PsychologistViewHolder, position: Int) {
         holder.bind(psychologistList[position])
     }
 
