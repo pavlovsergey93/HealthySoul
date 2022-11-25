@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
 class PsychologistViewModel(
-    val dataSource: DataSourceInterface,
+    private val dataSource: DataSourceInterface,
     private val stateFlow: MutableStateFlow<AppState> = MutableStateFlow(AppState.OnLoading(false))
 ) : ViewModel() {
 
@@ -21,7 +21,7 @@ class PsychologistViewModel(
             .catch { exc ->
                 stateFlow.value = AppState.OnException(exc)
             }.collect { data ->
-                stateFlow.value = AppState.OnLoading(false)
+               // stateFlow.value = AppState.OnLoading(false)
                 stateFlow.value = AppState.OnSuccess(data)
             }
     }
