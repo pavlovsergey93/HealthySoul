@@ -29,30 +29,13 @@ class FirebaseRepository(private val db: FirebaseFirestore) : RepositoryInterfac
                 if (error != null) {
                     return@addSnapshotListener
                 }
+                Log.d("WWW.FirebaseRepository", "${value.documents}")
                 trySend(value.documents)
             }
         awaitClose {
             subscription?.remove()
         }
     }
-
-//    override suspend fun getAllData(): Flow<List<DocumentSnapshot>> = callbackFlow {
-//        try {
-//            db.collection(COLLECTION)
-//                .get(Source.SERVER)
-//                .addOnSuccessListener { documents ->
-//                    for (document in documents) {
-//                        Log.d("WWW.FirestoreResult ${document.id}", document.data.toString())
-//                    }
-//                }
-//                .addOnFailureListener {
-//                    Log.w("WWW.FirestoreError", it.message.toString())
-//                }
-//            awaitClose { return@awaitClose }
-//        } catch (exception: Exception) {
-//            close(exception)
-//        }
-//    }
 
     override suspend fun getItemData(idPsychologist: String): Flow<DocumentSnapshot> =
         callbackFlow {
@@ -74,23 +57,4 @@ class FirebaseRepository(private val db: FirebaseFirestore) : RepositoryInterfac
                 subscription?.remove()
             }
         }
-
-    override suspend fun addData(data: Map<String, Any>): Flow<Any> = callbackFlow {
-        try {
-            db.collection(COLLECTION)
-                .add(data)
-                .addOnSuccessListener { documentReference ->
-                    Log.d(
-                        "WWW.FirebaseResultAdd",
-                        "DocumentSnapshot added with ID: " + documentReference.id
-                    );
-                }
-                .addOnFailureListener {
-                    Log.w("WWW.FirebaseErrorAdd", "Error adding document ${it.message.toString()}");
-                }
-            awaitClose { return@awaitClose }
-        } catch (exception: Exception) {
-            close(exception)
-        }
     }
-}

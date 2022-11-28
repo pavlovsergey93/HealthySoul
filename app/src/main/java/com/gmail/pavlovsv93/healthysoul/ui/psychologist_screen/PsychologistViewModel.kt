@@ -10,18 +10,18 @@ import kotlinx.coroutines.launch
 
 class PsychologistViewModel(
     private val dataSource: DataSourceInterface,
-    private val stateFlow: MutableStateFlow<AppState> = MutableStateFlow(AppState.OnLoading(false))
+    private val stateFlow: MutableStateFlow<AppState> = MutableStateFlow(AppState.OnLoading)
 ) : ViewModel() {
 
     fun getData() = stateFlow.asStateFlow()
 
     fun getAllPsychologist() = viewModelScope.launch {
-        stateFlow.value = AppState.OnLoading(load = true)
+        stateFlow.value = AppState.OnLoading
         dataSource.getAllPsychologistEntity()
             .catch { exc ->
                 stateFlow.value = AppState.OnException(exc)
-            }.collect { data ->
-               // stateFlow.value = AppState.OnLoading(false)
+            }
+            .collect { data ->
                 stateFlow.value = AppState.OnSuccess(data)
             }
     }

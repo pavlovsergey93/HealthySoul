@@ -12,9 +12,9 @@ data class PsychologistEntity(
     val country: String,                    // Страна
     val city: String,                        // Город
     val geoPoint: GeoPoint,
-    val contacts: List<Map<String, String>>,                // Контакты
-    val education: List<Map<String, Any>>,            // Образование
-    val specialization: List<Map<String, Any>>,        //Специализация
+    val contacts: List<Contact>,                // Контакты
+    val education: List<Education>,            // Образование
+    val specialization: Specialization,        //Специализация
     val experience: Int,                       // Опыт работы в количестве лет
     val rating: Double,                        // Рейтинг
     val numberOfVotes: Int                        // Количество голосов

@@ -60,15 +60,18 @@ class PsychologistFragment : Fragment(R.layout.fragment_psychologist) {
     private fun ranger(state: AppState) {
         when (state) {
             is AppState.OnException -> {
+                // todo скрыть прогресс
                 val exception = state.exception
             }
             is AppState.OnLoading -> {
-                val loaded = state.load
+                // todo отобразить прогресс
             }
             is AppState.OnShowMessage -> {
+                // todo скрыть прогресс
                 val message = state.message
             }
             is AppState.OnSuccess<*> -> {
+                // todo скрыть прогресс
                 val category: List<PsychologistEntity> = state.success as List<PsychologistEntity>
                 adapter.updatePsychologistList(category)
             }
