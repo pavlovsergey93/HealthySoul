@@ -1,7 +1,10 @@
+@file:Suppress("UNREACHABLE_CODE", "UNCHECKED_CAST")
+
 package com.gmail.data.data
 
 import com.gmail.data.entity.*
 import com.gmail.data.repository.RepositoryInterface
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.GeoPoint
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -28,116 +31,21 @@ class RemoteDataSource(private val repository: RepositoryInterface) : DataSource
         private const val KEY_SPECIALIZATION_SPECIALIZATION = "specialization"
         private const val KEY_SPECIALIZATION = "specialization"
         private const val KEY_EXPERIENCE = "experience"
-        private const val KEY_RATING = "specialization"
+        private const val KEY_RATING = "rating"
         private const val KEY_NUMBER_OF_VOTES = "numberOfVotes"
     }
-
-//    override suspend fun getAllPsychologistEntity(): Flow<List<PsychologistEntity>> {
-//        return repository.getAllData().map { resultList ->
-//            convert(resultList)
-//        }
-//    }
 
     override suspend fun getAllPsychologistEntity(): Flow<List<PsychologistEntity>> {
         return repository.getAllData().map { list ->
             list.map { item ->
-                val contactResult = mutableListOf<Contact>()
-                val educationResult = mutableListOf<Education>()
-                val specializationSpecResult = mutableListOf<Specialization>()
-                val id = item.id
-                val avatar = item.data?.get(KEY_AVATAR) as String
-                val name = item.data?.get(KEY_NAME) as String
-                val surname = item.data?.get(KEY_SURNAME) as String
-                val patronymic = item.data?.get(KEY_PATRONYMIC) as String
-                val profile = item.data?.get(KEY_PROFILE) as String
-                val country = item.data?.get(KEY_COUNTRY) as String
-                val city = item.data?.get(KEY_CITY) as String
-                val geoPoint = item.data?.get(KEY_GEO_POINT) as GeoPoint
-                val titleContact = item.data?.get(KEY_CONTACTS_TITLE_CONTACT) as String
-                val contact = item.data?.get(KEY_CONTACTS_CONTACT) as String
-                val contacts = item.data?.get(KEY_CONTACTS) as List<Map<String, String>>
-                val university = item.data?.get(KEY_EDUCATIONS_UNIVERSITY) as String
-                val faculty = item.data?.get(KEY_EDUCATIONS_FACULTY) as String
-                val specializationEdu = item.data?.get(KEY_EDUCATIONS_SPECIALIZATION) as String
-                val yearOfGraduation = item.data?.get(KEY_EDUCATIONS_YEAR_OF_GRADUATION) as Int
-                val education =
-                    item.data?.get(KEY_EDUCATIONS) as List<Map<String, Any>>
-                val profession = item.data?.get(KEY_SPECIALIZATION_PROFESSION) as String
-                val specializationSpec =
-                    item.data?.get(KEY_SPECIALIZATION_SPECIALIZATION) as List<Map<String, Any>>
-                val specialization = item.data?.get(KEY_SPECIALIZATION) as List<Specialization>
-                val experience = item.data?.get(KEY_EXPERIENCE) as Int
-                val rating = item.data?.get(KEY_RATING) as Double
-                val numberOfVotes = item.data?.get(KEY_NUMBER_OF_VOTES) as Int
-
-                contacts.forEach { itemSublist ->
-                    val titleContact =
-                        itemSublist[KEY_CONTACTS_TITLE_CONTACT] as String
-                    val contact = itemSublist[KEY_CONTACTS_CONTACT] as String
-                    contactResult.add(
-                        Contact(
-                            titleContact = titleContact,
-                            contact = contact
-                        )
-                    )
-                }
-                education.forEach { itemSublistTwo ->
-                    val university = itemSublistTwo[KEY_EDUCATIONS_UNIVERSITY] as String
-                    val faculty = itemSublistTwo[KEY_EDUCATIONS_FACULTY] as String
-                    val specializationEdu = itemSublistTwo[KEY_EDUCATIONS_SPECIALIZATION] as String
-                    val yearOfGraduation = itemSublistTwo[KEY_EDUCATIONS_YEAR_OF_GRADUATION] as Int
-                    educationResult.add(
-                        Education(
-                            university = university,
-                            faculty = faculty,
-                            specialization = specializationEdu,
-                            yearOfGraduation = yearOfGraduation
-                        )
-                    )
-                }
-                specializationSpec.forEach { itemSublistThree ->
-                    val profession = itemSublistThree[KEY_SPECIALIZATION_PROFESSION] as String
-                    val specialization =
-                        itemSublistThree[KEY_SPECIALIZATION_SPECIALIZATION] as List<String>
-                    specializationSpecResult.add(
-                        Specialization(
-                            profession = profession,
-                            specialization = specialization
-                        )
-                    )
-                }
-
-                PsychologistEntity(
-                    id = id,
-                    avatar = avatar,
-                    name = name,
-                    surname = surname,
-                    patronymic = patronymic,
-                    profile = profile,
-                    country = country,
-                    city = city,
-                    geoPoint = geoPoint,
-                    contacts = contacts,
-                    education = education,
-                    specialization = specializationSpec,
-                    experience = experience,
-                    rating = rating,
-                    numberOfVotes = numberOfVotes
-                )
+                convertToPsychologistEntity(item)
             }
-
         }
     }
 
     override suspend fun getItemPsychologistEntity(idPsychologist: String): Flow<PsychologistEntity> {
         TODO("Not yet implemented")
     }
-
-
-//    override suspend fun getItemPsychologistEntity(idPsychologist: String): Flow<PsychologistEntity> {
-//        return repository.getItemData(idPsychologist)
-//            .map { convertItem(it) }
-//    }
 
     override suspend fun insertItemPsychologistEntity() {
         TODO("Not yet implemented")
@@ -147,77 +55,78 @@ class RemoteDataSource(private val repository: RepositoryInterface) : DataSource
         TODO("Not yet implemented")
     }
 
-//    private fun convert(list: List<DocumentSnapshot>): List<PsychologistEntity> {
-//        val listDevice: MutableList<PsychologistEntity> = mutableListOf()
-//        list.forEach { item ->
-//            convertItem(item).let {
-//                if (item.id != "") {
-//                    listDevice.add(it)
-//                }
-//            }
-//        }
-//        return listDevice
-//    }
+    private fun convertToPsychologistEntity(item: DocumentSnapshot): PsychologistEntity {
+        val id = item.id
+        val avatar = item.data?.get(KEY_AVATAR) as String
+        val name = item.data?.get(KEY_NAME) as String
+        val surname = item.data?.get(KEY_SURNAME) as String
+        val patronymic = item.data?.get(KEY_PATRONYMIC) as String
+        val profile = item.data?.get(KEY_PROFILE) as String
+        val country = item.data?.get(KEY_COUNTRY) as String
+        val city = item.data?.get(KEY_CITY) as String
+        val geoPoint = item.data?.get(KEY_GEO_POINT) as GeoPoint
+        val contacts = item.data?.get(KEY_CONTACTS) as List<Map<String, Any>>
+        val resultContacts = convertContacts(contacts)
+        val education = item.data?.get(KEY_EDUCATIONS) as List<Map<String, Any>>
+        val resultEducation = convertEducation(education)
+        val experience = item.data?.get(KEY_EXPERIENCE) as Number
+        val rating = item.data?.get(KEY_RATING) as Number
+        val numberOfVotes = item.data?.get(KEY_NUMBER_OF_VOTES) as Number
+        val specialization = item.data?.get(KEY_SPECIALIZATION) as Map<String, Any>
+        val resultSpecial = convertSpecial(specialization)
+        return PsychologistEntity(
+            id = id,
+            avatar = avatar,
+            name = name,
+            surname = surname,
+            patronymic = patronymic,
+            profile = profile,
+            country = country,
+            city = city,
+            geoPoint = geoPoint,
+            contacts = resultContacts,
+            education = resultEducation,
+            specialization = resultSpecial,
+            experience = experience.toInt(),
+            rating = rating.toDouble(),
+            numberOfVotes = numberOfVotes.toInt()
+        )
+    }
 
-//    private fun convertItem(item: DocumentSnapshot): PsychologistEntity {
-//        val id = item.id
-//        item.data
-//        val avatar = item.data?.get(KEY_AVATAR)
-//        val name = item.data?.get(KEY_NAME)
-//        val surname = item.data?.get(KEY_SURNAME)
-//        val patronymic = item.data?.get(KEY_PATRONYMIC)
-//        val profile = item.data?.get(KEY_PROFILE)
-//        val country = item.data?.get(KEY_COUNTRY)
-//        val city = item.data?.get(KEY_CITY)
-//        val geoPoint = item.data?.get(KEY_GEO_POINT)
-//        val titleContact = item.data?.get(KEY_CONTACTS_TITLE_CONTACT)
-//        val contact = item.data?.get(KEY_CONTACTS_CONTACT)
-//        val contacts = item.data?.get(KEY_CONTACTS)
-//        val university = item.data?.get(KEY_EDUCATIONS_UNIVERSITY)
-//        val faculty = item.data?.get(KEY_EDUCATIONS_FACULTY)
-//        val specializationEdu = item.data?.get(KEY_EDUCATIONS_SPECIALIZATION)
-//        val yearOfGraduation = item.data?.get(KEY_EDUCATIONS_YEAR_OF_GRADUATION)
-//        val education = item.data?.get(KEY_EDUCATIONS)
-//        val profession = item.data?.get(KEY_SPECIALIZATION_PROFESSION)
-//        val specializationSpec = item.data?.get(KEY_SPECIALIZATION_SPECIALIZATION)
-//        val specialization = item.data?.get(KEY_SPECIALIZATION)
-//        val experience = item.data?.get(KEY_EXPERIENCE)
-//        val rating = item.data?.get(KEY_RATING)
-//        val numberOfVotes = item.data?.get(KEY_NUMBER_OF_VOTES)
-//
-//        return PsychologistEntity(
-//            id = id,
-//            avatar = avatar as String,
-//            name = name as String,
-//            surname = surname as String,
-//            patronymic = patronymic as String,
-//            profile = profile as String,
-//            country = country as String,
-//            city = city as String,
-//            geoPoint = geoPoint as GeoPoint,
-//            contacts = contacts as List<Contact>,
-//            education = education as List<Education>,
-//            specialization = specialization as List<Specialization>,
-//            experience = experience as Int,
-//            rating = rating as Double,
-//            numberOfVotes = numberOfVotes as Int
-//        )
-//
-//        Contact(
-//            titleContact = titleContact as String,
-//            contact = contact as String
-//        )
-//
-//        Education(
-//            university = university as String,
-//            faculty = faculty as String,
-//            specialization = specializationEdu as String,
-//            yearOfGraduation = yearOfGraduation as Int
-//        )
-//
-//        Specialization(
-//            profession = profession as String,
-//            specialization = specializationSpec as List<String>
-//        )
-//    }
+    private fun convertSpecial(specialization: Map<String, Any>): Specialization {
+        val profession = specialization[KEY_SPECIALIZATION_PROFESSION] as String
+        val specializations = specialization[KEY_SPECIALIZATION_SPECIALIZATION] as List<String>
+        return Specialization(profession = profession, specialization = specializations)
+    }
+
+    private fun convertEducation(education: List<Map<String, Any>>): List<Education> {
+        val result: MutableList<Education> = mutableListOf()
+        education.forEach { item ->
+            val faculty = item[KEY_EDUCATIONS_FACULTY] as String
+            val specialization = item[KEY_EDUCATIONS_SPECIALIZATION] as String
+            val university = item[KEY_EDUCATIONS_UNIVERSITY] as String
+            val yearOfGraduation = item[KEY_EDUCATIONS_YEAR_OF_GRADUATION] as Number
+            val educ = Education(
+                faculty = faculty,
+                specialization = specialization,
+                university = university,
+                yearOfGraduation = yearOfGraduation.toInt()
+            )
+            result.add(educ)
+        }
+        return result
+    }
+
+    private fun convertContacts(contacts: List<Map<String, Any>>): List<Contact> {
+        val result: MutableList<Contact> = mutableListOf()
+        contacts.forEach { item ->
+            val title = item[KEY_CONTACTS_TITLE_CONTACT] as String
+            val contact = item[KEY_CONTACTS_CONTACT] as String
+            if (title != null && contact != null) {
+                val itemContact = Contact(titleContact = title, contact = contact)
+                result.add(itemContact)
+            }
+        }
+        return result
+    }
 }
