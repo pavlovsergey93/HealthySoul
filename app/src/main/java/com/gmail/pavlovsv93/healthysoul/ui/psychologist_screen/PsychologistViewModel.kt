@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.gmail.data.entity.DataSourceInterface
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
 class PsychologistViewModel(
@@ -18,10 +17,11 @@ class PsychologistViewModel(
     fun getAllPsychologist() = viewModelScope.launch {
         stateFlow.value = AppState.OnLoading(load = true)
         dataSource.getAllPsychologistEntity()
-            .catch { exc ->
-                stateFlow.value = AppState.OnException(exc)
-            }.collect { data ->
-               // stateFlow.value = AppState.OnLoading(false)
+           // .catch { exc ->
+            //    stateFlow.value = AppState.OnException(exc)
+          //  }.collect { data ->
+            .collect {   data ->
+        stateFlow.value = AppState.OnLoading(false)
                 stateFlow.value = AppState.OnSuccess(data)
             }
     }

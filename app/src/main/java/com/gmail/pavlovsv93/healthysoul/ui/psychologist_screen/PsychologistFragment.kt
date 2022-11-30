@@ -20,7 +20,7 @@ import com.gmail.pavlovsv93.healthysoul.databinding.FragmentPsychologistBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 
-class PsychologistFragment : Fragment(R.layout.fragment_psychologist) {
+class PsychologistFragment : Fragment() {
 
     private var _binding: FragmentPsychologistBinding? = null
     private val binding get() = _binding!!

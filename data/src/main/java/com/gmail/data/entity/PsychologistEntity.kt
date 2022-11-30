@@ -37,3 +37,4 @@ data class Specialization(
     val specialization: List<String>,    // Специализация
 )
 
+

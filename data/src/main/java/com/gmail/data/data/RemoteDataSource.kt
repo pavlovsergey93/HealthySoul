@@ -1,5 +1,3 @@
-@file:Suppress("UNREACHABLE_CODE", "UNCHECKED_CAST")
-
 package com.gmail.data.data
 
 import com.gmail.data.entity.*
@@ -99,7 +97,8 @@ class RemoteDataSource(private val repository: RepositoryInterface) : DataSource
                 }
                 specializationSpec.forEach { itemSublistThree ->
                     val profession = itemSublistThree[KEY_SPECIALIZATION_PROFESSION] as String
-                    val specialization = itemSublistThree[KEY_SPECIALIZATION_SPECIALIZATION] as List<String>
+                    val specialization =
+                        itemSublistThree[KEY_SPECIALIZATION_SPECIALIZATION] as List<String>
                     specializationSpecResult.add(
                         Specialization(
                             profession = profession,
