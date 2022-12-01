@@ -1,4 +1,4 @@
-package com.gmail.data.repository.testscategory
+package com.gmai.pavlovsv93.healtysoul.domain.repository.tests
 
 import com.gmail.pavlovsv93.healthysoul.utils.GeneralTestData
 import kotlinx.coroutines.flow.Flow

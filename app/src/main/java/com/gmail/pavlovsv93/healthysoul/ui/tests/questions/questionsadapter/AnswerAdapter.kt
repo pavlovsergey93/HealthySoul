@@ -1,16 +1,18 @@
 package com.gmail.pavlovsv93.healthysoul.ui.tests.questions.questionsadapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.gmail.data.entity.tests.questionentity.QuestionEntity
+import com.gmai.pavlovsv93.healtysoul.domain.models.tests.QuestionEntity
 import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentTestQuestionItemBinding
 
 class AnswerAdapter(private val onClick: OnClickOnAnswer) :
 	RecyclerView.Adapter<AnswerAdapter.AnswerViewHolder>() {
 	private val listAnswers = mutableListOf<QuestionEntity.Answer>()
+	@SuppressLint("NotifyDataSetChanged")
 	fun setData(listData: List<QuestionEntity.Answer>) {
 		if (listAnswers.isNotEmpty()) {
 			listAnswers.clear()

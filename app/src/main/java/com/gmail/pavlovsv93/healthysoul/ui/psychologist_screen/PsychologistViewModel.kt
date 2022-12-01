@@ -1,7 +1,6 @@
 package com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.gmail.data.repository.FirebaseRepository
 import kotlinx.coroutines.flow.Flow

@@ -5,13 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.gmail.data.entity.tests.questionentity.QuestionEntity
+import com.gmai.pavlovsv93.healtysoul.domain.models.tests.QuestionEntity
 import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentTestQuestionBinding
 import com.gmail.pavlovsv93.healthysoul.di.QUESTION_VIEW_MODEL
@@ -20,6 +21,7 @@ import com.gmail.pavlovsv93.healthysoul.ui.tests.hint.TestsHintFragment.Companio
 import com.gmail.pavlovsv93.healthysoul.ui.tests.questions.questionsadapter.AnswerAdapter
 import com.gmail.pavlovsv93.healthysoul.ui.tests.questions.questionsadapter.OnClickOnAnswer
 import com.gmail.pavlovsv93.healthysoul.utils.showMessage
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -114,6 +116,17 @@ class TestQuestionFragment : Fragment() {
             currentQuestion?.answers?.first()?.backQuestionId?.let {
                 viewModel.getQuestion(it)
             }
+        }
+        binding.fabHome.setOnClickListener {
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle(R.string.close_title)
+                .setMessage(R.string.close_message)
+                .setNegativeButton(getString(R.string.dialog_negative)) { dialog, _ ->
+                    dialog.dismiss()
+                }.setPositiveButton(getString(R.string.dialog_positive)) { dialog, _ ->
+                    findNavController().navigate(R.id.testsFragment)
+                    dialog.dismiss()
+                }.show()
         }
     }
 

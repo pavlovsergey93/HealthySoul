@@ -1,4 +1,4 @@
-package com.gmail.data.repository.testscategory
+package com.gmail.data.repository.tests.testscategory
 
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentSnapshot
@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 
 class TestsCategoryRepository(private val db: FirebaseFirestore) :
-	TestsCategoryRepositoryInterface {
+    TestsCategoryRepositoryInterface {
 	companion object {
 		private const val CATEGORY_COLLECTION = "category"
 	}

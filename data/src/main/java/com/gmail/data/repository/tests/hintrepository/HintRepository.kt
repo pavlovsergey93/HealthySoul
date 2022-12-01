@@ -1,4 +1,4 @@
-package com.gmail.data.data.tests.hint
+package com.gmail.data.repository.tests.hintrepository
 
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot

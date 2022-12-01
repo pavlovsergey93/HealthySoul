@@ -1,6 +1,8 @@
 package com.gmail.data.data.tests.hint
 
-import com.gmail.data.entity.tests.questionentity.HintEntity
+import com.gmai.pavlovsv93.healtysoul.domain.models.tests.HintEntity
+import com.gmai.pavlovsv93.healtysoul.domain.repository.tests.HintDataSourceInterface
+import com.gmail.data.repository.tests.hintrepository.HintRepositoryInterface
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

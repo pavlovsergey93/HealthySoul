@@ -1,12 +1,15 @@
-package com.gmail.data.repository.testscategory
+package com.gmail.data.data.tests.tests
 
+import com.gmai.pavlovsv93.healtysoul.domain.repository.tests.TestsCategoryDataSourceInterface
+import com.gmail.data.repository.tests.testscategory.TestsCategoryRepositoryInterface
 import com.gmail.pavlovsv93.healthysoul.utils.ChildData
 import com.gmail.pavlovsv93.healthysoul.utils.GeneralTestData
 import com.gmail.pavlovsv93.healthysoul.utils.ParentData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class TestsCategoryDataSource(private val repository: TestsCategoryRepositoryInterface) : TestsCategoryDataSourceInterface {
+class TestsCategoryDataSource(private val repository: TestsCategoryRepositoryInterface) :
+	TestsCategoryDataSourceInterface {
 	companion object{
 		private const val KEY_TITLE = "title"
 		private const val KEY_SUBLIST = "sublist"

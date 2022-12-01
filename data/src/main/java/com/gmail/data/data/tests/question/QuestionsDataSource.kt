@@ -1,6 +1,8 @@
-package com.gmail.data.repository.questionrepository
+package com.gmail.data.data.tests.question
 
-import com.gmail.data.entity.tests.questionentity.QuestionEntity
+import com.gmai.pavlovsv93.healtysoul.domain.models.tests.QuestionEntity
+import com.gmai.pavlovsv93.healtysoul.domain.repository.tests.QuestionsDataSourceInterface
+import com.gmail.data.repository.tests.questionrepository.QuestionsRepositoryInterface
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

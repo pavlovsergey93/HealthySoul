@@ -1,4 +1,4 @@
-package com.gmail.data.entity.tests.questionentity
+package com.gmai.pavlovsv93.healtysoul.domain.models.tests
 
 data class HintEntity(
 	val hintId: String,

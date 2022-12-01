@@ -1,6 +1,6 @@
-package com.gmail.data.data.tests.hint
+package com.gmai.pavlovsv93.healtysoul.domain.repository.tests
 
-import com.gmail.data.entity.tests.questionentity.HintEntity
+import com.gmai.pavlovsv93.healtysoul.domain.models.tests.HintEntity
 import kotlinx.coroutines.flow.Flow
 
 interface HintDataSourceInterface {

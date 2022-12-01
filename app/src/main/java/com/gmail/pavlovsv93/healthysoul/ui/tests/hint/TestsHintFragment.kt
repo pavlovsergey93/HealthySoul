@@ -10,7 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.gmail.data.entity.tests.questionentity.HintEntity
+import com.gmai.pavlovsv93.healtysoul.domain.models.tests.HintEntity
 import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentTestsHintBinding
 import com.gmail.pavlovsv93.healthysoul.di.HINT_VIEW_MODEL
