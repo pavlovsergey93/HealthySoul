@@ -12,7 +12,6 @@ class QuestionsRepository(private val db: FirebaseFirestore) : QuestionsReposito
 
 	companion object{
 		const val QUESTIONS_COLLECTION = "questions"
-		const val HINT_COLLECTION = "hints"
 	}
 
 	override suspend fun getQuestion(questionId: String): Flow<DocumentSnapshot> =
@@ -38,41 +37,4 @@ class QuestionsRepository(private val db: FirebaseFirestore) : QuestionsReposito
 				subscription?.remove()
 			}
 		}
-
-	override suspend fun getHint(hintId: String): Flow<DocumentSnapshot> = callbackFlow{
-		var eventCollection: CollectionReference? = null
-		try {
-			eventCollection = db.collection(HINT_COLLECTION)
-		} catch (exception: Exception){
-			close(exception)
-		}
-		val subscription = eventCollection
-			?.document(hintId)
-			?.addSnapshotListener { value, error ->
-				if(value == null){
-					return@addSnapshotListener
-				}
-				if(error != null){
-					return@addSnapshotListener
-				}
-				trySend(value)
-			}
-		awaitClose{
-			subscription?.remove()
-		}
-	}
-
-	fun addData(data: Map<String, Any>) {
-		db.collection(HINT_COLLECTION)
-			.add(data)
-			.addOnSuccessListener { documentReference ->
-				Log.d(
-					"WWW.FirebaseResultAdd",
-					"DocumentSnapshot added with ID: " + documentReference.getId()
-				);
-			}
-			.addOnFailureListener {
-				Log.w("WWW.FirebaseErrorAdd", "Error adding document ${it.message.toString()}");
-			}
-	}
 }

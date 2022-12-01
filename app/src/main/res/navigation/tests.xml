@@ -14,5 +14,17 @@
 	<fragment
 			android:id="@+id/testQuestionFragment"
 			android:name="com.gmail.pavlovsv93.healthysoul.ui.tests.questions.TestQuestionFragment"
-			android:label="TestQuestionFragment" />
+			android:label="TestQuestionFragment" >
+		<action
+			android:id="@+id/action_testQuestionFragment_to_testsHintFragment"
+			app:destination="@id/testsHintFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/testsHintFragment"
+		android:name="com.gmail.pavlovsv93.healthysoul.ui.tests.hint.TestsHintFragment"
+		android:label="TestsHintFragment" >
+		<action
+			android:id="@+id/action_testsHintFragment_to_testsFragment"
+			app:destination="@id/testsFragment" />
+	</fragment>
 </navigation>

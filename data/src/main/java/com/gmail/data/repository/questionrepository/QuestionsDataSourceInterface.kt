@@ -6,5 +6,4 @@ import kotlinx.coroutines.flow.Flow
 
 interface QuestionsDataSourceInterface {
 	suspend fun getQuestion(questionId: String): Flow<QuestionEntity>
-	suspend fun getHint(hintId: String): Flow<HintEntity>
 }

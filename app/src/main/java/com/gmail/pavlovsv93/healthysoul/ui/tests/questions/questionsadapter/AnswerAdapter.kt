@@ -31,12 +31,13 @@ class AnswerAdapter(private val onClick: OnClickOnAnswer) :
 	}
 
 	override fun getItemCount(): Int = listAnswers.size
+
 	inner class AnswerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 		fun bind(data: QuestionEntity.Answer) {
 			val binding = FragmentTestQuestionItemBinding.bind(itemView)
 			with(binding) {
-				rbAnswerItem.text = data.answer
-				rbAnswerItem.setOnClickListener {
+				tvAnswerItem.text = data.answer
+				tvAnswerItem.setOnClickListener {
 					if (!data.nextQuestionId.isNullOrEmpty()) {
 						onClick.showNextQuestion(data.nextQuestionId!!)
 					} else if (!data.hintId.isNullOrEmpty()) {

@@ -9,7 +9,6 @@ class QuestionsDataSource(private val repository: QuestionsRepositoryInterface) 
 	QuestionsDataSourceInterface {
 
 	companion object {
-		private const val KEY_HINT = "hint"
 		private const val KEY_QUESTION = "question"
 		private const val KEY_ANSWERS = "answers"
 		private const val KEY_ANSWERS_ANSWER = "answer"
@@ -41,11 +40,4 @@ class QuestionsDataSource(private val repository: QuestionsRepositoryInterface) 
 		}
 	}
 
-	override suspend fun getHint(hintId: String): Flow<HintEntity> {
-		return repository.getHint(hintId).map {
-			val hintId = it.id
-			val hint = it.data?.get(KEY_HINT) as String
-			HintEntity(hintId, hint)
-		}
-	}
 }

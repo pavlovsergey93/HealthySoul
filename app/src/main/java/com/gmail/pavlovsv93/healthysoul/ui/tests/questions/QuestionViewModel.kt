@@ -23,17 +23,5 @@ class QuestionsViewModel(
 			}.collect{ question ->
 				stateFlow.tryEmit(AppState.OnSuccess(question))
 			}
-
-	}
-
-	fun getHint(hintId: String) = viewModelScope.launch(Dispatchers.IO) {
-		stateFlow.tryEmit(AppState.OnLoading)
-		dataSource.getHint(hintId)
-			.catch { exc ->
-				stateFlow.tryEmit(AppState.OnException(exc))
-			}.collect{ hint ->
-				stateFlow.tryEmit(AppState.OnSuccess(hint))
-			}
-
 	}
 }
