@@ -15,6 +15,7 @@ import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentTestsHintBinding
 import com.gmail.pavlovsv93.healthysoul.di.HINT_VIEW_MODEL
 import com.gmail.pavlovsv93.healthysoul.ui.tests.AppState
+import com.gmail.pavlovsv93.healthysoul.utils.showMessage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -23,7 +24,7 @@ import org.koin.core.qualifier.named
 
 class TestsHintFragment : Fragment() {
 
-    companion object{
+    companion object {
         const val ARG_HINT_ID = "ARG_HINT_ID.TestsHintFragment"
     }
 
@@ -35,7 +36,7 @@ class TestsHintFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentTestsHintBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -43,11 +44,11 @@ class TestsHintFragment : Fragment() {
     @SuppressLint("UnsafeRepeatOnLifecycleDetector")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        lifecycleScope.launch{
+        lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.getData()
-                    .collect{ state ->
-                        withContext(Dispatchers.Main){
+                    .collect { state ->
+                        withContext(Dispatchers.Main) {
                             ranger(state)
                         }
                     }
@@ -66,12 +67,20 @@ class TestsHintFragment : Fragment() {
     }
 
     private fun ranger(state: AppState) {
-        when(state){
-            AppState.OnEmpty -> TODO()
-            is AppState.OnException -> TODO()
-            AppState.OnLoading -> TODO()
-            is AppState.OnShowMessage -> TODO()
+        when (state) {
+            is AppState.OnException -> {
+                binding.pbProgress.visibility = View.GONE
+                binding.root.showMessage(state.exception.message.toString())
+            }
+            AppState.OnLoading -> {
+                binding.pbProgress.visibility = View.VISIBLE
+            }
+            is AppState.OnShowMessage -> {
+                binding.pbProgress.visibility = View.GONE
+                binding.root.showMessage(state.message)
+            }
             is AppState.OnSuccess<*> -> {
+                binding.pbProgress.visibility = View.GONE
                 val hint = state.success as HintEntity
                 binding.tvHint.text = hint.hint
             }

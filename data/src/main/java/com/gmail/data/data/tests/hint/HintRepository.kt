@@ -1,7 +1,6 @@
 package com.gmail.data.data.tests.hint
 
-import com.gmail.data.repository.questionrepository.QuestionsRepository
-import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.channels.awaitClose
@@ -13,14 +12,13 @@ class HintRepository(private val db: FirebaseFirestore): HintRepositoryInterface
         const val HINT_COLLECTION = "hints"
     }
     override suspend fun getHint(hintId: String): Flow<DocumentSnapshot> = callbackFlow {
-        var eventCollection: CollectionReference? = null
+        var eventCollection: DocumentReference? = null
         try {
-            eventCollection = db.collection(HINT_COLLECTION)
+            eventCollection = db.collection(HINT_COLLECTION).document(hintId)
         } catch (exception: Exception){
             close(exception)
         }
         val subscription = eventCollection
-            ?.document(hintId)
             ?.addSnapshotListener { value, error ->
                 if(value == null){
                     return@addSnapshotListener

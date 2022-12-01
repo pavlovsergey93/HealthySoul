@@ -1,6 +1,5 @@
 package com.gmail.data.repository.questionrepository
 
-import android.util.Log
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore

@@ -5,12 +5,15 @@ import androidx.lifecycle.viewModelScope
 import com.gmail.data.repository.questionrepository.QuestionsDataSourceInterface
 import com.gmail.pavlovsv93.healthysoul.ui.tests.AppState
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
 class QuestionsViewModel(
 	private val dataSource: QuestionsDataSourceInterface,
-	private val stateFlow: MutableStateFlow<AppState> = MutableStateFlow(AppState.OnEmpty)
+	private val stateFlow: MutableStateFlow<AppState> = MutableStateFlow(AppState.OnLoading)
 ) : ViewModel() {
 
 	fun getData(): StateFlow<AppState> = stateFlow.asStateFlow()

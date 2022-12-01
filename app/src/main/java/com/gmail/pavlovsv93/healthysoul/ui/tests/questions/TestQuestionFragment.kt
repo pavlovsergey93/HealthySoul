@@ -23,105 +23,109 @@ import com.gmail.pavlovsv93.healthysoul.utils.showMessage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.Dispatcher
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.qualifier.named
 
 class TestQuestionFragment : Fragment() {
-	companion object {
-		const val ARG_ID_QUESTION = "TestQuestionFragment.ARG_ID_QUESTION"
-	}
-	private var currentQuestion: QuestionEntity? = null
-	private val viewModel: QuestionsViewModel by viewModel(named(QUESTION_VIEW_MODEL))
-	private var _binding: FragmentTestQuestionBinding? = null
-	private val binding get() = _binding!!
-	private val adapter: AnswerAdapter = AnswerAdapter(object : OnClickOnAnswer {
-		override fun showNextQuestion(id: String) {
-			viewModel.getQuestion(id)
-		}
+    companion object {
+        const val ARG_ID_QUESTION = "TestQuestionFragment.ARG_ID_QUESTION"
+    }
 
-		override fun showHint(id: String) {
-			val data = Bundle().apply {
-				putString(ARG_HINT_ID, id)
-			}
-			findNavController().navigate(R.id.testsHintFragment, data)
-		}
-	})
+    private var currentQuestion: QuestionEntity? = null
+    private val viewModel: QuestionsViewModel by viewModel(named(QUESTION_VIEW_MODEL))
+    private var _binding: FragmentTestQuestionBinding? = null
+    private val binding get() = _binding!!
+    private val adapter: AnswerAdapter = AnswerAdapter(object : OnClickOnAnswer {
+        override fun showNextQuestion(id: String) {
+            viewModel.getQuestion(id)
+        }
 
-	override fun onCreateView(
-		inflater: LayoutInflater,
-		container: ViewGroup?,
-		savedInstanceState: Bundle?
-	): View {
-		_binding = FragmentTestQuestionBinding.inflate(inflater, container, false)
-		return binding.root
-	}
+        override fun showHint(id: String) {
+            val data = Bundle().apply {
+                putString(ARG_HINT_ID, id)
+            }
+            findNavController().navigate(R.id.testsHintFragment, data)
+        }
+    })
 
-	@SuppressLint("UnsafeRepeatOnLifecycleDetector")
-	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-		super.onViewCreated(view, savedInstanceState)
-		applyRecyclerView()
-		val id = arguments?.getString(ARG_ID_QUESTION)
-		id?.let { viewModel.getQuestion(it) }
-		lifecycleScope.launch(Dispatchers.IO) {
-			lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-				viewModel.getData()
-					.collect { state ->
-						withContext(Dispatchers.Main) {
-							ranger(state)
-						}
-					}
-			}
-		}
-		initFab()
-	}
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentTestQuestionBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-	private fun ranger(state: AppState) {
-		when (state) {
-			AppState.OnEmpty -> {
-				binding.lpiProgress.visibility = View.GONE
-			}
-			is AppState.OnException -> {
-				binding.lpiProgress.visibility = View.GONE
-				binding.root.showMessage(state.exception.message.toString())
-			}
-			AppState.OnLoading -> {
-				binding.lpiProgress.visibility = View.VISIBLE
-			}
-			is AppState.OnShowMessage -> {
-				binding.lpiProgress.visibility = View.GONE
-				binding.root.showMessage(state.message)
-			}
-			is AppState.OnSuccess<*> -> {
-				binding.lpiProgress.visibility = View.GONE
-				currentQuestion = state.success as QuestionEntity
-				currentQuestion?.let { displayQuestion(it)}
-			}
-		}
-	}
+    @SuppressLint("UnsafeRepeatOnLifecycleDetector")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        applyRecyclerView()
+        val id = arguments?.getString(ARG_ID_QUESTION)
+        id?.let { viewModel.getQuestion(it) }
+        lifecycleScope.launch(Dispatchers.IO) {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getData()
+                    .collect { state ->
+                        withContext(Dispatchers.Main) {
+                            ranger(state)
+                        }
+                    }
+            }
+        }
+        initFab()
+    }
 
-	private fun displayQuestion(question: QuestionEntity) {
-		with(binding){
-			tvQuestion.text = question.question
-			question.answers?.let { adapter.setData(it) }
-		}
-	}
+    private fun ranger(state: AppState) {
+        when (state) {
+            is AppState.OnException -> {
+                binding.lpiProgress.visibility = View.GONE
+                binding.root.showMessage(state.exception.message.toString())
+            }
+            AppState.OnLoading -> {
+                binding.lpiProgress.visibility = View.VISIBLE
+            }
+            is AppState.OnShowMessage -> {
+                binding.lpiProgress.visibility = View.GONE
+                binding.root.showMessage(state.message)
+            }
+            is AppState.OnSuccess<*> -> {
+                binding.lpiProgress.visibility = View.GONE
+                currentQuestion = state.success as QuestionEntity
+                currentQuestion?.let { displayQuestion(it) }
+            }
+        }
+    }
 
-	private fun initFab() {
-		binding.fabBack.setOnClickListener {
+    private fun displayQuestion(question: QuestionEntity) {
+        with(binding) {
+            fabBack.visibility = if (question.answers?.first()?.backQuestionId.isNullOrEmpty()) {
+                View.GONE
+            } else {
+                View.VISIBLE
+            }
+            tvQuestion.text = question.question
+            question.answers?.let { adapter.setData(it) }
+        }
+    }
 
-		}
-	}
+    private fun initFab() {
+        binding.fabBack.setOnClickListener {
+            currentQuestion?.answers?.first()?.backQuestionId?.let {
+                viewModel.getQuestion(it)
+            }
+        }
+    }
 
-	override fun onDestroy() {
-		_binding = null
-		super.onDestroy()
-	}
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
+    }
 
-	private fun applyRecyclerView() {
-		val recyclerView = binding.rvAnswers
-		recyclerView.layoutManager =
-			LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-		recyclerView.adapter = adapter
-	}
+    private fun applyRecyclerView() {
+        val recyclerView = binding.rvAnswers
+        recyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        recyclerView.adapter = adapter
+    }
 }

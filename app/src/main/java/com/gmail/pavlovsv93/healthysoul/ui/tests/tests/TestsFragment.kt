@@ -83,9 +83,6 @@ class TestsFragment : Fragment() {
 				val category: List<GeneralTestData> = state.success as List<GeneralTestData>
 				adapter.setData(category)
 			}
-			AppState.OnEmpty -> {
-				binding.lpiProgress.visibility = View.GONE
-			}
 		}
 	}
 
