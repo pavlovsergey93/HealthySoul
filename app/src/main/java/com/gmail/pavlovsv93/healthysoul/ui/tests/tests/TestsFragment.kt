@@ -1,4 +1,4 @@
-package com.gmail.pavlovsv93.healthysoul.ui.tests.testscategory
+package com.gmail.pavlovsv93.healthysoul.ui.tests.tests
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -9,35 +9,32 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.gmail.data.repository.testscategory.TestsCategoryDataSource
-import com.gmail.data.repository.testscategory.TestsCategoryDataSourceInterface
-import com.gmail.data.repository.testscategory.TestsCategoryRepository
-import com.gmail.data.repository.testscategory.TestsCategoryRepositoryInterface
 import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentTestsBinding
+import com.gmail.pavlovsv93.healthysoul.di.TESTS_VIEW_MODEL
 import com.gmail.pavlovsv93.healthysoul.ui.tests.AppState
-import com.gmail.pavlovsv93.healthysoul.ui.tests.TestQuestionFragment
-import com.gmail.pavlovsv93.healthysoul.ui.tests.testscategory.testsadapter.TestsAdapter
+import com.gmail.pavlovsv93.healthysoul.ui.tests.questions.TestQuestionFragment
+import com.gmail.pavlovsv93.healthysoul.ui.tests.tests.testsadapter.TestsAdapter
 import com.gmail.pavlovsv93.healthysoul.utils.GeneralTestData
-import com.google.firebase.firestore.FirebaseFirestore
+import com.gmail.pavlovsv93.healthysoul.utils.showMessage
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.qualifier.named
 
 class TestsFragment : Fragment() {
 	private var _binding: FragmentTestsBinding? = null
 	private val binding get() = _binding!!
 
-	private val viewModel: TestsViewModel by lazy {
-		val db: FirebaseFirestore = FirebaseFirestore.getInstance()
-		val repository: TestsCategoryRepositoryInterface = TestsCategoryRepository(db)
-		val dataSource: TestsCategoryDataSourceInterface = TestsCategoryDataSource(repository)
-		TestsViewModel(dataSource = dataSource)
-	}
-	private val adapter: TestsAdapter = TestsAdapter { data ->
-		parentFragmentManager.beginTransaction()
-			.replace(R.id.nav_host_fragment, TestQuestionFragment.newInstance(data))
-			.addToBackStack(null)
-			.commit()
+	private val viewModel: TestsViewModel by viewModel(named(TESTS_VIEW_MODEL))
+	private val adapter: TestsAdapter = TestsAdapter { idQuestion ->
+		val data = Bundle().apply {
+			putString(TestQuestionFragment.ARG_ID_QUESTION, idQuestion)
+		}
+		findNavController().navigate(R.id.testQuestionFragment, data)
 	}
 
 	override fun onCreateView(
@@ -53,10 +50,13 @@ class TestsFragment : Fragment() {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 		applyRecyclerView()
-		lifecycleScope.launch {
+		lifecycleScope.launch(Dispatchers.IO) {
 			lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-				viewModel.getData().collect{ state ->
-					ranger(state)
+				viewModel.getData()
+					.collect{ state ->
+						withContext(Dispatchers.Main){
+							ranger(state)
+						}
 				}
 			}
 		}
@@ -66,20 +66,24 @@ class TestsFragment : Fragment() {
 	private fun ranger(state: AppState) {
 		when (state) {
 			is AppState.OnException -> {
-				val exception = state.exception
+				binding.lpiProgress.visibility = View.GONE
+				val message = state.exception.message.toString()
+				binding.root.showMessage(message)
 			}
 			is AppState.OnLoading -> {
-				val loaded = state.load
+				binding.lpiProgress.visibility = View.VISIBLE
 			}
 			is AppState.OnShowMessage -> {
+				binding.lpiProgress.visibility = View.GONE
 				val message = state.message
+				binding.root.showMessage(message)
 			}
 			is AppState.OnSuccess<*> -> {
+				binding.lpiProgress.visibility = View.GONE
 				val category: List<GeneralTestData> = state.success as List<GeneralTestData>
 				adapter.setData(category)
 			}
 		}
-
 	}
 
 	private fun applyRecyclerView() {

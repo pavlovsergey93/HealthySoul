@@ -1,4 +1,4 @@
-package com.gmail.pavlovsv93.healthysoul.ui.tests.testscategory
+package com.gmail.pavlovsv93.healthysoul.ui.tests.tests
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,19 +11,18 @@ import kotlinx.coroutines.launch
 
 class TestsViewModel(
 	private val dataSource: TestsCategoryDataSourceInterface,
-	private val stateFlow: MutableStateFlow<AppState> = MutableStateFlow(AppState.OnLoading(false))
+	private val stateFlow: MutableStateFlow<AppState> = MutableStateFlow(AppState.OnLoading)
 ) : ViewModel() {
 
 	fun getData() = stateFlow.asStateFlow()
 
 	fun getTestsCategory() = viewModelScope.launch {
-		stateFlow.value = AppState.OnLoading(load = true)
+		stateFlow.tryEmit(AppState.OnLoading)
 		dataSource.getListCategory()
 			.catch { exc ->
-				stateFlow.value = AppState.OnException(exc)
-			}.collect{ data ->
-				stateFlow.value = AppState.OnLoading(false)
-				stateFlow.value = AppState.OnSuccess(data)
+				stateFlow.tryEmit(AppState.OnException(exc))
+			}.collect { data ->
+				stateFlow.tryEmit(AppState.OnSuccess(data))
 			}
 	}
 }
