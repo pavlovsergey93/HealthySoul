@@ -7,15 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
-import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentGreetingBinding
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.launch
+
 const val ARG_NAME_USER = "ARG_NAME_USER"
 class GreetingFragment : Fragment() {
 
@@ -42,16 +40,14 @@ class GreetingFragment : Fragment() {
     }
 
     private fun updateUI(name: String) {
-        // todo доработать необходимый функционал
-        val dataName = Bundle().apply {
+        Bundle().apply {
             putString(ARG_NAME_USER, name)
         }
-        findNavController().navigate(GreetingFragmentDirections.actionGreetingFragmentToTabsFragment())
+        findNavController().navigate(GreetingFragmentDirections.actionGreetingFragmentToAccountFragment())
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initClick()
         binding.loginButton.setOnClickListener {
             signInLauncher.launch(signInIntent())
         }
@@ -60,7 +56,8 @@ class GreetingFragment : Fragment() {
     private fun initProvider() = listOf(
         AuthUI.IdpConfig.EmailBuilder().build(),
         AuthUI.IdpConfig.PhoneBuilder().build(),
-        AuthUI.IdpConfig.GoogleBuilder().build()
+        AuthUI.IdpConfig.GoogleBuilder().build(),
+        AuthUI.IdpConfig.AnonymousBuilder().build()
     )
 
     private fun signInIntent() = AuthUI.getInstance()
@@ -87,14 +84,6 @@ class GreetingFragment : Fragment() {
             Toast.makeText(
                 requireContext(), response?.error?.message.toString(), Toast.LENGTH_SHORT
             ).show()
-        }
-    }
-
-    private fun initClick() {
-        binding.nextBtn.setOnClickListener {
-            lifecycleScope.launch {
-                findNavController().navigate(GreetingFragmentDirections.actionGreetingFragmentToTabsFragment())
-            }
         }
     }
 }
