@@ -44,7 +44,8 @@ class RemoteDataSource(private val repository: RepositoryInterface) : DataSource
     }
 
     override suspend fun getItemPsychologistEntity(idPsychologist: String): Flow<PsychologistEntity> {
-        TODO("Not yet implemented")
+        return repository.getItemData(idPsychologist)
+            .map { psy -> convertToPsychologistEntity(psy) }
     }
 
     override suspend fun insertItemPsychologistEntity() {

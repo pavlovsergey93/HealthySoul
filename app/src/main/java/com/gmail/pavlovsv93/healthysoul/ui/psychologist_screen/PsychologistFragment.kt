@@ -15,7 +15,6 @@ import com.gmail.data.entity.DataSourceInterface
 import com.gmail.data.entity.PsychologistEntity
 import com.gmail.data.repository.FirebaseRepository
 import com.gmail.data.repository.RepositoryInterface
-import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentPsychologistBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
