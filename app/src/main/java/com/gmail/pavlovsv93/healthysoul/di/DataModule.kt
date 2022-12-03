@@ -11,7 +11,7 @@ val dataModule = module {
         NotebookFirebaseRepositoryImplementation()
     }
 
-    single<FirebaseRepository> {
-        FirebaseRepository()
-    }
+//    single<FirebaseRepository> {
+//        FirebaseRepository()
+//    }
 }
