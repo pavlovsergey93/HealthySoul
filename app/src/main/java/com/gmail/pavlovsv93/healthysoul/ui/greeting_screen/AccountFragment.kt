@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.firebase.ui.auth.AuthUI
@@ -33,20 +32,13 @@ class AccountFragment : Fragment() {
         val hello = String.format(
             resources.getString(
                 /* id = */ R.string.welcome_message,
-                /* ...formatArgs = */ FirebaseAuth.getInstance().currentUser?.displayName))
+                /* ...formatArgs = */ FirebaseAuth.getInstance().currentUser?.displayName?:"пользователь"))
 
         binding.tvWelcome.text = hello
 
         binding.nextButtonText.setOnClickListener {
             AuthUI.getInstance().signOut(requireContext())
             findNavController().navigate(AccountFragmentDirections.actionAccountFragmentToTabsFragment())
-        }
-
-        view?.findViewById<Button>(R.id.bntSignOut)?.setOnClickListener {
-            AuthUI.getInstance().signOut(requireContext())
-        }
-        view?.findViewById<Button>(R.id.btnDeleteAccount)?.setOnClickListener {
-            AuthUI.getInstance().delete(requireContext())
         }
     }
 
