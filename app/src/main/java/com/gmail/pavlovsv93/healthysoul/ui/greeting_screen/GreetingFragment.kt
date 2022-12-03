@@ -16,12 +16,8 @@ import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentGreetingBinding
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
-
+const val ARG_NAME_USER = "ARG_NAME_USER"
 class GreetingFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = GreetingFragment()
-    }
 
     private var _binding: FragmentGreetingBinding? = null
     private val binding get() = _binding!!
@@ -46,9 +42,11 @@ class GreetingFragment : Fragment() {
     }
 
     private fun updateUI(name: String) {
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.login, LoginFragment.newInstance(name))
-            .commit()
+        // todo доработать необходимый функционал
+        val dataName = Bundle().apply {
+            putString(ARG_NAME_USER, name)
+        }
+        findNavController().navigate(GreetingFragmentDirections.actionGreetingFragmentToTabsFragment())
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -92,7 +90,6 @@ class GreetingFragment : Fragment() {
         }
     }
 
-    //
     private fun initClick() {
         binding.nextBtn.setOnClickListener {
             lifecycleScope.launch {
