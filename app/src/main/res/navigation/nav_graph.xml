@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.gmail.pavlovsv93.healthysoul.ui.splash.SplashFragment"
+        android:name="com.gmail.pavlovsv93.healthysoul.ui.splash_screen.SplashFragment"
         android:label="SplashFragment"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -17,17 +17,27 @@
             app:popUpToInclusive="false" />
     </fragment>
     <fragment
-        tools:layout="@layout/fragment_greeting"
-        android:id="@+id/greetingFragment"
-        android:name="com.gmail.pavlovsv93.healthysoul.ui.greeting_screen.GreetingFragment"
-        android:label="GreetingFragment" >
+        android:id="@+id/accountFragment"
+        android:name="com.gmail.pavlovsv93.healthysoul.ui.greeting_screen.AccountFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_account">
         <action
-            android:id="@+id/action_greetingFragment_to_tabsFragment"
+            android:id="@+id/action_accountFragment_to_tabsFragment"
             app:destination="@id/tabsFragment"
-            app:popUpTo="@id/nav_graph" />
+            app:popUpTo="@id/nav_graph"/>
     </fragment>
     <fragment
         android:id="@+id/tabsFragment"
         android:name="com.gmail.pavlovsv93.healthysoul.ui.tabs_screen.TabsFragment"
         android:label="TabsFragment" />
+    <fragment
+        android:id="@+id/greetingFragment"
+        android:name="com.gmail.pavlovsv93.healthysoul.ui.greeting_screen.GreetingFragment"
+        android:label="fragment_greeting"
+        tools:layout="@layout/fragment_greeting">
+        <action
+            android:id="@+id/action_greetingFragment_to_accountFragment"
+            app:destination="@id/accountFragment"
+            app:popUpTo="@id/nav_graph"/>
+</fragment>
 </navigation>
