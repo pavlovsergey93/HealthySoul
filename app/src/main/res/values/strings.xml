@@ -16,4 +16,11 @@
     <string name="tests">Tests</string>
     <string name="please_wait">Please wait…</string>
     <string name="you_don_t_have_any_notes_yet">You don`t have any notes yet</string>
+    <string name="back">Назад</string>
+    <string name="callback_home">Меню тестов</string>
+    <string name="close">Закрыть тест</string>
+    <string name="close_message">Вы действительно хотите завершить тест?</string>
+    <string name="close_title">Закрыть тест!</string>
+    <string name="dialog_negative">Нет</string>
+    <string name="dialog_positive">Да</string>
 </resources>
