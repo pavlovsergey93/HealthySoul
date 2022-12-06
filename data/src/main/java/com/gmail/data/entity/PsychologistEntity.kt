@@ -14,7 +14,7 @@ data class PsychologistEntity(
     val geoPoint: GeoPoint,
     val contacts: List<Contact>,                // Контакты
     val education: List<Education>,            // Образование
-    val specialization: List<Specialization>,        //Специализация
+    val specialization: Specialization,        //Специализация
     val experience: Int,                       // Опыт работы в количестве лет
     val rating: Double,                        // Рейтинг
     val numberOfVotes: Int                        // Количество голосов
@@ -36,4 +36,5 @@ data class Specialization(
     val profession: String,                // Специальность
     val specialization: List<String>,    // Специализация
 )
+
 
