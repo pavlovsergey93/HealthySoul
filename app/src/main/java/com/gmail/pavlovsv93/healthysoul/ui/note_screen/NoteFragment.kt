@@ -1,6 +1,119 @@
 package com.gmail.pavlovsv93.healthysoul.ui.note_screen
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.gmai.pavlovsv93.healtysoul.domain.models.notebook.NoteDetails
+import com.gmai.pavlovsv93.healtysoul.domain.models.notebook.Notebook
+import com.gmail.pavlovsv93.healthysoul.databinding.FragmentNoteBinding
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
 
 class NoteFragment : Fragment() {
+    private var _binding: FragmentNoteBinding? = null
+    private val binding get() = _binding!!
+
+    private val args: NoteFragmentArgs by navArgs()
+
+    private val viewModel by viewModel<NoteViewModel>()
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentNoteBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initClickListeners()
+        initArgs()
+        initObserver()
+    }
+
+    private fun initClickListeners() {
+        binding.saveButton.setOnClickListener {
+            if (args.noteId == ADD_NEW_NOTE) saveNote() else updateNote()
+        }
+        binding.deleteButton.setOnClickListener {
+            deleteNote()
+        }
+    }
+
+    private fun initArgs() {
+        when (args.noteId) {
+            ADD_NEW_NOTE -> setVisibilityLoading()
+            else -> viewModel.getNote(args.noteId)
+        }
+    }
+
+    private fun initObserver() {
+        lifecycleScope.launch {
+            viewModel.state.collect {
+                renderState(it)
+            }
+        }
+    }
+
+    private fun renderState(state: NoteDetails) {
+        if (!state.isLoadingDone) return
+        with(binding) {
+            setVisibilityLoading()
+            titleHead.setText(state.note.title)
+            textBody.setText(state.note.content)
+        }
+        if (state.updateNote || state.saveNote || state.deleteNote) {
+            findNavController().popBackStack()
+        }
+    }
+
+    private fun setVisibilityLoading() {
+        with(binding) {
+            groupLoading.visibility = View.VISIBLE
+            groupNotLoading.visibility = View.GONE
+        }
+    }
+
+    private fun saveNote() {
+        viewModel.saveNote(
+            Notebook(
+                id = UUID.randomUUID().hashCode(),
+                title = binding.titleHead.text.toString(),
+                content = binding.textBody.text.toString()
+            )
+        )
+    }
+
+    private fun updateNote() {
+        viewModel.updateNote(
+            Notebook(
+                id = args.noteId,
+                title = binding.titleHead.text.toString(),
+                content = binding.textBody.text.toString()
+            )
+        )
+    }
+
+    private fun deleteNote() {
+        viewModel.deleteNote(
+            Notebook(args.noteId)
+        )
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
+    companion object {
+        const val ADD_NEW_NOTE = -1
+    }
 }

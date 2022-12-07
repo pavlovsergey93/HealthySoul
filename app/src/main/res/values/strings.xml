@@ -15,4 +15,9 @@
 	<string name="tests">Tests</string>
     <string name="please_wait">Please wait…</string>
     <string name="you_don_t_have_any_notes_yet">You don`t have any notes yet</string>
+    <string name="title">Title</string>
+    <string name="note">Note</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="new_note">New note</string>
 </resources>

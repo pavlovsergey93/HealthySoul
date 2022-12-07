@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class NotebookFirebaseRepositoryImplementation : NotebookRepository {
-
     private val database = Firebase.firestore.collection("notebook")
 
     override fun deleteNote(note: Notebook): Flow<Boolean> = flow {
@@ -20,7 +19,7 @@ class NotebookFirebaseRepositoryImplementation : NotebookRepository {
         emit(true)
     }
 
-    override suspend fun getAllNotes(): List<Notebook> {
+    override fun getAllNotes(): Flow<List<Notebook>> = flow {
         val notebookList = mutableListOf<Notebook>()
         database
             .get()
@@ -29,8 +28,8 @@ class NotebookFirebaseRepositoryImplementation : NotebookRepository {
                     notebookList.add(doc.toObject())
                 }
             }
-        delay(4000)//TODO(за такое убивать не глядя)
-        return notebookList
+        delay(4000)
+        emit(notebookList)
     }
 
     override fun getNote(id: Int): Flow<Notebook> = flow {
@@ -42,6 +41,7 @@ class NotebookFirebaseRepositoryImplementation : NotebookRepository {
                 val notebook = it.toObject<Notebook>()
                 temp = notebook ?: Notebook(-1)
             }
+        delay(2000)
         emit(temp)
     }
 
@@ -49,6 +49,7 @@ class NotebookFirebaseRepositoryImplementation : NotebookRepository {
         database
             .document(note.id.toString())
             .set(note)
+        delay(2000)
         emit(true)
     }
 
@@ -61,18 +62,7 @@ class NotebookFirebaseRepositoryImplementation : NotebookRepository {
                     "content" to note.content
                 )
             )
+        delay(2000)
         emit(true)
     }
-
-//    coroutineScope {
-//        val result = async {
-//            return@async try {
-//                val list = notebookRepository.getAllNotes()
-//                CaseResult.Success(list)
-//            } catch (e: Exception) {
-//                CaseResult.Failure(e)
-//            }
-//        }
-//        return@coroutineScope result.await()
-//    }
 }
