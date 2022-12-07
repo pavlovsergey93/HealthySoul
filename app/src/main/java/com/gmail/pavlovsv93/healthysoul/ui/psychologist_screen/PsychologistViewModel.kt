@@ -2,14 +2,14 @@ package com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gmail.data.entity.DataSourceInterface
+import com.gmai.pavlovsv93.healtysoul.domain.repository.psycholigist.PsychologistDataSourceInterface
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
 class PsychologistViewModel(
-    private val dataSource: DataSourceInterface,
+    private val dataSource: PsychologistDataSourceInterface,
     private val stateFlow: MutableStateFlow<AppState> = MutableStateFlow(AppState.OnLoading)
 ) : ViewModel() {
 

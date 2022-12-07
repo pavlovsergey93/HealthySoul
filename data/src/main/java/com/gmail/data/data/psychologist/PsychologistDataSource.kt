@@ -1,15 +1,15 @@
 @file:Suppress("UNREACHABLE_CODE", "UNCHECKED_CAST")
 
-package com.gmail.data.data
+package com.gmail.data.data.psychologist
 
-import com.gmail.data.entity.DataSourceInterface
+import com.gmai.pavlovsv93.healtysoul.domain.repository.psycholigist.PsychologistDataSourceInterface
 import com.gmail.data.entity.PsychologistEntity
-import com.gmail.data.repository.RepositoryInterface
+import com.gmail.data.repository.psychologist.PsychologistRepositoryInterface
 import com.gmail.data.utils.convertToPsychologistEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class RemoteDataSource(private val repository: RepositoryInterface) : DataSourceInterface {
+class PsychologistDataSource(private val repository: PsychologistRepositoryInterface) : PsychologistDataSourceInterface {
     companion object {
 
     }
@@ -20,11 +20,6 @@ class RemoteDataSource(private val repository: RepositoryInterface) : DataSource
                 convertToPsychologistEntity(item)
             }
         }
-    }
-
-    override suspend fun getItemPsychologistEntity(idPsychologist: String): Flow<PsychologistEntity> {
-        return repository.getItemData(idPsychologist)
-            .map { psy -> convertToPsychologistEntity(psy) }
     }
 
     override suspend fun insertItemPsychologistEntity() {

@@ -10,11 +10,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.gmail.data.data.RemoteDataSource
-import com.gmail.data.entity.DataSourceInterface
+import com.gmail.data.data.psychologist.PsychologistDataSource
+import com.gmai.pavlovsv93.healtysoul.domain.repository.psycholigist.PsychologistDataSourceInterface
 import com.gmail.data.entity.PsychologistEntity
-import com.gmail.data.repository.FirebaseRepository
-import com.gmail.data.repository.RepositoryInterface
+import com.gmail.data.repository.psychologist.PsychologistRepository
+import com.gmail.data.repository.psychologist.PsychologistRepositoryInterface
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentPsychologistBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
@@ -26,8 +26,8 @@ class PsychologistFragment : Fragment() {
 
     private val viewModel: PsychologistViewModel by lazy {
         val db: FirebaseFirestore = FirebaseFirestore.getInstance()
-        val repository: RepositoryInterface = FirebaseRepository(db)
-        val dataSource: DataSourceInterface = RemoteDataSource(repository)
+        val repository: PsychologistRepositoryInterface = PsychologistRepository(db)
+        val dataSource: PsychologistDataSourceInterface = PsychologistDataSource(repository)
         PsychologistViewModel(dataSource = dataSource)
     }
 
