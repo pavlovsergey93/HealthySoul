@@ -6,7 +6,7 @@
     <fragment
         android:id="@+id/notebookFragment"
         android:name="com.gmail.pavlovsv93.healthysoul.ui.notebook_screen.NotebookFragment"
-        android:label="NotebookFragment" >
+        android:label="NotebookFragment">
         <action
             android:id="@+id/action_notebookFragment_to_noteFragment"
             app:destination="@id/noteFragment" />
@@ -14,5 +14,9 @@
     <fragment
         android:id="@+id/noteFragment"
         android:name="com.gmail.pavlovsv93.healthysoul.ui.note_screen.NoteFragment"
-        android:label="NoteFragment" />
+        android:label="NoteFragment">
+        <argument
+            android:name="noteId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

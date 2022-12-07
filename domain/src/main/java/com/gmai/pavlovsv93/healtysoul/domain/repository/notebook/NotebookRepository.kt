@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface NotebookRepository {
     fun deleteNote(note: Notebook): Flow<Boolean>
-    suspend fun getAllNotes(): List<Notebook>
+    fun getAllNotes(): Flow<List<Notebook>>
     fun getNote(id: Int): Flow<Notebook>
     fun saveNote(note: Notebook): Flow<Boolean>
     fun updateNote(note: Notebook): Flow<Boolean>

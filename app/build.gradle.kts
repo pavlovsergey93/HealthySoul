@@ -94,8 +94,8 @@ dependencies {
     implementation("io.coil-kt:coil:2.2.2")
 
     //navigation
-    implementation("androidx.navigation:navigation-fragment-ktx:2.5.2")
-    implementation("androidx.navigation:navigation-ui-ktx:2.5.2")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
+    implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
 
     //auto size text and view
     implementation("com.intuit.sdp:sdp-android:1.1.0")

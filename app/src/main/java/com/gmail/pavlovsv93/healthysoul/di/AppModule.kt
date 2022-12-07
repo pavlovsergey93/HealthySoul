@@ -1,5 +1,6 @@
 package com.gmail.pavlovsv93.healthysoul.di
 
+import com.gmail.pavlovsv93.healthysoul.ui.note_screen.NoteViewModel
 import com.gmail.pavlovsv93.healthysoul.ui.notebook_screen.NotebookViewModel
 import com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen.PsychologistViewModel
 import com.google.firebase.firestore.FirebaseFirestore
@@ -16,4 +17,14 @@ val appModule = module {
 //    viewModel<PsychologistViewModel> {
 //        PsychologistViewModel(repository = get())
 //    }
+
+    viewModel<NoteViewModel> {
+        NoteViewModel(
+            deleteNoteUseCase = get(),
+            getNoteUseCase = get(),
+            saveNoteUseCase = get(),
+            updateNoteUseCase = get()
+        )
+    }
+
 }
