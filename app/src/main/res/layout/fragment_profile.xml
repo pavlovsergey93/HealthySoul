@@ -17,13 +17,13 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars"/>
 
-    <TextView
+    <Button
         android:id="@+id/load_photo"
+        android:backgroundTint="#EDF5F8"
         android:text="Загрузить фото"
         android:textColor="#D2992A"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:clickable="true"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

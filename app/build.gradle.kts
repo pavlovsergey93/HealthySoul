@@ -103,6 +103,9 @@ dependencies {
 
     //lottie
     implementation("com.airbnb.android:lottie:5.2.0")
+
+    //picasso
+    implementation ("com.squareup.picasso:picasso:2.5.2")
 }
 
 apply(plugin = "com.google.gms.google-services")
