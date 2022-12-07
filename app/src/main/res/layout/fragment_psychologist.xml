@@ -11,5 +11,12 @@
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_psychologist" />
-
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progress_psychologist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        android:layout_gravity="center|top"
+        tools:visibility="visible"/>
 </FrameLayout>

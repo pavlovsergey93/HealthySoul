@@ -1,4 +1,4 @@
-package com.gmai.pavlovsv93.healtysoul.domain.repository.psycholigist
+package com.gmail.data.data.psychologist
 
 import com.gmail.data.entity.PsychologistEntity
 import kotlinx.coroutines.flow.Flow

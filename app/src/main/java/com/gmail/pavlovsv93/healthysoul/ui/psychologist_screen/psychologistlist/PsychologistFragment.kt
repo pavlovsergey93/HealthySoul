@@ -10,28 +10,23 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.gmail.data.data.psychologist.PsychologistDataSource
-import com.gmai.pavlovsv93.healtysoul.domain.repository.psycholigist.PsychologistDataSourceInterface
 import com.gmail.data.entity.PsychologistEntity
-import com.gmail.data.repository.psychologist.PsychologistRepository
-import com.gmail.data.repository.psychologist.PsychologistRepositoryInterface
+import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentPsychologistBinding
+import com.gmail.pavlovsv93.healthysoul.di.PSYCHOLOGIST_VIEW_MODEL
 import com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen.psychologistlist.adapter.PsychologistFragmentAdapter
 import com.gmail.pavlovsv93.healthysoul.utils.AppState
-import com.google.firebase.firestore.FirebaseFirestore
+import com.gmail.pavlovsv93.healthysoul.utils.showMessage
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.qualifier.named
 
 class PsychologistFragment : Fragment() {
 
     private var _binding: FragmentPsychologistBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: PsychologistViewModel by lazy {
-        val db: FirebaseFirestore = FirebaseFirestore.getInstance()
-        val repository: PsychologistRepositoryInterface = PsychologistRepository(db)
-        val dataSource: PsychologistDataSourceInterface = PsychologistDataSource(repository)
-        PsychologistViewModel(dataSource = dataSource)
-    }
+    private val viewModel: PsychologistViewModel by viewModel(named(PSYCHOLOGIST_VIEW_MODEL))
 
     private val adapter: PsychologistFragmentAdapter = PsychologistFragmentAdapter()
 
@@ -61,18 +56,25 @@ class PsychologistFragment : Fragment() {
     private fun ranger(state: AppState) {
         when (state) {
             is AppState.OnException -> {
-                // todo скрыть прогресс
-                val exception = state.exception
+                binding.progressPsychologist.visibility = View.GONE
+                val message = state.exception.message.toString()
+                binding.root.showMessage(
+                    str = message,
+                    actionText = getString(R.string.reload),
+                    action = {
+                        viewModel.getAllPsychologist()
+                    })
             }
             is AppState.OnLoading -> {
-                // todo отобразить прогресс
+                binding.progressPsychologist.visibility = View.VISIBLE
             }
             is AppState.OnShowMessage -> {
-                // todo скрыть прогресс
+                binding.progressPsychologist.visibility = View.GONE
                 val message = state.message
+                binding.root.showMessage(message)
             }
             is AppState.OnSuccess<*> -> {
-                // todo скрыть прогресс
+                binding.progressPsychologist.visibility = View.GONE
                 val category: List<PsychologistEntity> = state.success as List<PsychologistEntity>
                 adapter.updatePsychologistList(category)
             }
@@ -80,8 +82,6 @@ class PsychologistFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
-        //ToDo onClick
-
         binding.fragmentPsychologistRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.fragmentPsychologistRecyclerView.adapter = adapter
