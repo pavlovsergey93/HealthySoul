@@ -1,5 +1,7 @@
 package com.gmail.data.repository_implementation.notebook
 
+import android.annotation.SuppressLint
+import com.firebase.ui.auth.AuthUI
 import com.gmai.pavlovsv93.healtysoul.domain.models.notebook.Notebook
 import com.gmai.pavlovsv93.healtysoul.domain.repository.notebook.NotebookRepository
 import com.google.firebase.firestore.ktx.firestore
@@ -10,7 +12,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class NotebookFirebaseRepositoryImplementation : NotebookRepository {
-    private val database = Firebase.firestore.collection("notebook")
+    @SuppressLint("RestrictedApi")
+    private val userId = AuthUI.getInstance().auth.currentUser!!.uid
+    private val database = Firebase.firestore.collection(userId)
 
     override fun deleteNote(note: Notebook): Flow<Boolean> = flow {
         database
