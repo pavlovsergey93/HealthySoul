@@ -1,4 +1,4 @@
-package com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen
+package com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen.details
 
 import android.os.Bundle
 import android.view.LayoutInflater

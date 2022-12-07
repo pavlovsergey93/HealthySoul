@@ -1,4 +1,4 @@
-package com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen
+package com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen.psychologistlist
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -16,6 +16,7 @@ import com.gmail.data.entity.PsychologistEntity
 import com.gmail.data.repository.psychologist.PsychologistRepository
 import com.gmail.data.repository.psychologist.PsychologistRepositoryInterface
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentPsychologistBinding
+import com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen.psychologistlist.adapter.PsychologistFragmentAdapter
 import com.gmail.pavlovsv93.healthysoul.utils.AppState
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch

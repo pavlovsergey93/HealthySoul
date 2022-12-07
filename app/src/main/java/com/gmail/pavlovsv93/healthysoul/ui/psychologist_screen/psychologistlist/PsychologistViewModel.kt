@@ -1,4 +1,4 @@
-package com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen
+package com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen.psychologistlist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

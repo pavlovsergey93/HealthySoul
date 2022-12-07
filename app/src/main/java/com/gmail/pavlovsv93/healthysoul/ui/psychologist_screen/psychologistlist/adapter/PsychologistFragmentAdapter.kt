@@ -1,4 +1,4 @@
-package com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen
+package com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen.psychologistlist.adapter
 
 import android.annotation.SuppressLint
 import android.view.ViewGroup
