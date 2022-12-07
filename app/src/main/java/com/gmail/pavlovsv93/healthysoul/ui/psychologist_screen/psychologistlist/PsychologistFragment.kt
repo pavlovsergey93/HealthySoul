@@ -9,11 +9,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gmail.data.entity.PsychologistEntity
 import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentPsychologistBinding
 import com.gmail.pavlovsv93.healthysoul.di.PSYCHOLOGIST_VIEW_MODEL
+import com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen.details.PsychologistDetailsFragment
 import com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen.psychologistlist.adapter.PsychologistFragmentAdapter
 import com.gmail.pavlovsv93.healthysoul.utils.AppState
 import com.gmail.pavlovsv93.healthysoul.utils.showMessage
@@ -28,7 +30,12 @@ class PsychologistFragment : Fragment() {
 
     private val viewModel: PsychologistViewModel by viewModel(named(PSYCHOLOGIST_VIEW_MODEL))
 
-    private val adapter: PsychologistFragmentAdapter = PsychologistFragmentAdapter()
+    private val adapter: PsychologistFragmentAdapter = PsychologistFragmentAdapter { idPsychologist ->
+        val data = Bundle().apply {
+            putString(PsychologistDetailsFragment.ARG_ID_PSYCHOLOGIST, idPsychologist)
+        }
+        findNavController().navigate(R.id.psychologistDetailsFragment, data)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

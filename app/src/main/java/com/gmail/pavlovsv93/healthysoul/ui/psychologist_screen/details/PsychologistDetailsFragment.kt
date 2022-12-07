@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.gmail.data.entity.PsychologistEntity
 import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentPsychologistDetailsBinding
@@ -55,7 +58,7 @@ class PsychologistDetailsFragment : Fragment() {
                 }
             }
         }
-        if (savedInstanceState == null){
+        if (savedInstanceState == null) {
             idPsy?.let { viewModel.getDetailsPsychologist(it) }
         }
     }
@@ -69,9 +72,12 @@ class PsychologistDetailsFragment : Fragment() {
             is AppState.OnException -> {
                 binding.progressDetails.visibility = View.GONE
                 val message = state.exception.message.toString()
-                binding.root.showMessage(str = message, actionText = getString(R.string.reload), action = {
-                    idPsy?.let { viewModel.getDetailsPsychologist(it) }
-                })
+                binding.root.showMessage(
+                    str = message,
+                    actionText = getString(R.string.reload),
+                    action = {
+                        idPsy?.let { viewModel.getDetailsPsychologist(it) }
+                    })
             }
             AppState.OnLoading -> {
                 binding.progressDetails.visibility = View.VISIBLE
@@ -90,6 +96,10 @@ class PsychologistDetailsFragment : Fragment() {
 
     private fun displayDetails(psychologist: PsychologistEntity) {
         // todo записать в элементы View значения
+        binding.avatarImageViewDetail.load(psychologist.avatar) {
+            transformations(CircleCropTransformation())
+        }
+        Toast.makeText(requireContext(), psychologist.name, Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {

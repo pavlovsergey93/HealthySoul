@@ -4,9 +4,10 @@ import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.data.entity.PsychologistEntity
+import com.gmail.pavlovsv93.healthysoul.databinding.ItemPsychologistBinding
 
 
-class PsychologistFragmentAdapter : RecyclerView.Adapter<PsychologistViewHolder>() {
+class PsychologistFragmentAdapter(val onClick: ClickedOnPsychologist) : RecyclerView.Adapter<PsychologistViewHolder>() {
 
     private val psychologistList = mutableListOf<PsychologistEntity>()
 
@@ -15,6 +16,10 @@ class PsychologistFragmentAdapter : RecyclerView.Adapter<PsychologistViewHolder>
 
     override fun onBindViewHolder(holder: PsychologistViewHolder, position: Int) {
         holder.bind(psychologistList[position])
+        val binding = ItemPsychologistBinding.bind(holder.itemView)
+        binding.containerPsychologistItem.setOnClickListener {
+            onClick.onClick(psychologistList[position].id)
+        }
     }
 
     override fun getItemCount(): Int {
