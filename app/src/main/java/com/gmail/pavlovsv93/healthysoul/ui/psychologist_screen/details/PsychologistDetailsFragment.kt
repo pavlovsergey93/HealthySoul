@@ -5,13 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import coil.load
 import coil.transform.CircleCropTransformation
+import com.gmail.data.entity.Education
 import com.gmail.data.entity.PsychologistEntity
 import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentPsychologistDetailsBinding
@@ -95,11 +95,32 @@ class PsychologistDetailsFragment : Fragment() {
     }
 
     private fun displayDetails(psychologist: PsychologistEntity) {
-        // todo записать в элементы View значения
         binding.avatarImageViewDetail.load(psychologist.avatar) {
             transformations(CircleCropTransformation())
         }
-        Toast.makeText(requireContext(), psychologist.name, Toast.LENGTH_SHORT).show()
+        binding.nameTextViewDetail.text = psychologist.name
+        binding.surnameTextViewDetail.text = psychologist.surname
+        binding.patronymicTextViewDetail.text = psychologist.patronymic
+        binding.countryTextViewDetail.text = psychologist.country
+        binding.cityTextViewDetail.text = psychologist.city
+        binding.profileTextViewDetail.text = psychologist.profile
+
+//        binding.titleContactTextViewDetail.text = psychologist.contacts[].titleContact
+//        binding.contactTextViewDetail.text = psychologist.contacts[].contact
+
+        binding.experienceTextViewDetail.text = psychologist.experience.toString()
+        binding.professionTextViewDetail.text = psychologist.specialization.profession
+        binding.specializationListTextViewDetail.text =
+            psychologist.specialization.specialization.toString()
+
+//        binding.universityTextViewDetail.text = psychologist.education[0].university
+//        binding.yearOfGraduationTextViewDetail.text = psychologist.education[3].yearOfGraduation.toString()
+//        binding.facultyTextViewDetail.text = psychologist.education[1].faculty
+//        binding.specializationEduTextViewDetail.text = psychologist.education[2].specialization
+
+        binding.ratingTextViewDetail.text = psychologist.rating.toString()
+        binding.numberOfVotesTextViewDetail.text = psychologist.numberOfVotes.toString()
+
     }
 
     override fun onDestroyView() {
