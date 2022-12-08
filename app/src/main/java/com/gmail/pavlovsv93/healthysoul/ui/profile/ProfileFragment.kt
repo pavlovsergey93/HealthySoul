@@ -7,12 +7,14 @@ import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.loader.content.CursorLoader
+import com.bumptech.glide.Glide
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
@@ -38,38 +40,36 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-//            if (result.resultCode == Activity.RESULT_OK) {
-//                val data: Intent? = result.data
-//                doSomeOperations()
-//            }
-//        }
+        val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                val data: Intent? = result.data
+                doSomeOperations(data)
+            }
+        }
 
         binding.loadPhoto.setOnClickListener{
             val photoPickerIntent = Intent(Intent.ACTION_PICK)
             photoPickerIntent.type = "image/*"
-//            resultLauncher.launch(photoPickerIntent)
-            startActivityForResult(Intent.createChooser(photoPickerIntent, "Выберите изображение"), GALLERY_REQUEST);
-
+            resultLauncher.launch(photoPickerIntent)
         }
         observeAuthenticationState()
     }
 
-    private fun doSomeOperations() {
-        TODO("Not yet implemented")
-    }
+    private fun doSomeOperations(data: Intent?) {
+        val selectedImageUri = data?.data
+        val imagePath = getRealPathFromURI(selectedImageUri)
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK && data != null && data.data != null) {
-            val selectedImageUri = data.data
-            val imagePath = getRealPathFromURI(selectedImageUri)
-            Picasso.with(requireContext())
-                .load(File(imagePath))
-                .resize(200, 200)
-                .centerCrop()
-                .into(binding.profilePhoto)
-        }
+        Glide.with(binding.profilePhoto.context)
+            .load(File(imagePath!!))
+            .into(binding.profilePhoto)
+//        Picasso.with(binding.profilePhoto.context)
+//            .load(imagePath)
+//            //.load(File(imagePath))
+//            //.resize(150, 150)
+//            //.centerCrop()
+//            .fit()
+//            .into(binding.profilePhoto)
+
     }
 
     private fun getRealPathFromURI(contentUri: Uri?): String? {

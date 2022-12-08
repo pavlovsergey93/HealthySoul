@@ -104,6 +104,11 @@ dependencies {
     //lottie
     implementation("com.airbnb.android:lottie:5.2.0")
 
+    //glide
+    kapt ("com.github.bumptech.glide:compiler:4.12.0")
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    implementation ("com.github.bumptech.glide:okhttp3-integration:4.12.0@aar")
+
     //picasso
     implementation ("com.squareup.picasso:picasso:2.5.2")
 }
