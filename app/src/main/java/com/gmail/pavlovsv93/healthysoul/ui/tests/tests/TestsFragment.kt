@@ -18,7 +18,9 @@ import com.gmail.pavlovsv93.healthysoul.utils.AppState
 import com.gmail.pavlovsv93.healthysoul.ui.tests.questions.TestQuestionFragment
 import com.gmail.pavlovsv93.healthysoul.ui.tests.tests.testsadapter.TestsAdapter
 import com.gmail.pavlovsv93.healthysoul.utils.GeneralTestData
+import com.gmail.pavlovsv93.healthysoul.utils.calculatorDistance
 import com.gmail.pavlovsv93.healthysoul.utils.showMessage
+import com.google.firebase.firestore.GeoPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -42,6 +44,9 @@ class TestsFragment : Fragment() {
 		container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View {
+		val geo1 = GeoPoint(53.902735, 27.555696)
+		val geo2 = GeoPoint(55.184217, 30.202878)
+		calculatorDistance(geo1, geo2)
 		_binding = FragmentTestsBinding.inflate(inflater, container, false)
 		return binding.root
 	}
