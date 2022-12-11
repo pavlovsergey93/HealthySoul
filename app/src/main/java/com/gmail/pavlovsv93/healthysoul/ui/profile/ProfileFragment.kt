@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.loader.content.CursorLoader
+import coil.transform.CircleCropTransformation
 import com.bumptech.glide.Glide
 import com.firebase.ui.auth.AuthUI
 import com.gmail.pavlovsv93.healthysoul.R
