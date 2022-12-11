@@ -11,3 +11,5 @@ buildSrc
 local.properties
 /buildSrc/build/
 /buildSrc/
+/buildSrc/build/libs/
+/buildSrc/build/pluginUnderTestMetadata/
