@@ -1,4 +1,4 @@
-package com.gmail.pavlovsv93.healthysoul.ui.tests
+package com.gmail.pavlovsv93.healthysoul.utils
 
 sealed class AppState{
 	object OnLoading : AppState()

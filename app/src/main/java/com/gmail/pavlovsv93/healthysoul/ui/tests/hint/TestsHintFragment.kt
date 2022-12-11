@@ -14,7 +14,7 @@ import com.gmai.pavlovsv93.healtysoul.domain.models.tests.HintEntity
 import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentTestsHintBinding
 import com.gmail.pavlovsv93.healthysoul.di.HINT_VIEW_MODEL
-import com.gmail.pavlovsv93.healthysoul.ui.tests.AppState
+import com.gmail.pavlovsv93.healthysoul.utils.AppState
 import com.gmail.pavlovsv93.healthysoul.utils.showMessage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

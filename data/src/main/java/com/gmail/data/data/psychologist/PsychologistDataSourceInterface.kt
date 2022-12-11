@@ -1,11 +1,10 @@
-package com.gmail.data.entity
+package com.gmail.data.data.psychologist
 
+import com.gmail.data.entity.PsychologistEntity
 import kotlinx.coroutines.flow.Flow
 
-interface DataSourceInterface {
-
+interface PsychologistDataSourceInterface {
     suspend fun getAllPsychologistEntity(): Flow<List<PsychologistEntity>>
-    suspend fun getItemPsychologistEntity(idPsychologist: String): Flow<PsychologistEntity>
     suspend fun insertItemPsychologistEntity()
     suspend fun deleteItemPsychologistEntity()
 }

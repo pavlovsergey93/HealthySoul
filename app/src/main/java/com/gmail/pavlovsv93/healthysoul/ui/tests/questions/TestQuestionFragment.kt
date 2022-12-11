@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -16,7 +15,7 @@ import com.gmai.pavlovsv93.healtysoul.domain.models.tests.QuestionEntity
 import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentTestQuestionBinding
 import com.gmail.pavlovsv93.healthysoul.di.QUESTION_VIEW_MODEL
-import com.gmail.pavlovsv93.healthysoul.ui.tests.AppState
+import com.gmail.pavlovsv93.healthysoul.utils.AppState
 import com.gmail.pavlovsv93.healthysoul.ui.tests.hint.TestsHintFragment.Companion.ARG_HINT_ID
 import com.gmail.pavlovsv93.healthysoul.ui.tests.questions.questionsadapter.AnswerAdapter
 import com.gmail.pavlovsv93.healthysoul.ui.tests.questions.questionsadapter.OnClickOnAnswer

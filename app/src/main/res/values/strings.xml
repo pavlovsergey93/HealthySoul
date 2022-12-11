@@ -23,6 +23,7 @@
     <string name="close_title">Закрыть тест!</string>
     <string name="dialog_negative">Нет</string>
     <string name="dialog_positive">Да</string>
+    <string name="reload">Reload</string>
     <string name="title">Title</string>
     <string name="note">Note</string>
     <string name="save">Save</string>
