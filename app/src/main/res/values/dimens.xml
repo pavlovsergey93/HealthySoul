@@ -2,4 +2,10 @@
 <resources>
 	<dimen name="_4dp">4dp</dimen>
 	<dimen name="_8dp">8dp</dimen>
+    <dimen name="normal_text">20sp</dimen>
+	<dimen name="normal_margin">16dp</dimen>
+	<dimen name="photo_size">200dp</dimen>
+	<dimen name="normal_size">24dp</dimen>
+	<dimen name="middle_margin">24dp</dimen>
+    <dimen name="hieght">50dp</dimen>
 </resources>

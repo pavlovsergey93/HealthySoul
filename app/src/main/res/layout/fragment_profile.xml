@@ -3,49 +3,65 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="#EDF5F8">
 
     <ImageView
         android:id="@+id/profile_photo"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="@dimen/photo_size"
+        android:layout_height="@dimen/photo_size"
         app:layout_constraintBottom_toTopOf="@+id/load_photo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars"/>
+        android:src="@drawable/ic_profile"/>
 
-    <Button
+    <TextView
         android:id="@+id/load_photo"
-        android:backgroundTint="#EDF5F8"
-        android:text="Загрузить фото"
-        android:textColor="#D2992A"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/background_color"
+        android:clickable="true"
+        android:text="@string/load_photo"
+        android:textColor="@color/action_color"
         app:layout_constraintBottom_toTopOf="@+id/name"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_photo"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_photo"
+        android:focusable="true" />
+
+    <TextView
+        android:id="@+id/delete_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/background_color"
+        android:clickable="true"
+        android:text="@string/delete_photo"
+        android:textColor="@color/action_color"
+        app:layout_constraintBottom_toTopOf="@+id/name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_photo"
+        android:visibility="gone"
+        android:focusable="true" />
 
     <TextView
         android:id="@+id/name"
-        android:text="Имя"
-        android:textColor="#2F6B75"
+        android:text="@string/name"
+        android:textColor="@color/strong_color"
         android:layout_width="wrap_content"
-        android:layout_height="24dp"
-        android:layout_marginStart="24dp"
+        android:layout_height="@dimen/normal_size"
+        android:layout_marginStart="@dimen/middle_margin"
         app:layout_constraintBottom_toBottomOf="@+id/name_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/load_photo"/>
 
-    <EditText
+    <TextView
         android:id="@+id/name_text"
+        android:textSize="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="@dimen/middle_margin"
+        android:layout_marginEnd="@dimen/middle_margin"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/phone"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,96 +69,116 @@
 
     <TextView
         android:id="@+id/phone"
-        android:text="Телефон"
-        android:textColor="#2F6B75"
+        android:text="@string/phone"
+        android:textColor="@color/strong_color"
         android:layout_width="wrap_content"
-        android:layout_height="24dp"
-        android:layout_marginStart="24dp"
+        android:layout_height="@dimen/normal_size"
+        android:layout_marginStart="@dimen/middle_margin"
         app:layout_constraintBottom_toTopOf="@+id/phone_number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_text"/>
 
-    <EditText
+    <TextView
         android:id="@+id/phone_number"
+        android:textSize="@dimen/normal_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="@dimen/middle_margin"
+        android:layout_marginEnd="@dimen/middle_margin"
         app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phone" />
 
     <TextView
         android:id="@+id/email"
-        android:text="E-mail"
-        android:textColor="#2F6B75"
+        android:text="@string/email"
+        android:textColor="@color/strong_color"
         android:layout_width="wrap_content"
-        android:layout_height="24dp"
-        android:layout_marginStart="24dp"
+        android:layout_height="@dimen/normal_size"
+        android:layout_marginStart="@dimen/middle_margin"
         app:layout_constraintBottom_toTopOf="@+id/phone_number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email_text"/>
 
-    <EditText
+    <TextView
         android:id="@+id/email_text"
+        android:textSize="@dimen/normal_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="@dimen/middle_margin"
+        android:layout_marginEnd="@dimen/middle_margin"
         app:layout_constraintBottom_toTopOf="@+id/type"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/type" />
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
 
     <TextView
         android:id="@+id/type"
-        android:text="Тип личности"
-        android:textColor="#2F6B75"
+        android:text="@string/personal_type"
+        android:textColor="@color/strong_color"
         android:layout_width="wrap_content"
-        android:layout_height="24dp"
-        android:layout_marginStart="24dp"
+        android:layout_height="@dimen/normal_size"
+        android:layout_marginStart="@dimen/middle_margin"
         app:layout_constraintBottom_toTopOf="@+id/personal_type"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email_text"/>
 
-    <EditText
+    <TextView
         android:id="@+id/personal_type"
+        android:textSize="@dimen/normal_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="@dimen/middle_margin"
+        android:layout_marginEnd="@dimen/middle_margin"
         app:layout_constraintBottom_toTopOf="@+id/test"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/type" />
 
     <TextView
         android:id="@+id/test"
-        android:text="Пройти тест"
-        android:textColor="#D2992A"
+        android:text="@string/go_to_test"
+        android:textColor="@color/action_color"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_height="@dimen/normal_text"
         android:clickable="true"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="@dimen/middle_margin"
+        android:layout_marginBottom="@dimen/normal_margin"
         app:layout_constraintBottom_toTopOf="@+id/fast_help"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/personal_type"/>
+        app:layout_constraintTop_toBottomOf="@+id/personal_type"
+        android:focusable="true" />
 
 
     <TextView
         android:id="@+id/fast_help"
-        android:text="Номер быстрой помощи 8-800-900-89-89"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        android:background="#2F6B75"
         android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_height="@dimen/hieght"
+        android:layout_marginStart="@dimen/middle_margin"
+        android:layout_marginEnd="@dimen/middle_margin"
+        android:layout_marginBottom="@dimen/middle_margin"
+        android:background="@color/strong_color"
+        android:text="@string/help_number"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/normal_text"
+        app:layout_constraintBottom_toTopOf="@+id/out"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/test" />
+
+    <TextView
+        android:id="@+id/out"
+        android:text="@string/sing_out"
+        android:textColor="@color/action_color"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:clickable="true"
+        android:layout_marginStart="@dimen/middle_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/test"/>
+        android:layout_marginBottom="@dimen/normal_margin"
+        app:layout_constraintTop_toBottomOf="@+id/fast_help"
+        android:focusable="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

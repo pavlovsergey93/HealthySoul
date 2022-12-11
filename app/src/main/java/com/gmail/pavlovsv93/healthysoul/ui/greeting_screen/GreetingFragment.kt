@@ -2,6 +2,7 @@ package com.gmail.pavlovsv93.healthysoul.ui.greeting_screen
 
 import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,7 +54,7 @@ class GreetingFragment : Fragment() {
         }
     }
 
-    private fun initProvider() = listOf(
+    fun initProvider() = listOf(
         AuthUI.IdpConfig.EmailBuilder().build(),
         AuthUI.IdpConfig.PhoneBuilder().build(),
         AuthUI.IdpConfig.GoogleBuilder().build(),
