@@ -95,8 +95,8 @@ dependencies {
     implementation("io.coil-kt:coil:2.2.2")
 
     //navigation
-    implementation("androidx.navigation:navigation-fragment-ktx:2.5.2")
-    implementation("androidx.navigation:navigation-ui-ktx:2.5.2")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
+    implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
 
     //auto size text and view
     implementation("com.intuit.sdp:sdp-android:1.1.0")
@@ -104,6 +104,14 @@ dependencies {
 
     //lottie
     implementation("com.airbnb.android:lottie:5.2.0")
+
+    //glide
+    kapt ("com.github.bumptech.glide:compiler:4.12.0")
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    implementation ("com.github.bumptech.glide:okhttp3-integration:4.12.0@aar")
+
+    //picasso
+    implementation ("com.squareup.picasso:picasso:2.5.2")
 }
 
 apply(plugin = "com.google.gms.google-services")

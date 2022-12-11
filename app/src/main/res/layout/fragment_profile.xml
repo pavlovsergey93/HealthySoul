@@ -11,12 +11,23 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/name"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/load_photo"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars"/>
+
+    <Button
+        android:id="@+id/load_photo"
+        android:backgroundTint="#EDF5F8"
+        android:text="Загрузить фото"
+        android:textColor="#D2992A"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_photo"/>
 
     <TextView
         android:id="@+id/name"
@@ -27,7 +38,7 @@
         android:layout_marginStart="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/name_text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_photo"/>
+        app:layout_constraintTop_toBottomOf="@+id/load_photo"/>
 
     <EditText
         android:id="@+id/name_text"
@@ -57,9 +68,30 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/type"
+        app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phone" />
+
+    <TextView
+        android:id="@+id/email"
+        android:text="E-mail"
+        android:textColor="#2F6B75"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/phone_number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_text"/>
+
+    <EditText
+        android:id="@+id/email_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/type" />
 
 
     <TextView
@@ -71,7 +103,7 @@
         android:layout_marginStart="24dp"
         app:layout_constraintBottom_toTopOf="@+id/personal_type"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone_number"/>
+        app:layout_constraintTop_toBottomOf="@+id/email_text"/>
 
     <EditText
         android:id="@+id/personal_type"
@@ -101,6 +133,7 @@
         android:text="Номер быстрой помощи 8-800-900-89-89"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
+        android:textAlignment="center"
         android:background="#2F6B75"
         android:layout_width="0dp"
         android:layout_height="50dp"
