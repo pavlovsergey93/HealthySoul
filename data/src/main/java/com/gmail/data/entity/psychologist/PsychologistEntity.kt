@@ -7,7 +7,7 @@ data class PsychologistEntity(
     val avatar: String,                    // Аватарка
     val name: String,                        // Имя
     val surname: String,                    // Фамилия
-    val patronymic: String,                // Отчество
+    val patronymic: String?,                // Отчество
     val profile: String,                    // Информация о том, чем ты можешь помочь человеку
     val country: String,                    // Страна
     val city: String,                        // Город
