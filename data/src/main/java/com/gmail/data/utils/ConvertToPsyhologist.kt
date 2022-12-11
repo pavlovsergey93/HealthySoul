@@ -40,7 +40,7 @@ fun convertToPsychologistEntity(item: DocumentSnapshot): PsychologistEntity {
         education = resultEducation,
         specialization = resultSpecial,
         experience = experience.toInt(),
-        rating = rating.toDouble(),
+        rating = rating.toFloat(),
         numberOfVotes = numberOfVotes.toInt()
     )
 }

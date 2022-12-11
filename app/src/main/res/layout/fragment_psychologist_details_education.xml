@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_8sdp">
+
+    <TextView
+        android:id="@+id/univercity_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/univeсity"
+        android:textColor="@color/blue_grey_900"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/univercity_text_view_impl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:textColor="@color/blue_grey_700"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/univercity_text_view"
+        app:layout_constraintTop_toBottomOf="@id/univercity_text_view"
+        tools:text="БГУИР" />
+
+    <TextView
+        android:layout_marginTop="@dimen/_8sdp"
+        android:id="@+id/faculty_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/faculty"
+        android:textColor="@color/blue_grey_900"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/univercity_text_view_impl" />
+
+    <TextView
+        android:id="@+id/faculty_text_view_impl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:textColor="@color/blue_grey_700"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/faculty_text_view"
+        app:layout_constraintTop_toBottomOf="@id/faculty_text_view"
+        tools:text="Психологии" />
+    <TextView
+        android:layout_marginTop="@dimen/_8sdp"
+        android:id="@+id/specialisation_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/specialisation"
+        android:textColor="@color/blue_grey_900"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/faculty_text_view_impl" />
+
+    <TextView
+        android:id="@+id/specialisation_text_view_impl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:textColor="@color/blue_grey_700"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/specialisation_text_view"
+        app:layout_constraintTop_toBottomOf="@id/specialisation_text_view"
+        tools:text="Психолог-консультант" />
+    <TextView
+        android:layout_marginTop="@dimen/_8sdp"
+        android:id="@+id/year_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/year"
+        android:textColor="@color/blue_grey_900"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/specialisation_text_view_impl" />
+
+    <TextView
+        android:id="@+id/year_text_view_impl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:textColor="@color/blue_grey_700"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/year_text_view"
+        app:layout_constraintTop_toBottomOf="@id/year_text_view"
+        tools:text="2021" />
+</androidx.constraintlayout.widget.ConstraintLayout>

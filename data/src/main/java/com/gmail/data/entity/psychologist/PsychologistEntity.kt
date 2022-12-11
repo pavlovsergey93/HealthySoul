@@ -16,7 +16,7 @@ data class PsychologistEntity(
     val education: List<Education>,            // Образование
     val specialization: Specialization,        //Специализация
     val experience: Int,                       // Опыт работы в количестве лет
-    val rating: Double,                        // Рейтинг
+    val rating: Float,                        // Рейтинг
     val numberOfVotes: Int                        // Количество голосов
 )
 

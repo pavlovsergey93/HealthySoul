@@ -29,4 +29,8 @@
     <string name="save">Save</string>
     <string name="delete">Delete</string>
     <string name="new_note">New note</string>
+    <string name="univeсity">Учреждение образования</string>
+    <string name="faculty">Факультет</string>
+    <string name="specialisation">Специальность</string>
+    <string name="year">Год окончания</string>
 </resources>

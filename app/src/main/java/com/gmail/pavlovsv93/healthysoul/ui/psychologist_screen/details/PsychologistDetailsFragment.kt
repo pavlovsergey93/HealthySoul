@@ -11,10 +11,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import coil.load
 import coil.transform.CircleCropTransformation
-import com.gmail.data.entity.Education
 import com.gmail.data.entity.PsychologistEntity
 import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentPsychologistDetailsBinding
+import com.gmail.pavlovsv93.healthysoul.databinding.FragmentPsychologistDetailsEducationBinding
+import com.gmail.pavlovsv93.healthysoul.databinding.FragmentPsychologistDetailsSpecialisationBinding
 import com.gmail.pavlovsv93.healthysoul.di.DETAILS_PSYCHOLOGIST_VIEW_MODEL
 import com.gmail.pavlovsv93.healthysoul.utils.AppState
 import com.gmail.pavlovsv93.healthysoul.utils.showMessage
@@ -58,8 +59,15 @@ class PsychologistDetailsFragment : Fragment() {
                 }
             }
         }
+        initFabContacts()
         if (savedInstanceState == null) {
             idPsy?.let { viewModel.getDetailsPsychologist(it) }
+        }
+    }
+
+    private fun initFabContacts() {
+        binding.fabContactsDetails.setOnClickListener {
+            // todo intent на контакт или выбор из контактов, а потом intent
         }
     }
 
@@ -95,32 +103,52 @@ class PsychologistDetailsFragment : Fragment() {
     }
 
     private fun displayDetails(psychologist: PsychologistEntity) {
-        binding.avatarImageViewDetail.load(psychologist.avatar) {
-            transformations(CircleCropTransformation())
+        with(binding) {
+            avatarImageViewDetail.load(psychologist.avatar) {
+                transformations(CircleCropTransformation())
+            }
+            countryTextViewDetails.text = psychologist.country
+            cityTextViewDetails.text = psychologist.city
+            surnameTextViewDetails.text = psychologist.surname
+            nameTextViewDetails.text = if (psychologist.patronymic.isNullOrEmpty()) {
+                psychologist.name
+            } else {
+                "${psychologist.name} ${psychologist.patronymic}"
+            }
+            specialisationTextViewDetails.text = psychologist.specialization.profession
+            profileTextViewDetails.text = psychologist.profile
+            rating.rating = psychologist.rating
+            val containerView = binding.containerViewDetails
+            if (!psychologist.specialization.specialization.isNullOrEmpty()) {
+                psychologist.specialization.specialization.forEach { item ->
+                    val specializationView = LayoutInflater.from(requireContext()).inflate(
+                        R.layout.fragment_psychologist_details_specialisation,
+                        containerView,
+                        false
+                    ) as View
+                    val bindingSpecialization =
+                        FragmentPsychologistDetailsSpecialisationBinding.bind(specializationView)
+                    bindingSpecialization.titleSpecialisationItem.text = item
+                    containerView.addView(specializationView)
+                }
+            }
+            if (!psychologist.education.isNullOrEmpty()) {
+                psychologist.education.forEach { education ->
+                    val educationView = LayoutInflater.from(requireContext()).inflate(
+                        R.layout.fragment_psychologist_details_education,
+                        containerView,
+                        false
+                    ) as View
+                    val bindingEducation =
+                        FragmentPsychologistDetailsEducationBinding.bind(educationView)
+                    bindingEducation.univercityTextViewImpl.text = education.university
+                    bindingEducation.facultyTextViewImpl.text = education.faculty
+                    bindingEducation.specialisationTextViewImpl.text = education.specialization
+                    bindingEducation.yearTextViewImpl.text = education.yearOfGraduation.toString()
+                    containerView.addView(educationView)
+                }
+            }
         }
-        binding.nameTextViewDetail.text = psychologist.name
-        binding.surnameTextViewDetail.text = psychologist.surname
-        binding.patronymicTextViewDetail.text = psychologist.patronymic
-        binding.countryTextViewDetail.text = psychologist.country
-        binding.cityTextViewDetail.text = psychologist.city
-        binding.profileTextViewDetail.text = psychologist.profile
-
-//        binding.titleContactTextViewDetail.text = psychologist.contacts[].titleContact
-//        binding.contactTextViewDetail.text = psychologist.contacts[].contact
-
-        binding.experienceTextViewDetail.text = psychologist.experience.toString()
-        binding.professionTextViewDetail.text = psychologist.specialization.profession
-        binding.specializationListTextViewDetail.text =
-            psychologist.specialization.specialization.toString()
-
-//        binding.universityTextViewDetail.text = psychologist.education[0].university
-//        binding.yearOfGraduationTextViewDetail.text = psychologist.education[3].yearOfGraduation.toString()
-//        binding.facultyTextViewDetail.text = psychologist.education[1].faculty
-//        binding.specializationEduTextViewDetail.text = psychologist.education[2].specialization
-
-        binding.ratingTextViewDetail.text = psychologist.rating.toString()
-        binding.numberOfVotesTextViewDetail.text = psychologist.numberOfVotes.toString()
-
     }
 
     override fun onDestroyView() {
