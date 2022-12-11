@@ -28,4 +28,12 @@
     <string name="save">Save</string>
     <string name="delete">Delete</string>
     <string name="new_note">New note</string>
+    <string name="help_number">Номер быстрой помощи 8-800-900-89-89</string>
+    <string name="go_to_test">Пройти тест</string>
+    <string name="sing_out">Выйти из аккаунта</string>
+    <string name="personal_type">Тип личности</string>
+    <string name="email">E-mail</string>
+    <string name="phone">Телефон</string>
+    <string name="name">Имя</string>
+    <string name="load_photo">Загрузить фото</string>
 </resources>

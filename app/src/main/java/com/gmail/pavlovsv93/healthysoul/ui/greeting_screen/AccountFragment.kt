@@ -1,6 +1,7 @@
 package com.gmail.pavlovsv93.healthysoul.ui.greeting_screen
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,7 +38,6 @@ class AccountFragment : Fragment() {
         binding.tvWelcome.text = hello
 
         binding.nextButtonText.setOnClickListener {
-            AuthUI.getInstance().signOut(requireContext())
             findNavController().navigate(AccountFragmentDirections.actionAccountFragmentToTabsFragment())
         }
     }
