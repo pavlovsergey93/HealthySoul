@@ -3,7 +3,7 @@ package com.gmail.pavlovsv93.healthysoul.ui.tests.hint
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gmai.pavlovsv93.healtysoul.domain.repository.tests.HintDataSourceInterface
-import com.gmail.pavlovsv93.healthysoul.ui.tests.AppState
+import com.gmail.pavlovsv93.healthysoul.utils.AppState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

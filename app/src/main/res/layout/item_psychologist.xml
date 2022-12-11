@@ -1,73 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view_psychologist_item"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/_16sdp">
 
-    <ImageView
-        android:id="@+id/avatar_image_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/name_text_view"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/name_text_view"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_psychologist_item"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:gravity="center"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/surname_text_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_weight="3"
-        app:layout_constraintStart_toEndOf="@+id/avatar_image_view"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="name" />
+        android:layout_margin="@dimen/_8sdp">
 
-    <TextView
-        android:id="@+id/surname_text_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:textSize="16sp"
-        android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@id/patronymic_text_view"
-        app:layout_constraintEnd_toEndOf="@id/name_text_view"
-        app:layout_constraintStart_toEndOf="@+id/avatar_image_view"
-        app:layout_constraintTop_toBottomOf="@+id/name_text_view"
-        tools:text="surname" />
+        <ImageView
+            android:id="@+id/avatar_image_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/_4sdp"
+            app:layout_constraintBottom_toTopOf="@id/profile_text_view"
+            app:layout_constraintEnd_toStartOf="@id/surname_text_view"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/patronymic_text_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:textSize="16sp"
-        android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@id/profession_text_view"
-        app:layout_constraintEnd_toEndOf="@id/name_text_view"
-        app:layout_constraintStart_toEndOf="@+id/avatar_image_view"
-        app:layout_constraintTop_toBottomOf="@+id/surname_text_view"
-        tools:text="patronymic" />
+        <TextView
+            android:id="@+id/surname_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:gravity="center"
+            android:textSize="@dimen/_20ssp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/name_patronymic_text_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="3"
+            app:layout_constraintStart_toEndOf="@+id/avatar_image_view"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="surname" />
 
-    <TextView
-        android:id="@+id/profession_text_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/name_text_view"
-        app:layout_constraintStart_toEndOf="@+id/avatar_image_view"
-        app:layout_constraintTop_toBottomOf="@+id/patronymic_text_view"
-        tools:text="profession" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/name_patronymic_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:gravity="center"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="italic|bold"
+            app:layout_constraintBottom_toTopOf="@id/profession_text_view"
+            app:layout_constraintEnd_toEndOf="@id/surname_text_view"
+            app:layout_constraintStart_toEndOf="@+id/avatar_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/surname_text_view"
+            tools:text="surname" />
+
+        <TextView
+            android:id="@+id/profession_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:gravity="center"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="@id/avatar_image_view"
+            app:layout_constraintEnd_toEndOf="@id/surname_text_view"
+            app:layout_constraintStart_toEndOf="@+id/avatar_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/name_patronymic_text_view"
+            tools:text="profession" />
+
+        <TextView
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            android:id="@+id/profile_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_condensed_regular"
+            android:gravity="start"
+            android:text="fdsafkdsl"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profession_text_view" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/blue_grey_600"
+        android:layout_gravity="bottom"/>
+</androidx.cardview.widget.CardView>

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentTestsBinding
 import com.gmail.pavlovsv93.healthysoul.di.TESTS_VIEW_MODEL
-import com.gmail.pavlovsv93.healthysoul.ui.tests.AppState
+import com.gmail.pavlovsv93.healthysoul.utils.AppState
 import com.gmail.pavlovsv93.healthysoul.ui.tests.questions.TestQuestionFragment
 import com.gmail.pavlovsv93.healthysoul.ui.tests.tests.testsadapter.TestsAdapter
 import com.gmail.pavlovsv93.healthysoul.utils.GeneralTestData

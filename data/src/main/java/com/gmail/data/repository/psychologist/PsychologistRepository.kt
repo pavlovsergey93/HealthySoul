@@ -1,4 +1,4 @@
-package com.gmail.data.repository
+package com.gmail.data.repository.psychologist
 
 import android.util.Log
 import com.google.firebase.firestore.CollectionReference
@@ -9,7 +9,7 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 
-class FirebaseRepository(private val db: FirebaseFirestore) : RepositoryInterface {
+class PsychologistRepository(private val db: FirebaseFirestore) : PsychologistRepositoryInterface {
     companion object {
         private const val COLLECTION = "psyhologists"
     }
