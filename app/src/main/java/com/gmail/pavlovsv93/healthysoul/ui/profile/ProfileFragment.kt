@@ -10,9 +10,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.loader.content.CursorLoader
+import androidx.navigation.fragment.findNavController
 import coil.transform.CircleCropTransformation
 import com.bumptech.glide.Glide
 import com.firebase.ui.auth.AuthUI
@@ -40,7 +42,7 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, backCall)
         val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
                 val data: Intent? = result.data
@@ -114,6 +116,12 @@ class ProfileFragment : Fragment() {
         binding.phoneNumber.text = number
         binding.emailText.text = email
 
+    }
+
+    private val backCall = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            findNavController().popBackStack()
+        }
     }
 
     override fun onDestroy() {

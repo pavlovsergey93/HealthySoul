@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.gmail.data.entity.PsychologistEntity
@@ -49,6 +52,7 @@ class PsychologistDetailsFragment : Fragment() {
     @SuppressLint("UnsafeRepeatOnLifecycleDetector")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, backCall)
         getIdPsychologist()
         lifecycleScope.launch(Dispatchers.IO) {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -150,6 +154,13 @@ class PsychologistDetailsFragment : Fragment() {
             }
         }
     }
+
+    private val backCall = object : OnBackPressedCallback(true){
+        override fun handleOnBackPressed() {
+            findNavController().popBackStack()
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

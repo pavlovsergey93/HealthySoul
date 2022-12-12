@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -61,6 +62,7 @@ class TestQuestionFragment : Fragment() {
     @SuppressLint("UnsafeRepeatOnLifecycleDetector")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, backCall)
         applyRecyclerView()
         val id = arguments?.getString(ARG_ID_QUESTION)
         id?.let { viewModel.getQuestion(it) }
@@ -123,9 +125,15 @@ class TestQuestionFragment : Fragment() {
                 .setNegativeButton(getString(R.string.dialog_negative)) { dialog, _ ->
                     dialog.dismiss()
                 }.setPositiveButton(getString(R.string.dialog_positive)) { dialog, _ ->
-                    findNavController().navigate(R.id.testsFragment)
+                    findNavController().popBackStack()
                     dialog.dismiss()
                 }.show()
+        }
+    }
+
+    private val backCall = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            findNavController().popBackStack()
         }
     }
 

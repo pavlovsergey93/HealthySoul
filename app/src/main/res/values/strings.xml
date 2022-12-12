@@ -42,4 +42,5 @@
     <string name="name">Имя</string>
     <string name="load_photo">Загрузить фото</string>
     <string name="delete_photo">Удалить фото</string>
+    <string name="message_exit">Нажмите еще раз, чтобы выйти!</string>
 </resources>

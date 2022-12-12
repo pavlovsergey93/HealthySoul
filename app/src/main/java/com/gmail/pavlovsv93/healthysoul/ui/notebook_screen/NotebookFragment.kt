@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -39,6 +41,7 @@ class NotebookFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, backCall)
         viewModel.initialization()
         initListener()
         initRecyclerView()
@@ -110,6 +113,26 @@ class NotebookFragment : Fragment() {
             notebookRecyclerView.visibility = View.VISIBLE
             addNote.visibility = View.VISIBLE
         }
+    }
+
+    private val backCall = object : OnBackPressedCallback(true){
+        override fun handleOnBackPressed() {
+            if (backPressTime + DEFAULT_PAUSE > System.currentTimeMillis()) {
+                toast.cancel()
+                requireActivity().finish()
+            } else {
+                toast.show()
+            }
+            backPressTime = System.currentTimeMillis()
+        }
+    }
+    private var backPressTime: Long = 0L
+    private val toast: Toast by lazy {
+        Toast.makeText(requireContext(), getString(R.string.message_exit), Toast.LENGTH_SHORT)
+    }
+
+    companion object{
+        const val DEFAULT_PAUSE = 2500L
     }
 
     override fun onDestroy() {

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -44,6 +45,7 @@ class TestsHintFragment : Fragment() {
     @SuppressLint("UnsafeRepeatOnLifecycleDetector")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, backCall)
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.getData()
@@ -62,7 +64,7 @@ class TestsHintFragment : Fragment() {
 
     private fun callbackButton() {
         binding.btnHome.setOnClickListener {
-            findNavController().navigate(R.id.testsFragment)
+            findNavController().popBackStack(R.id.testsFragment, false)
         }
     }
 
@@ -85,7 +87,16 @@ class TestsHintFragment : Fragment() {
                 binding.tvHint.text = hint.hint
             }
         }
+    }
 
+    private val backCall = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            findNavController().popBackStack(
+                destinationId = R.id.testsFragment,
+                inclusive = true,
+                saveState = false
+            )
+        }
     }
 
     override fun onDestroy() {
