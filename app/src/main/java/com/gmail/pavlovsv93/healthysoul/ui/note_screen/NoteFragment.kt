@@ -1,6 +1,7 @@
 package com.gmail.pavlovsv93.healthysoul.ui.note_screen
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -67,24 +68,36 @@ class NoteFragment : Fragment() {
 
     private fun renderState(state: NoteDetails) {
         if (!state.isLoadingDone) return
+
+        if (state.updateNote || state.saveNote || state.deleteNote) {
+            findNavController().popBackStack()
+        }
+        
         with(binding) {
             setVisibilityLoading()
             titleHead.setText(state.note.title)
             textBody.setText(state.note.content)
         }
-        if (state.updateNote || state.saveNote || state.deleteNote) {
-            findNavController().popBackStack()
-        }
     }
 
     private fun setVisibilityLoading() {
+        Log.e("pie", "setVisibilityLoading: ", )
         with(binding) {
             groupLoading.visibility = View.VISIBLE
             groupNotLoading.visibility = View.GONE
         }
     }
 
+    private fun setNotVisibilityLoading() {
+        Log.e("pie", "setNotVisibilityLoading: ", )
+        with(binding) {
+            groupLoading.visibility = View.GONE
+            groupNotLoading.visibility = View.VISIBLE
+        }
+    }
+
     private fun saveNote() {
+        setNotVisibilityLoading()
         viewModel.saveNote(
             Notebook(
                 id = UUID.randomUUID().hashCode(),
@@ -95,6 +108,7 @@ class NoteFragment : Fragment() {
     }
 
     private fun updateNote() {
+        setNotVisibilityLoading()
         viewModel.updateNote(
             Notebook(
                 id = args.noteId,

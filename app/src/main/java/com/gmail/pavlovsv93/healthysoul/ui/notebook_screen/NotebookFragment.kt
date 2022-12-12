@@ -80,7 +80,6 @@ class NotebookFragment : Fragment() {
     }
 
     private fun renderState(state: NotebookDetails) {
-        Log.e("pie", "renderState: state=${state.isLoadingDone}")
         if (!state.isLoadingDone) return
         setNotVisibilityLoading()
         adapter.submitList(state.listNotes)
