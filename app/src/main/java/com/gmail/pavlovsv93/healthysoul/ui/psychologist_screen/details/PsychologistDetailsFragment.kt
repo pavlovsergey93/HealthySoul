@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import coil.load
 import coil.transform.CircleCropTransformation
@@ -72,6 +71,10 @@ class PsychologistDetailsFragment : Fragment() {
     private fun initFabContacts() {
         binding.fabContactsDetails.setOnClickListener {
             // todo intent на контакт или выбор из контактов, а потом intent
+            PsychologistDetailsBottomSheetDialogFragment().show(
+                parentFragmentManager,
+                "PsychologistDetailsBottomSheetDialogFragment"
+            )
         }
     }
 
@@ -155,7 +158,7 @@ class PsychologistDetailsFragment : Fragment() {
         }
     }
 
-    private val backCall = object : OnBackPressedCallback(true){
+    private val backCall = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
             findNavController().popBackStack()
         }
