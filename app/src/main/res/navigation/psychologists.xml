@@ -18,9 +18,5 @@
 	<fragment
 		android:id="@+id/psychologistDetailsFragment"
 		android:name="com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen.details.PsychologistDetailsFragment"
-		android:label="PsychologistDetailsFragment" >
-		<action
-			android:id="@+id/action_psychologistDetailsFragment_to_psychologistFragment"
-			app:destination="@id/psychologistFragment" />
-	</fragment>
+		android:label="PsychologistDetailsFragment" />
 </navigation>
