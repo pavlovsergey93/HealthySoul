@@ -18,5 +18,22 @@
 	<fragment
 		android:id="@+id/psychologistDetailsFragment"
 		android:name="com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen.details.PsychologistDetailsFragment"
-		android:label="PsychologistDetailsFragment" />
+		android:label="PsychologistDetailsFragment" >
+		<action
+			android:id="@+id/action_psychologistDetailsFragment_to_psychologistDetailsBottomSheetDialogFragment"
+			app:destination="@id/psychologistDetailsBottomSheetDialogFragment" />
+	</fragment>
+	<dialog
+		android:id="@+id/psychologistDetailsBottomSheetDialogFragment"
+		android:name="com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen.details.PsychologistDetailsBottomSheetDialogFragment"
+		android:label="PsychologistDetailsBottomSheetDialogFragment" >
+		<argument
+			android:name="phone"
+			app:argType="string"
+			app:nullable="true" />
+		<argument
+			android:name="email"
+			app:argType="string"
+			app:nullable="true" />
+	</dialog>
 </navigation>

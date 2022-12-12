@@ -19,6 +19,7 @@ import com.gmail.pavlovsv93.healthysoul.databinding.FragmentPsychologistDetailsB
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentPsychologistDetailsEducationBinding
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentPsychologistDetailsSpecialisationBinding
 import com.gmail.pavlovsv93.healthysoul.di.DETAILS_PSYCHOLOGIST_VIEW_MODEL
+import com.gmail.pavlovsv93.healthysoul.di.psychologistModule
 import com.gmail.pavlovsv93.healthysoul.utils.AppState
 import com.gmail.pavlovsv93.healthysoul.utils.showMessage
 import kotlinx.coroutines.Dispatchers
@@ -38,6 +39,7 @@ class PsychologistDetailsFragment : Fragment() {
         named(DETAILS_PSYCHOLOGIST_VIEW_MODEL)
     )
     private var idPsy: String? = null
+    private var psy: PsychologistEntity? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -71,10 +73,18 @@ class PsychologistDetailsFragment : Fragment() {
     private fun initFabContacts() {
         binding.fabContactsDetails.setOnClickListener {
             // todo intent на контакт или выбор из контактов, а потом intent
-            PsychologistDetailsBottomSheetDialogFragment().show(
-                parentFragmentManager,
-                "PsychologistDetailsBottomSheetDialogFragment"
+
+            findNavController().navigate(
+                PsychologistDetailsFragmentDirections
+                    .actionPsychologistDetailsFragmentToPsychologistDetailsBottomSheetDialogFragment(
+                    phone = psy?.contacts?.get(0)?.contact.toString(),
+                    email = null
+                )
             )
+//            PsychologistDetailsBottomSheetDialogFragment().show(
+//                parentFragmentManager,
+//                "PsychologistDetailsBottomSheetDialogFragment"
+//            )
         }
     }
 
@@ -103,8 +113,8 @@ class PsychologistDetailsFragment : Fragment() {
             }
             is AppState.OnSuccess<*> -> {
                 binding.progressDetails.visibility = View.GONE
-                val psychologist = state.success as PsychologistEntity
-                displayDetails(psychologist)
+                psy = state.success as PsychologistEntity
+                psy?.let { displayDetails(it) }
             }
         }
     }
