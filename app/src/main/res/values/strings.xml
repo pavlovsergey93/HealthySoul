@@ -47,4 +47,7 @@
     <string name="dialog_title">Вы действительно хотите удалить аккаунт?</string>
     <string name="dialog_button_positive">Удалить</string>
     <string name="dialog_button_negative">Отмена</string>
+    <string name="favorites">Favorites</string>
+    <string name="no_favorite_found">no_favorite_found</string>
+    <string name="delete_all">Delete all</string>
 </resources>
