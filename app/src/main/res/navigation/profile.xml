@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/profile"
     app:startDestination="@id/profileFragment">
-
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.gmail.pavlovsv93.healthysoul.ui.profile.ProfileFragment"

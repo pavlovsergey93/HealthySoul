@@ -12,14 +12,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.loader.content.CursorLoader
+import androidx.navigation.NavDeepLinkBuilder
+import androidx.navigation.NavDeepLinkRequest
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import coil.load
 import coil.transform.CircleCropTransformation
+import coil.transform.RoundedCornersTransformation
 import com.bumptech.glide.Glide
 import com.firebase.ui.auth.AuthUI
 import com.gmail.pavlovsv93.healthysoul.R
+import com.gmail.pavlovsv93.healthysoul.databinding.FragmentGreetingBinding
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentProfileBinding
+import com.gmail.pavlovsv93.healthysoul.ui.greeting_screen.GreetingFragment
+import com.gmail.pavlovsv93.healthysoul.ui.greeting_screen.GreetingFragmentDirections
 import com.google.firebase.auth.FirebaseAuth
 import java.io.File
 
@@ -28,8 +38,6 @@ class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
-
-    val GALLERY_REQUEST = 1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,15 +50,16 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, backCall)
-        val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == RESULT_OK) {
-                val data: Intent? = result.data
-                doSomeOperations(data)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, backCall)
+        val resultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == RESULT_OK) {
+                    val data: Intent? = result.data
+                    doSomeOperations(data)
+                }
             }
-        }
 
-        binding.loadPhoto.setOnClickListener{
+        binding.loadPhoto.setOnClickListener {
             val photoPickerIntent = Intent(Intent.ACTION_PICK)
             photoPickerIntent.type = "image/*"
             resultLauncher.launch(photoPickerIntent)
@@ -60,27 +69,27 @@ requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, backCa
             Glide.with(binding.profilePhoto.context)
                 .load(R.drawable.ic_profile)
                 .into(binding.profilePhoto)
-            binding.loadPhoto.visibility =View.VISIBLE
-            binding.deletePhoto.visibility =View.GONE
+            binding.loadPhoto.visibility = View.VISIBLE
+            binding.deletePhoto.visibility = View.GONE
         }
 
-        binding.out.setOnClickListener {
-            singOut()
+        binding.signOut.setOnClickListener {
+            AuthUI.getInstance().signOut(requireContext())
+            updateUI()
+        }
+        binding.signDelete.setOnClickListener {
+            AuthUI.getInstance().delete(requireContext())
+            updateUI()
         }
         observeAuthenticationState()
     }
 
-    private fun singOut() {
-        AuthUI.getInstance().signOut(requireContext())
-        binding.nameText.text = ""
-        binding.phoneNumber.text = ""
-        binding.emailText.text = ""
-        binding.personalType.text =""
-        binding.loadPhoto.visibility =View.VISIBLE
-        binding.deletePhoto.visibility =View.GONE
-        Glide.with(binding.profilePhoto.context)
-            .load(R.drawable.ic_profile)
-            .into(binding.profilePhoto)
+    private fun updateUI() {
+        val args = Bundle().apply {
+            putBoolean(ARGS_SIGN_OUT_OR_DELETE, true)
+        }
+        Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
+            .navigate(R.id.greetingFragment, args)
     }
 
     private fun doSomeOperations(data: Intent?) {
@@ -91,9 +100,8 @@ requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, backCa
             .load(File(imagePath!!))
             .into(binding.profilePhoto)
 
-        binding.loadPhoto.visibility =View.GONE
-        binding.deletePhoto.visibility =View.VISIBLE
-
+        binding.loadPhoto.visibility = View.GONE
+        binding.deletePhoto.visibility = View.VISIBLE
     }
 
     private fun getRealPathFromURI(contentUri: Uri?): String? {
@@ -108,10 +116,16 @@ requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, backCa
     }
 
     private fun observeAuthenticationState() {
-        val name = String.format(FirebaseAuth.getInstance().currentUser?.displayName?:"пользователь")
-        val number = String.format(FirebaseAuth.getInstance().currentUser?.phoneNumber?:"89111128956")
-        val email = String.format(FirebaseAuth.getInstance().currentUser?.email?:"")
+        val image = FirebaseAuth.getInstance().currentUser?.photoUrl
+        val name =
+            String.format(FirebaseAuth.getInstance().currentUser?.displayName ?: "пользователь")
+        val number =
+            String.format(FirebaseAuth.getInstance().currentUser?.phoneNumber ?: "89111128956")
+        val email = String.format(FirebaseAuth.getInstance().currentUser?.email ?: "")
         Log.d("tagatag", number)
+        binding.profilePhoto.load(image) {
+            transformations(RoundedCornersTransformation())
+        }
         binding.nameText.text = name
         binding.phoneNumber.text = number
         binding.emailText.text = email
@@ -122,6 +136,10 @@ requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, backCa
         override fun handleOnBackPressed() {
             findNavController().popBackStack()
         }
+    }
+
+    companion object {
+        const val ARGS_SIGN_OUT_OR_DELETE = "ARGS_SIGN_OUT_OR_DELETE"
     }
 
     override fun onDestroy() {

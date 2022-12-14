@@ -9,7 +9,7 @@
         android:id="@+id/splashFragment"
         android:name="com.gmail.pavlovsv93.healthysoul.ui.splash_screen.SplashFragment"
         android:label="SplashFragment"
-        tools:layout="@layout/fragment_splash" >
+        tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_splashFragment_to_greetingFragment"
             app:destination="@id/greetingFragment"
@@ -24,7 +24,7 @@
         <action
             android:id="@+id/action_accountFragment_to_tabsFragment"
             app:destination="@id/tabsFragment"
-            app:popUpTo="@id/nav_graph"/>
+            app:popUpTo="@id/nav_graph" />
     </fragment>
     <fragment
         android:id="@+id/tabsFragment"
@@ -38,6 +38,7 @@
         <action
             android:id="@+id/action_greetingFragment_to_accountFragment"
             app:destination="@id/accountFragment"
-            app:popUpTo="@id/nav_graph"/>
-</fragment>
+            app:popUpTo="@id/nav_graph" />
+    </fragment>
+
 </navigation>

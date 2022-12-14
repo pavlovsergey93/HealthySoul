@@ -12,10 +12,13 @@ import androidx.navigation.fragment.findNavController
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
+import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentGreetingBinding
+import com.gmail.pavlovsv93.healthysoul.ui.profile.ProfileFragment.Companion.ARGS_SIGN_OUT_OR_DELETE
 import com.google.firebase.auth.FirebaseAuth
 
 const val ARG_NAME_USER = "ARG_NAME_USER"
+
 class GreetingFragment : Fragment() {
 
     private var _binding: FragmentGreetingBinding? = null
@@ -32,11 +35,14 @@ class GreetingFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        val auth = FirebaseAuth.getInstance()
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            val name = currentUser.displayName ?: "Неизвестный"
-            updateUI(name)
+        val signOutOrDeleteAccount = arguments?.getBoolean(ARGS_SIGN_OUT_OR_DELETE, false)
+        if (signOutOrDeleteAccount == false) {
+            val auth = FirebaseAuth.getInstance()
+            val currentUser = auth.currentUser
+            if (currentUser != null) {
+                val name = currentUser.displayName ?: "Неизвестный"
+                updateUI(name)
+            }
         }
     }
 
