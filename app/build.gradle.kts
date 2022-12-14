@@ -15,18 +15,18 @@ android {
 			keyPassword = "Mp2630547"
 		}
 	}
-	compileSdk = 33
+    compileSdk = 32
 
     defaultConfig {
         applicationId = "com.gmail.pavlovsv93.healthysoul"
         minSdk = 23
-        targetSdk = 33
+        targetSdk = 32
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-		signingConfig = signingConfigs.getByName("healthySoul")
-	}
+        signingConfig = signingConfigs.getByName("healthySoul")
+    }
 
     buildTypes {
         release {
