@@ -1,6 +1,8 @@
 package com.gmail.pavlovsv93.healthysoul.ui.profile
 
+import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
+import android.app.AlertDialog
 import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
@@ -30,6 +32,7 @@ import com.gmail.pavlovsv93.healthysoul.databinding.FragmentGreetingBinding
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentProfileBinding
 import com.gmail.pavlovsv93.healthysoul.ui.greeting_screen.GreetingFragment
 import com.gmail.pavlovsv93.healthysoul.ui.greeting_screen.GreetingFragmentDirections
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import java.io.File
 
@@ -48,6 +51,7 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("ResourceType")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, backCall)
@@ -78,8 +82,17 @@ class ProfileFragment : Fragment() {
             updateUI()
         }
         binding.signDelete.setOnClickListener {
-            AuthUI.getInstance().delete(requireContext())
-            updateUI()
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle(getString(R.string.dialog_title))
+                .setPositiveButton(
+                    R.string.dialog_button_positive
+                ) { dialog, _ ->
+                    AuthUI.getInstance().delete(requireContext())
+                    updateUI()
+                    dialog.dismiss()
+                }.setNegativeButton(R.string.dialog_button_negative) { dialog, _ ->
+                    dialog.dismiss()
+                }.show()
         }
         observeAuthenticationState()
     }

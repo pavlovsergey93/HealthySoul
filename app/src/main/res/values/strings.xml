@@ -44,4 +44,7 @@
     <string name="delete_photo">Удалить фото</string>
     <string name="message_exit">Нажмите еще раз, чтобы выйти!</string>
     <string name="sing_delete">Удалить аккаунт</string>
+    <string name="dialog_title">Вы действительно хотите удалить аккаунт?</string>
+    <string name="dialog_button_positive">Удалить</string>
+    <string name="dialog_button_negative">Отмена</string>
 </resources>
