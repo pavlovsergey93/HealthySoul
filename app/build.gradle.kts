@@ -91,6 +91,7 @@ dependencies {
     implementation("androidx.room:room-runtime:2.4.3")
     kapt("androidx.room:room-compiler:2.4.3")
     annotationProcessor ("android.arch.persistence.room:compiler:1.1.1")
+    androidTestImplementation ("android.arch.persistence.room:testing:1.1.1.roomVersion")
 
     //Coil
     implementation("io.coil-kt:coil:2.2.2")
