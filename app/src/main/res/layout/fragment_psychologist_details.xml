@@ -115,7 +115,7 @@
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/specialisation_text_view_details">>
+                app:layout_constraintTop_toBottomOf="@id/specialisation_text_view_details">
 
                 <TextView
                     android:id="@+id/profile_text_view_details"

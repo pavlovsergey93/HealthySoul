@@ -19,7 +19,6 @@ import com.gmail.pavlovsv93.healthysoul.databinding.FragmentPsychologistDetailsB
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentPsychologistDetailsEducationBinding
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentPsychologistDetailsSpecialisationBinding
 import com.gmail.pavlovsv93.healthysoul.di.DETAILS_PSYCHOLOGIST_VIEW_MODEL
-import com.gmail.pavlovsv93.healthysoul.di.psychologistModule
 import com.gmail.pavlovsv93.healthysoul.utils.AppState
 import com.gmail.pavlovsv93.healthysoul.utils.showMessage
 import kotlinx.coroutines.Dispatchers
@@ -72,19 +71,24 @@ class PsychologistDetailsFragment : Fragment() {
 
     private fun initFabContacts() {
         binding.fabContactsDetails.setOnClickListener {
-            // todo intent на контакт или выбор из контактов, а потом intent
+            var phone = ""
+            var email = ""
+
+            psy?.contacts?.forEach {
+                if (it.titleContact == "Телефон") {
+                    phone = it.contact
+                } else {
+                    email = it.contact
+                }
+            }
 
             findNavController().navigate(
                 PsychologistDetailsFragmentDirections
                     .actionPsychologistDetailsFragmentToPsychologistDetailsBottomSheetDialogFragment(
-                    phone = psy?.contacts?.get(0)?.contact.toString(),
-                    email = null
-                )
+                        phone = phone,
+                        email = email
+                    )
             )
-//            PsychologistDetailsBottomSheetDialogFragment().show(
-//                parentFragmentManager,
-//                "PsychologistDetailsBottomSheetDialogFragment"
-//            )
         }
     }
 
@@ -136,7 +140,7 @@ class PsychologistDetailsFragment : Fragment() {
             profileTextViewDetails.text = psychologist.profile
             rating.rating = psychologist.rating
             val containerView = binding.containerViewDetails
-            if (!psychologist.specialization.specialization.isNullOrEmpty()) {
+            if (psychologist.specialization.specialization.isNotEmpty()) {
                 psychologist.specialization.specialization.forEach { item ->
                     val specializationView = LayoutInflater.from(requireContext()).inflate(
                         R.layout.fragment_psychologist_details_specialisation,
@@ -149,7 +153,7 @@ class PsychologistDetailsFragment : Fragment() {
                     containerView.addView(specializationView)
                 }
             }
-            if (!psychologist.education.isNullOrEmpty()) {
+            if (psychologist.education.isNotEmpty()) {
                 psychologist.education.forEach { education ->
                     val educationView = LayoutInflater.from(requireContext()).inflate(
                         R.layout.fragment_psychologist_details_education,
@@ -173,7 +177,6 @@ class PsychologistDetailsFragment : Fragment() {
             findNavController().popBackStack()
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
