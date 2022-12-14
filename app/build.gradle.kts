@@ -15,12 +15,12 @@ android {
 			keyPassword = "Mp2630547"
 		}
 	}
-	compileSdk = 32
+	compileSdk = 33
 
     defaultConfig {
         applicationId = "com.gmail.pavlovsv93.healthysoul"
         minSdk = 23
-        targetSdk = 32
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
 
@@ -90,6 +90,7 @@ dependencies {
     //Room
     implementation("androidx.room:room-runtime:2.4.3")
     kapt("androidx.room:room-compiler:2.4.3")
+    annotationProcessor ("android.arch.persistence.room:compiler:1.1.1")
 
     //Coil
     implementation("io.coil-kt:coil:2.2.2")
