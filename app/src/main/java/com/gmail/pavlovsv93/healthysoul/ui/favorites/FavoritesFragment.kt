@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.gmail.data.data.room.RoomEntity
+import androidx.navigation.navGraphViewModels
 import com.gmail.data.entity.PsychologistEntity
 import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentFavoritesBinding
@@ -47,6 +47,7 @@ class FavoritesFragment : Fragment() {
     private fun ranger(state: AppState) {
         when (state) {
             is AppState.OnException -> {
+                binding.progressPsychologist.visibility = View.GONE
                 val message = state.exception.message.toString()
                 binding.root.showMessage(
                     str = message,
@@ -56,21 +57,22 @@ class FavoritesFragment : Fragment() {
                     })
             }
             is AppState.OnLoading -> {
-
+                binding.progressPsychologist.visibility = View.VISIBLE
             }
             is AppState.OnShowMessage -> {
+                binding.progressPsychologist.visibility = View.GONE
                 val message = state.message
                 binding.root.showMessage(message)
             }
             is AppState.OnSuccess<*> -> {
-                val category: List<RoomEntity> = state.success as List<RoomEntity>
+                binding.progressPsychologist.visibility = View.GONE
+                val category: List<PsychologistEntity> = state.success as List<PsychologistEntity>
                 adapter.updatePsychologistList(category)
             }
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.favorite_recipes_menu, menu)
+        inflater.inflate(R.menu.favorite_recipes_menu,menu)
     }
 
     fun showSnackBar(message: String) {
@@ -83,6 +85,4 @@ class FavoritesFragment : Fragment() {
         _binding = null
 //        favoriteRecipesAdapter.clearContext()
     }
-
-
 }
