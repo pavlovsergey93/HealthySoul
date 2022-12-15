@@ -9,6 +9,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.gmail.data.data.room.RoomEntity
 import com.gmail.data.entity.PsychologistEntity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.navGraphViewModels
+import com.gmail.data.entity.PsychologistEntity
 import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentFavoritesBinding
 import com.gmail.pavlovsv93.healthysoul.di.VIEW_MODEL_FAVORITES
@@ -30,6 +35,45 @@ class FavoritesFragment : Fragment() {
     ): View {
         _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    @SuppressLint("UnsafeRepeatOnLifecycleDetector")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getData().collect { state ->
+                    ranger(state)
+                }
+            }
+        }
+        viewModel.getAllFavorites()
+    }
+
+    private fun ranger(state: AppState) {
+        when (state) {
+            is AppState.OnException -> {
+                binding.progressPsychologist.visibility = View.GONE
+                val message = state.exception.message.toString()
+                binding.root.showMessage(
+                    str = message,
+                    actionText = getString(R.string.reload),
+                    action = {
+                        viewModel.getAllFavorites()
+                    })
+            }
+            is AppState.OnLoading -> {
+                binding.progressPsychologist.visibility = View.VISIBLE
+            }
+            is AppState.OnShowMessage -> {
+                binding.progressPsychologist.visibility = View.GONE
+                val message = state.message
+                binding.root.showMessage(message)
+            }
+            is AppState.OnSuccess<*> -> {
+                binding.progressPsychologist.visibility = View.GONE
+                val category: List<PsychologistEntity> = state.success as List<PsychologistEntity>
+                adapter.updatePsychologistList(category)
+            }
     }
 
     @SuppressLint("UnsafeRepeatOnLifecycleDetector")
@@ -70,7 +114,7 @@ class FavoritesFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.favorite_recipes_menu, menu)
+        inflater.inflate(R.menu.favorite_recipes_menu,menu)
     }
 
     fun showSnackBar(message: String) {
@@ -83,6 +127,4 @@ class FavoritesFragment : Fragment() {
         _binding = null
 //        favoriteRecipesAdapter.clearContext()
     }
-
-
 }
