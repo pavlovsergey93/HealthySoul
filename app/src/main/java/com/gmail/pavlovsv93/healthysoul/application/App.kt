@@ -20,7 +20,7 @@ class App : Application() {
         startKoin {
             androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
             modules(
-                listOf(domainModule, dataModule, appModule, testsModule, psychologistModule)
+                domainModule, dataModule, appModule, testsModule, psychologistModule, roomModule
             )
             androidContext(this@App)
         }
