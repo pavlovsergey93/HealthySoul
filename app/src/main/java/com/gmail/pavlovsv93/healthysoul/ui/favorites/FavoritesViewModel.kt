@@ -20,6 +20,7 @@ class FavoritesViewModel(
 
     fun getAllFavorites() = viewModelScope.launch(Dispatchers.IO) {
         stateFlow.tryEmit(AppState.OnLoading)
+        val id = ""
         dataSource.getDetailsPsychologist(id)
             .catch { exp ->
                 withContext(Dispatchers.Main){
