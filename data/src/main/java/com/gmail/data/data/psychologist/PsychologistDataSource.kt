@@ -2,14 +2,19 @@
 
 package com.gmail.data.data.psychologist
 
+import com.gmail.data.data.room.RoomDao
+import com.gmail.data.data.room.RoomEntity
 import com.gmail.data.entity.PsychologistEntity
 import com.gmail.data.repository.psychologist.PsychologistRepositoryInterface
 import com.gmail.data.utils.convertToPsychologistEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class PsychologistDataSource(private val repository: PsychologistRepositoryInterface) :
-    PsychologistDataSourceInterface {
+class PsychologistDataSource(
+    private val repository: PsychologistRepositoryInterface,
+    private val dao: RoomDao
+
+) : PsychologistDataSourceInterface {
     companion object {
 
     }
@@ -22,11 +27,11 @@ class PsychologistDataSource(private val repository: PsychologistRepositoryInter
         }
     }
 
-    override suspend fun insertItemPsychologistEntity() {
-        TODO("Not yet implemented")
+    override suspend fun insertItemPsychologistEntity(entity: RoomEntity) {
+        dao.insert(entity)
     }
 
-    override suspend fun deleteItemPsychologistEntity() {
-        TODO("Not yet implemented")
+    override suspend fun deleteItemPsychologistEntity(entity: RoomEntity) {
+        dao.delete(entity)
     }
 }

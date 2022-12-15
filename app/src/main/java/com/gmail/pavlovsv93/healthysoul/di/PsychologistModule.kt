@@ -18,7 +18,7 @@ const val DETAILS_PSYCHOLOGIST_VIEW_MODEL = "PsychologistDetailsViewModel"
 
 val psychologistModule = module {
     single<PsychologistRepositoryInterface> { PsychologistRepository(db = get<FirebaseFirestore>()) }
-    single<PsychologistDataSourceInterface> { PsychologistDataSource(repository = get<PsychologistRepositoryInterface>()) }
+    single<PsychologistDataSourceInterface> { PsychologistDataSource(repository = get<PsychologistRepositoryInterface>(), dao = get()) }
     viewModel<PsychologistViewModel>(named(PSYCHOLOGIST_VIEW_MODEL)){
         PsychologistViewModel(dataSource = get<PsychologistDataSourceInterface>())
     }

@@ -38,6 +38,9 @@ dependencies {
     //добавление зависимости для модулей
     implementation(project(":domain"))
 
+    implementation("io.insert-koin:koin-android:3.1.6")
+    implementation("io.insert-koin:koin-core:3.1.6")
+
 	//Firebase
 	implementation(platform("com.google.firebase:firebase-bom:30.2.0"))
 	implementation("com.google.firebase:firebase-firestore-ktx")
@@ -56,6 +59,8 @@ dependencies {
 	implementation("com.google.firebase:firebase-firestore:24.4.0")
     implementation("androidx.room:room-common:2.4.3")
     implementation("androidx.room:room-ktx:2.4.3")
+    kapt("androidx.room:room-compiler:2.4.3")
+    annotationProcessor("android.arch.persistence.room:compiler:1.1.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
