@@ -7,13 +7,16 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.gmail.data.entity.PsychologistEntity
 import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentFavoritesBinding
 import com.gmail.pavlovsv93.healthysoul.di.VIEW_MODEL_FAVORITES
+import com.gmail.pavlovsv93.healthysoul.ui.favorites.adapter.ClickedOnFavorites
+import com.gmail.pavlovsv93.healthysoul.ui.favorites.adapter.FavoritesFragmentAdapter
+import com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen.details.PsychologistDetailsFragment
 import com.gmail.pavlovsv93.healthysoul.utils.AppState
 import com.gmail.pavlovsv93.healthysoul.utils.showMessage
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.qualifier.named
@@ -43,6 +46,24 @@ class FavoritesFragment : Fragment() {
         viewModel.getAllFavorites()
     }
 
+    private val adapter: FavoritesFragmentAdapter =
+        FavoritesFragmentAdapter(object : ClickedOnFavorites {
+            override fun onClick(id: String) {
+                val data = Bundle().apply {
+                    putString(PsychologistDetailsFragment.ARG_ID_PSYCHOLOGIST, id)
+                }
+                findNavController().navigate(R.id.psychologistDetailsFragment, data)
+            }
+
+            override fun deleteFavorite(psychologist: PsychologistEntity) {
+                TODO("Not yet implemented")
+            }
+
+            override fun addFavorite(psychologist: PsychologistEntity) {
+                TODO("Not yet implemented")
+            }
+        })
+
     private fun ranger(state: AppState) {
         when (state) {
             is AppState.OnException -> {
@@ -69,21 +90,18 @@ class FavoritesFragment : Fragment() {
                 adapter.updatePsychologistList(category)
             }
         }
+    }
 
-        override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-            inflater.inflate(R.menu.favorite_recipes_menu, menu)
-        }
 
-        fun showSnackBar(message: String) {
-            Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).setAction("Okay") {
-            }.show()
-        }
+//        fun showSnackBar(message: String) {
+//            Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).setAction("Okay") {
+//            }.show()
+//        }
 
-        override fun onDestroyView() {
-            super.onDestroyView()
-            _binding = null
-        favoriteAdapter.clearContext()
-        }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+//            adapter.clear()
     }
 }
 
