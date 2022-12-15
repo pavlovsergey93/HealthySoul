@@ -32,4 +32,13 @@ class PsychologistFragmentAdapter(val onClick: ClickedOnPsychologist) : Recycler
         this.psychologistList.addAll(psychologistList)
         notifyDataSetChanged()
     }
+
+    fun addFavorite(position: Int){
+        onClick.addFavorite(psychologistList[position])
+        notifyItemChanged(position)
+    }
+    fun deleteFavorite(position: Int){
+        onClick.deleteFavorite(psychologistList[position])
+        notifyItemChanged(position)
+    }
 }

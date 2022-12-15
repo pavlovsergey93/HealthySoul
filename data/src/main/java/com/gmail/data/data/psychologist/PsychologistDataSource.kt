@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.map
 class PsychologistDataSource(
     private val repository: PsychologistRepositoryInterface,
     private val dao: RoomDao
-
 ) : PsychologistDataSourceInterface {
     companion object {
 
