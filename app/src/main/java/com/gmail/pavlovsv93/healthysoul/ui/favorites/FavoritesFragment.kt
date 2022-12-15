@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.navGraphViewModels
 import com.gmail.data.entity.PsychologistEntity
 import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentFavoritesBinding
@@ -69,20 +68,22 @@ class FavoritesFragment : Fragment() {
                 val category: List<PsychologistEntity> = state.success as List<PsychologistEntity>
                 adapter.updatePsychologistList(category)
             }
-    }
+        }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.favorite_recipes_menu,menu)
-    }
+        override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+            inflater.inflate(R.menu.favorite_recipes_menu, menu)
+        }
 
-    fun showSnackBar(message: String) {
-        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).setAction("Okay") {
-        }.show()
-    }
+        fun showSnackBar(message: String) {
+            Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).setAction("Okay") {
+            }.show()
+        }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-//        favoriteRecipesAdapter.clearContext()
+        override fun onDestroyView() {
+            super.onDestroyView()
+            _binding = null
+        favoriteAdapter.clearContext()
+        }
     }
 }
+

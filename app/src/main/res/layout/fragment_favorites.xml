@@ -12,4 +12,12 @@ android:orientation="vertical">
     android:layout_height="match_parent"
     tools:listitem="@layout/fragment_psychologist" />
 
+    <ProgressBar
+        android:id="@+id/progress_psychologist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        tools:visibility="visible" />
+
 </LinearLayout>
