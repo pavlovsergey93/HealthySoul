@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gmail.data.data.room.RoomEntity
 import com.gmail.pavlovsv93.healthysoul.R
@@ -14,6 +15,7 @@ import com.gmail.pavlovsv93.healthysoul.databinding.FragmentFavoritesBinding
 import com.gmail.pavlovsv93.healthysoul.di.VIEW_MODEL_FAVORITES
 import com.gmail.pavlovsv93.healthysoul.ui.favorites.adapter.ClickedOnFavorites
 import com.gmail.pavlovsv93.healthysoul.ui.favorites.adapter.FavoritesAdapter
+import com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen.details.PsychologistDetailsFragment.Companion.ARG_ID_PSYCHOLOGIST
 import com.gmail.pavlovsv93.healthysoul.utils.AppState
 import com.gmail.pavlovsv93.healthysoul.utils.showMessage
 import kotlinx.coroutines.launch
@@ -48,13 +50,17 @@ class FavoritesFragment : Fragment() {
 
     private fun initRecyclerView() {
         val rv = binding.recyclerview
-        rv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        rv.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         rv.adapter = adapter
     }
 
-    private val adapter: FavoritesAdapter = FavoritesAdapter(object : ClickedOnFavorites{
+    private val adapter: FavoritesAdapter = FavoritesAdapter(object : ClickedOnFavorites {
         override fun onClick(id: String) {
-            TODO("Not yet implemented")
+            val args = Bundle().apply {
+                putString(ARG_ID_PSYCHOLOGIST, id)
+            }
+            findNavController().navigate(R.id.psychologistDetailsFragmentFavorite, args)
         }
 
         override fun deleteFavorite(psychologist: RoomEntity) {

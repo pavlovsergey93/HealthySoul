@@ -6,7 +6,7 @@
         android:title="@string/notebook" />
 
     <item
-        android:id="@id/psychologists"
+        android:id="@id/psychologistsGraph"
         android:title="@string/psychologists"
         android:icon="@drawable/ic_baseline_people_outline_24"/>
 	<item

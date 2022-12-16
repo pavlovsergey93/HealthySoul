@@ -6,5 +6,13 @@
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="com.gmail.pavlovsv93.healthysoul.ui.favorites.FavoritesFragment"
-        android:label="FavoritesFragment" />
+        android:label="FavoritesFragment" >
+        <action
+            android:id="@+id/action_favoritesFragment_to_psychologistDetailsFragment2"
+            app:destination="@id/psychologistDetailsFragmentFavorite" />
+    </fragment>
+    <fragment
+        android:id="@+id/psychologistDetailsFragmentFavorite"
+        android:name="com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen.details.PsychologistDetailsFragment"
+        android:label="PsychologistDetailsFragment" />
 </navigation>
