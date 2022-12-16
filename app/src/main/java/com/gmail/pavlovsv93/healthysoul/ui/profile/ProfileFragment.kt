@@ -137,9 +137,6 @@ class ProfileFragment : Fragment() {
         val number =
             String.format(FirebaseAuth.getInstance().currentUser?.phoneNumber ?: "89111128956")
         val email = String.format(FirebaseAuth.getInstance().currentUser?.email ?: "")
-//        binding.profilePhoto.load(image) {
-//            transformations(RoundedCornersTransformation())
-//        }
         Glide.with(binding.profilePhoto.context)
             .load(image)
             .circleCrop()
