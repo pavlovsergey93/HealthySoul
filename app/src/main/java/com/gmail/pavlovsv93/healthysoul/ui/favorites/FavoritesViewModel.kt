@@ -3,6 +3,7 @@ package com.gmail.pavlovsv93.healthysoul.ui.favorites
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gmail.data.data.favorites.FavoritesDataSourceInterface
+import com.gmail.data.data.room.RoomEntity
 import com.gmail.pavlovsv93.healthysoul.utils.AppState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -32,8 +33,8 @@ class FavoritesViewModel(
             }
     }
 
-    fun deleteFavorite() = viewModelScope.launch(Dispatchers.IO) {
-
+    fun deleteFavorite(psychologist: RoomEntity) = viewModelScope.launch(Dispatchers.IO) {
+        dataSource.deleteFavorite(psychologist)
     }
 
     fun clearFavorite() = viewModelScope.launch(Dispatchers.IO) {

@@ -8,7 +8,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.gmail.data.data.room.RoomEntity
 import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentFavoritesBinding
@@ -18,6 +20,7 @@ import com.gmail.pavlovsv93.healthysoul.ui.favorites.adapter.FavoritesAdapter
 import com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen.details.PsychologistDetailsFragment.Companion.ARG_ID_PSYCHOLOGIST
 import com.gmail.pavlovsv93.healthysoul.utils.AppState
 import com.gmail.pavlovsv93.healthysoul.utils.showMessage
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.qualifier.named
@@ -53,6 +56,37 @@ class FavoritesFragment : Fragment() {
         rv.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         rv.adapter = adapter
+        val swipe = ItemTouchHelper.START
+        val call = object : ItemTouchHelper.SimpleCallback(0, swipe){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                when(direction){
+                    ItemTouchHelper.START->{
+                        MaterialAlertDialogBuilder(requireContext())
+                            .setCancelable(false)
+                            .setTitle(getString(R.string.dialog_title_favorite))
+                            .setPositiveButton(getString(R.string.dialog_button_positive)){dialog, _ ->
+                                adapter.deleteFavorite(position)
+                                dialog.dismiss()
+                            }
+                            .setNegativeButton(getString(R.string.dialog_button_negative)){dialog, _ ->
+                                adapter.notifyItemChanged(position)
+                                dialog.dismiss()
+                            }.show()
+                    }
+                }
+            }
+
+        }
+        ItemTouchHelper(call).attachToRecyclerView(rv)
     }
 
     private val adapter: FavoritesAdapter = FavoritesAdapter(object : ClickedOnFavorites {
@@ -64,7 +98,7 @@ class FavoritesFragment : Fragment() {
         }
 
         override fun deleteFavorite(psychologist: RoomEntity) {
-            viewModel.deleteFavorite()
+            viewModel.deleteFavorite(psychologist)
         }
     })
 
