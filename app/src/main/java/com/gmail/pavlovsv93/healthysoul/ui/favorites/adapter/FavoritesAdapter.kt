@@ -51,6 +51,11 @@ class FavoritesAdapter(private val clickedOnPsychologist: ClickedOnFavorites) :
         }
     }
 
+    fun deleteFavorite(position: Int) {
+        clickedOnPsychologist.deleteFavorite(list.currentList[position])
+        notifyItemRemoved(position)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritesViewHolder =
         FavoritesViewHolder(
             ItemPsychologistBinding.inflate(
