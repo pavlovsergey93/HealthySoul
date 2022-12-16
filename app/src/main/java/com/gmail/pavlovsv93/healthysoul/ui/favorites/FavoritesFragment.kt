@@ -78,9 +78,9 @@ class FavoritesFragment : Fragment() {
                                 dialog.dismiss()
                             }
                             .setNegativeButton(getString(R.string.dialog_button_negative)){dialog, _ ->
-                                adapter.notifyItemChanged(position)
                                 dialog.dismiss()
                             }.show()
+                        adapter.notifyItemChanged(position)
                     }
                 }
             }
@@ -125,7 +125,14 @@ class FavoritesFragment : Fragment() {
             is AppState.OnSuccess<*> -> {
                 binding.progress.visibility = View.GONE
                 val listFavorite: List<RoomEntity> = state.success as List<RoomEntity>
-                adapter.submitListDiseases(listFavorite)
+                if(listFavorite.isEmpty()){
+                    binding.recyclerview.visibility = View.GONE
+                    binding.noFavorites.visibility = View.VISIBLE
+                } else{
+                    binding.recyclerview.visibility = View.VISIBLE
+                    binding.noFavorites.visibility = View.GONE
+                    adapter.submitListDiseases(listFavorite)
+                }
             }
         }
     }
