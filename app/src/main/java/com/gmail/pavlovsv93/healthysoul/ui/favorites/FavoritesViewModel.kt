@@ -31,4 +31,12 @@ class FavoritesViewModel(
                 }
             }
     }
+
+    fun deleteFavorite() = viewModelScope.launch(Dispatchers.IO) {
+
+    }
+
+    fun clearFavorite() = viewModelScope.launch(Dispatchers.IO) {
+
+    }
 }

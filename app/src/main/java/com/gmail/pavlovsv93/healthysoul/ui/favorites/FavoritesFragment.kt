@@ -7,14 +7,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
-import com.gmail.data.entity.PsychologistEntity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.gmail.data.data.room.RoomEntity
 import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentFavoritesBinding
 import com.gmail.pavlovsv93.healthysoul.di.VIEW_MODEL_FAVORITES
 import com.gmail.pavlovsv93.healthysoul.ui.favorites.adapter.ClickedOnFavorites
-import com.gmail.pavlovsv93.healthysoul.ui.favorites.adapter.FavoritesFragmentAdapter
-import com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen.details.PsychologistDetailsFragment
+import com.gmail.pavlovsv93.healthysoul.ui.favorites.adapter.FavoritesAdapter
 import com.gmail.pavlovsv93.healthysoul.utils.AppState
 import com.gmail.pavlovsv93.healthysoul.utils.showMessage
 import kotlinx.coroutines.launch
@@ -36,6 +35,7 @@ class FavoritesFragment : Fragment() {
 
     @SuppressLint("UnsafeRepeatOnLifecycleDetector")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        initRecyclerView()
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.getData().collect { state ->
@@ -46,28 +46,26 @@ class FavoritesFragment : Fragment() {
         viewModel.getAllFavorites()
     }
 
-    private val adapter: FavoritesFragmentAdapter =
-        FavoritesFragmentAdapter(object : ClickedOnFavorites {
-            override fun onClick(id: String) {
-                val data = Bundle().apply {
-                    putString(PsychologistDetailsFragment.ARG_ID_PSYCHOLOGIST, id)
-                }
-                findNavController().navigate(R.id.psychologistDetailsFragment, data)
-            }
+    private fun initRecyclerView() {
+        val rv = binding.recyclerview
+        rv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        rv.adapter = adapter
+    }
 
-            override fun deleteFavorite(psychologist: PsychologistEntity) {
-                TODO("Not yet implemented")
-            }
+    private val adapter: FavoritesAdapter = FavoritesAdapter(object : ClickedOnFavorites{
+        override fun onClick(id: String) {
+            TODO("Not yet implemented")
+        }
 
-            override fun addFavorite(psychologist: PsychologistEntity) {
-                TODO("Not yet implemented")
-            }
-        })
+        override fun deleteFavorite(psychologist: RoomEntity) {
+            viewModel.deleteFavorite()
+        }
+    })
 
     private fun ranger(state: AppState) {
         when (state) {
             is AppState.OnException -> {
-                binding.progressPsychologist.visibility = View.GONE
+                binding.progress.visibility = View.GONE
                 val message = state.exception.message.toString()
                 binding.root.showMessage(
                     str = message,
@@ -77,31 +75,24 @@ class FavoritesFragment : Fragment() {
                     })
             }
             is AppState.OnLoading -> {
-                binding.progressPsychologist.visibility = View.VISIBLE
+                binding.progress.visibility = View.VISIBLE
             }
             is AppState.OnShowMessage -> {
-                binding.progressPsychologist.visibility = View.GONE
+                binding.progress.visibility = View.GONE
                 val message = state.message
                 binding.root.showMessage(message)
             }
             is AppState.OnSuccess<*> -> {
-                binding.progressPsychologist.visibility = View.GONE
-                val category: List<PsychologistEntity> = state.success as List<PsychologistEntity>
-                adapter.updatePsychologistList(category)
+                binding.progress.visibility = View.GONE
+                val listFavorite: List<RoomEntity> = state.success as List<RoomEntity>
+                adapter.submitListDiseases(listFavorite)
             }
         }
     }
 
-
-//        fun showSnackBar(message: String) {
-//            Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).setAction("Okay") {
-//            }.show()
-//        }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-//            adapter.clear()
     }
 }
 

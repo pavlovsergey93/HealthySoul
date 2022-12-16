@@ -13,7 +13,7 @@ android:orientation="vertical">
     tools:listitem="@layout/fragment_psychologist" />
 
     <ProgressBar
-        android:id="@+id/progress_psychologist"
+        android:id="@+id/progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
