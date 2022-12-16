@@ -72,6 +72,7 @@ class ProfileFragment : Fragment() {
         binding.deletePhoto.setOnClickListener {
             Glide.with(binding.profilePhoto.context)
                 .load(R.drawable.ic_profile)
+                .circleCrop()
                 .into(binding.profilePhoto)
             binding.loadPhoto.visibility = View.VISIBLE
             binding.deletePhoto.visibility = View.GONE
@@ -111,6 +112,7 @@ class ProfileFragment : Fragment() {
 
         Glide.with(binding.profilePhoto.context)
             .load(File(imagePath!!))
+            .circleCrop()
             .into(binding.profilePhoto)
 
         binding.loadPhoto.visibility = View.GONE
@@ -135,10 +137,13 @@ class ProfileFragment : Fragment() {
         val number =
             String.format(FirebaseAuth.getInstance().currentUser?.phoneNumber ?: "89111128956")
         val email = String.format(FirebaseAuth.getInstance().currentUser?.email ?: "")
-        Log.d("tagatag", number)
-        binding.profilePhoto.load(image) {
-            transformations(RoundedCornersTransformation())
-        }
+//        binding.profilePhoto.load(image) {
+//            transformations(RoundedCornersTransformation())
+//        }
+        Glide.with(binding.profilePhoto.context)
+            .load(image)
+            .circleCrop()
+            .into(binding.profilePhoto)
         binding.nameText.text = name
         binding.phoneNumber.text = number
         binding.emailText.text = email
