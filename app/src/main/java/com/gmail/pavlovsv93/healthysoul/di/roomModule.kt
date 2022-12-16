@@ -21,7 +21,7 @@ val roomModule = module {
     }
     single<RoomDao> { get<RoomDB>().favoriteDao() }
     single<FavoritesDataSourceInterface> { FavoritesDataSource(dao = get()) }
-    viewModel<FavoritesViewModel>(named(DETAILS_PSYCHOLOGIST_VIEW_MODEL)){
+    viewModel<FavoritesViewModel>(named(VIEW_MODEL_FAVORITES)){
         FavoritesViewModel(dataSource = get<FavoritesDataSourceInterface>())
     }
 }
