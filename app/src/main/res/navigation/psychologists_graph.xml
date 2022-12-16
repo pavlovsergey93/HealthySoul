@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
-	android:id="@+id/psychologists"
+	android:id="@+id/psychologistsGraph"
 	app:startDestination="@id/psychologistFragment">
 
 
@@ -18,5 +18,5 @@
 	<fragment
 		android:id="@+id/psychologistDetailsFragment"
 		android:name="com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen.details.PsychologistDetailsFragment"
-		android:label="PsychologistDetailsFragment" />
+		android:label="PsychologistDetailsFragment" /><action android:id="@+id/action_global_psychologistDetailsFragment" app:destination="@id/psychologistDetailsFragment"/>
 </navigation>
