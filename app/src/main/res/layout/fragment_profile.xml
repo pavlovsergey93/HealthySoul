@@ -142,6 +142,7 @@
         android:layout_marginBottom="@dimen/normal_margin"
         android:clickable="true"
         android:focusable="true"
+        android:visibility="invisible"
         android:text="@string/go_to_test"
         android:textColor="@color/action_color"
         app:layout_constraintBottom_toTopOf="@+id/fast_help"
