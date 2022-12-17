@@ -17,13 +17,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gmail.data.entity.PsychologistEntity
 import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentPsychologistBinding
-import com.gmail.pavlovsv93.healthysoul.databinding.ItemPsychologistBinding
 import com.gmail.pavlovsv93.healthysoul.di.PSYCHOLOGIST_VIEW_MODEL
 import com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen.details.PsychologistDetailsFragment
 import com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen.psychologistlist.adapter.ClickedOnPsychologist
 import com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen.psychologistlist.adapter.PsychologistFragmentAdapter
 import com.gmail.pavlovsv93.healthysoul.utils.AppState
 import com.gmail.pavlovsv93.healthysoul.utils.showMessage
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.qualifier.named
@@ -124,7 +124,17 @@ class PsychologistFragment : Fragment() {
                 val position = viewHolder.adapterPosition
                 when(direction){
                     ItemTouchHelper.END ->{
-                        adapter.addFavorite(position)
+                        MaterialAlertDialogBuilder(requireContext())
+                            .setCancelable(false)
+                            .setTitle(getString(R.string.add_title_favorite))
+                            .setPositiveButton(getString(R.string.dialog_button_positive_yes)){dialog, _ ->
+                                adapter.addFavorite(position)
+                                dialog.dismiss()
+                            }
+                            .setNegativeButton(getString(R.string.dialog_button_negative)){dialog, _ ->
+                                dialog.dismiss()
+                            }.show()
+                        adapter.notifyItemChanged(position)
                     }
                     ItemTouchHelper.START->{
                         adapter.deleteFavorite(position)

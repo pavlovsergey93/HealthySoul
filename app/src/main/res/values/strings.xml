@@ -52,4 +52,6 @@
     <string name="delete_all">Delete all</string>
     <string name="dialog_title_favorite">"Удалить из избранных? "</string>
     <string name="you_don_t_have_any_favorites_yet">You don`t have any favorites yet</string>
+    <string name="add_title_favorite">Добавить в избранное?</string>
+    <string name="dialog_button_positive_yes">Да</string>
 </resources>
