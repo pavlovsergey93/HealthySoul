@@ -5,10 +5,13 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentPsychologistDetailsBottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+
 
 class PsychologistDetailsBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
@@ -32,6 +35,19 @@ class PsychologistDetailsBottomSheetDialogFragment : BottomSheetDialogFragment()
     }
 
     private fun displayContacts() {
+
+        if (args.email.isNullOrEmpty()) {
+            binding.groupEmail.visibility = GONE
+        } else {
+            binding.groupEmail.visibility = VISIBLE
+        }
+
+        if (args.phone.isNullOrEmpty()) {
+            binding.groupPhone.visibility = GONE
+        } else {
+            binding.groupPhone.visibility = VISIBLE
+        }
+
         binding.TextPhone.text = args.phone
         binding.TextEmailAddress.text = args.email
     }

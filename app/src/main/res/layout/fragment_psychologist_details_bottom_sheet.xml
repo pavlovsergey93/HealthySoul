@@ -5,6 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="TextPhone,imagePhone" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="TextEmailAddress,imageEmail" />
+
     <TextView
         android:id="@+id/TextPhone"
         android:layout_width="wrap_content"
@@ -12,12 +26,13 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:fontFamily="@font/roboto"
+        android:gravity="center_vertical"
         android:minHeight="48dp"
-        android:textColor="@color/blue_grey_900"
+        android:textColor="@color/blue_grey_500"
         android:textSize="24sp"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
+        app:layout_constraintStart_toEndOf="@+id/imagePhone"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="+7123456789" />
 
@@ -28,17 +43,18 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:fontFamily="@font/roboto"
+        android:gravity="center_vertical"
         android:minHeight="48dp"
-        android:textColor="@color/blue_grey_900"
+        android:textColor="@color/blue_grey_500"
         android:textSize="24sp"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton2"
+        app:layout_constraintStart_toEndOf="@+id/imageEmail"
         app:layout_constraintTop_toBottomOf="@+id/TextPhone"
         tools:text="email@gmail.com" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/imagePhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -46,18 +62,18 @@
         android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/stat_sys_phone_call"
+        app:srcCompat="@drawable/fui_ic_phone_white_24dp"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/imageEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton"
-        app:srcCompat="@android:drawable/sym_action_email"
+        app:layout_constraintTop_toBottomOf="@+id/imagePhone"
+        app:srcCompat="@drawable/fui_ic_mail_white_24dp"
         tools:ignore="SpeakableTextPresentCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>
