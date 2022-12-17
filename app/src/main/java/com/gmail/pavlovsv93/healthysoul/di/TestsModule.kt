@@ -24,17 +24,17 @@ const val TESTS_VIEW_MODEL = "TestsViewModel"
 const val QUESTION_VIEW_MODEL = "QuestionsViewModel"
 const val HINT_VIEW_MODEL = "TestsHintViewModel"
 val testsModule = module {
-	single<TestsCategoryRepositoryInterface> { TestsCategoryRepository(db = get<FirebaseFirestore>()) }
-	single<TestsCategoryDataSourceInterface> { TestsCategoryDataSource(repository = get<TestsCategoryRepositoryInterface>()) }
-	viewModel(named(TESTS_VIEW_MODEL)) {
-		TestsViewModel(dataSource = get<TestsCategoryDataSourceInterface>())
-	}
+    single<TestsCategoryRepositoryInterface> { TestsCategoryRepository(db = get<FirebaseFirestore>()) }
+    single<TestsCategoryDataSourceInterface> { TestsCategoryDataSource(repository = get<TestsCategoryRepositoryInterface>()) }
+    viewModel(named(TESTS_VIEW_MODEL)) {
+        TestsViewModel(dataSource = get<TestsCategoryDataSourceInterface>())
+    }
 
-	single<QuestionsRepositoryInterface> { QuestionsRepository(db = get<FirebaseFirestore>()) }
-	single<QuestionsDataSourceInterface>{ QuestionsDataSource(repository = get<QuestionsRepositoryInterface>()) }
-	viewModel(named(QUESTION_VIEW_MODEL)) { QuestionsViewModel(dataSource = get<QuestionsDataSourceInterface>()) }
+    single<QuestionsRepositoryInterface> { QuestionsRepository(db = get<FirebaseFirestore>()) }
+    single<QuestionsDataSourceInterface> { QuestionsDataSource(repository = get<QuestionsRepositoryInterface>()) }
+    viewModel(named(QUESTION_VIEW_MODEL)) { QuestionsViewModel(dataSource = get<QuestionsDataSourceInterface>()) }
 
-	single<HintRepositoryInterface> { HintRepository(db = get<FirebaseFirestore>()) }
-	single<HintDataSourceInterface> { HintDataSource(repository = get<HintRepositoryInterface>()) }
-	viewModel(named(HINT_VIEW_MODEL)) { TestsHintViewModel(dataSource = get<HintDataSourceInterface>()) }
+    single<HintRepositoryInterface> { HintRepository(db = get<FirebaseFirestore>()) }
+    single<HintDataSourceInterface> { HintDataSource(repository = get<HintRepositoryInterface>()) }
+    viewModel(named(HINT_VIEW_MODEL)) { TestsHintViewModel(dataSource = get<HintDataSourceInterface>()) }
 }

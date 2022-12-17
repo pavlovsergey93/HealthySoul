@@ -12,19 +12,19 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
 class QuestionsViewModel(
-	private val dataSource: QuestionsDataSourceInterface,
-	private val stateFlow: MutableStateFlow<AppState> = MutableStateFlow(AppState.OnLoading)
+    private val dataSource: QuestionsDataSourceInterface,
+    private val stateFlow: MutableStateFlow<AppState> = MutableStateFlow(AppState.OnLoading)
 ) : ViewModel() {
 
-	fun getData(): StateFlow<AppState> = stateFlow.asStateFlow()
+    fun getData(): StateFlow<AppState> = stateFlow.asStateFlow()
 
-	fun getQuestion(questionId: String) = viewModelScope.launch(Dispatchers.IO) {
-		stateFlow.tryEmit(AppState.OnLoading)
-		dataSource.getQuestion(questionId)
-			.catch { exc ->
-				stateFlow.tryEmit(AppState.OnException(exc))
-			}.collect{ question ->
-				stateFlow.tryEmit(AppState.OnSuccess(question))
-			}
-	}
+    fun getQuestion(questionId: String) = viewModelScope.launch(Dispatchers.IO) {
+        stateFlow.tryEmit(AppState.OnLoading)
+        dataSource.getQuestion(questionId)
+            .catch { exc ->
+                stateFlow.tryEmit(AppState.OnException(exc))
+            }.collect { question ->
+                stateFlow.tryEmit(AppState.OnSuccess(question))
+            }
+    }
 }

@@ -7,7 +7,8 @@ import com.gmail.data.entity.PsychologistEntity
 import com.gmail.pavlovsv93.healthysoul.databinding.ItemPsychologistBinding
 
 
-class PsychologistFragmentAdapter(val onClick: ClickedOnPsychologist) : RecyclerView.Adapter<PsychologistViewHolder>() {
+class PsychologistFragmentAdapter(val onClick: ClickedOnPsychologist) :
+    RecyclerView.Adapter<PsychologistViewHolder>() {
 
     private val psychologistList = mutableListOf<PsychologistEntity>()
 
@@ -33,11 +34,12 @@ class PsychologistFragmentAdapter(val onClick: ClickedOnPsychologist) : Recycler
         notifyDataSetChanged()
     }
 
-    fun addFavorite(position: Int){
+    fun addFavorite(position: Int) {
         onClick.addFavorite(psychologistList[position])
         notifyItemChanged(position)
     }
-    fun deleteFavorite(position: Int){
+
+    fun deleteFavorite(position: Int) {
         onClick.deleteFavorite(psychologistList[position])
         notifyItemChanged(position)
     }

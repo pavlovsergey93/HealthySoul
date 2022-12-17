@@ -23,11 +23,11 @@ class FavoritesViewModel(
         stateFlow.tryEmit(AppState.OnLoading)
         dataSource.getAllFavorites()
             .catch { exp ->
-                withContext(Dispatchers.Main){
+                withContext(Dispatchers.Main) {
                     stateFlow.tryEmit(AppState.OnException(exp))
                 }
             }.collect { psychologist ->
-                withContext(Dispatchers.Main){
+                withContext(Dispatchers.Main) {
                     stateFlow.tryEmit(AppState.OnSuccess(psychologist))
                 }
             }
@@ -35,9 +35,5 @@ class FavoritesViewModel(
 
     fun deleteFavorite(psychologist: RoomEntity) = viewModelScope.launch(Dispatchers.IO) {
         dataSource.deleteFavorite(psychologist)
-    }
-
-    fun clearFavorite() = viewModelScope.launch(Dispatchers.IO) {
-
     }
 }

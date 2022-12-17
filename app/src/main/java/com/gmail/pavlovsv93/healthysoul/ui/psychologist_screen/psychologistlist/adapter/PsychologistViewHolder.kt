@@ -19,7 +19,11 @@ class PsychologistViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
             transformations(CircleCropTransformation())
         }
         binding.surnameTextView.text = psychologistEntity.surname
-        binding.namePatronymicTextView.text = if(psychologistEntity.patronymic.isNullOrEmpty()) {"${psychologistEntity.name}"} else {"${psychologistEntity.name} ${psychologistEntity.patronymic}"}
+        binding.namePatronymicTextView.text = if (psychologistEntity.patronymic.isNullOrEmpty()) {
+            "${psychologistEntity.name}"
+        } else {
+            "${psychologistEntity.name} ${psychologistEntity.patronymic}"
+        }
         binding.professionTextView.text = psychologistEntity.specialization.profession
         binding.profileTextView.text = psychologistEntity.profile
     }

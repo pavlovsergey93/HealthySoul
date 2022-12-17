@@ -6,5 +6,5 @@ data class NoteDetails(
     val getNote: Boolean = false,
     val saveNote: Boolean = false,
     val updateNote: Boolean = false,
-    val note:Notebook = Notebook()
+    val note: Notebook = Notebook()
 )

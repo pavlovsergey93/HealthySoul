@@ -22,11 +22,11 @@ class PsychologistDetailsViewModel(
         stateFlow.tryEmit(AppState.OnLoading)
         dataSource.getDetailsPsychologist(id)
             .catch { exp ->
-                withContext(Dispatchers.Main){
+                withContext(Dispatchers.Main) {
                     stateFlow.tryEmit(AppState.OnException(exp))
                 }
             }.collect { psychologist ->
-                withContext(Dispatchers.Main){
+                withContext(Dispatchers.Main) {
                     stateFlow.tryEmit(AppState.OnSuccess(psychologist))
                 }
             }

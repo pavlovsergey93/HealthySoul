@@ -1,6 +1,5 @@
 package com.gmail.data.repository.psychologist
 
-import android.util.Log
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
@@ -29,7 +28,6 @@ class PsychologistRepository(private val db: FirebaseFirestore) : PsychologistRe
                 if (error != null) {
                     return@addSnapshotListener
                 }
-                Log.d("WWW.FirebaseRepository", "${value.documents}")
                 trySend(value.documents)
             }
         awaitClose {
@@ -57,4 +55,4 @@ class PsychologistRepository(private val db: FirebaseFirestore) : PsychologistRe
                 subscription?.remove()
             }
         }
-    }
+}

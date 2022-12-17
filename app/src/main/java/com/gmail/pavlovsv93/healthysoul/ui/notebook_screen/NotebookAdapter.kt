@@ -1,4 +1,4 @@
-package com.gmail.pavlovsv93.healthysoul.adapters
+package com.gmail.pavlovsv93.healthysoul.ui.notebook_screen
 
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +12,6 @@ import com.gmail.pavlovsv93.healthysoul.databinding.ItemNotebookBinding
 class NotebookAdapter(private val listener: Listener) :
     ListAdapter<Notebook, NotebookAdapter.NotebookViewHolder>(ItemCallback),
     View.OnClickListener {
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotebookViewHolder {
         val inflater = LayoutInflater.from(parent.context)

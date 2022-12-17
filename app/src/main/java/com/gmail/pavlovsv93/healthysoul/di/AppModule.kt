@@ -7,15 +7,11 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val appModule = module {
-	single<FirebaseFirestore> { FirebaseFirestore.getInstance() }
+    single<FirebaseFirestore> { FirebaseFirestore.getInstance() }
 
     viewModel<NotebookViewModel> {
         NotebookViewModel(getAllNotesUseCase = get())
     }
-
-//    viewModel<PsychologistViewModel> {
-//        PsychologistViewModel(repository = get())
-//    }
 
     viewModel<NoteViewModel> {
         NoteViewModel(

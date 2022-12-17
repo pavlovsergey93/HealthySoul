@@ -1,9 +1,9 @@
 package com.gmail.pavlovsv93.healthysoul.di
 
-import com.gmail.data.data.psychologist.DetailsPsychologistDataSourceInterface
-import com.gmail.data.data.psychologist.PsychologistDataSourceInterface
 import com.gmail.data.data.psychologist.DetailsPsychologistDataSource
+import com.gmail.data.data.psychologist.DetailsPsychologistDataSourceInterface
 import com.gmail.data.data.psychologist.PsychologistDataSource
+import com.gmail.data.data.psychologist.PsychologistDataSourceInterface
 import com.gmail.data.repository.psychologist.PsychologistRepository
 import com.gmail.data.repository.psychologist.PsychologistRepositoryInterface
 import com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen.details.PsychologistDetailsViewModel
@@ -18,12 +18,17 @@ const val DETAILS_PSYCHOLOGIST_VIEW_MODEL = "PsychologistDetailsViewModel"
 
 val psychologistModule = module {
     single<PsychologistRepositoryInterface> { PsychologistRepository(db = get<FirebaseFirestore>()) }
-    single<PsychologistDataSourceInterface> { PsychologistDataSource(repository = get<PsychologistRepositoryInterface>(), dao = get()) }
-    viewModel<PsychologistViewModel>(named(PSYCHOLOGIST_VIEW_MODEL)){
+    single<PsychologistDataSourceInterface> {
+        PsychologistDataSource(
+            repository = get<PsychologistRepositoryInterface>(),
+            dao = get()
+        )
+    }
+    viewModel<PsychologistViewModel>(named(PSYCHOLOGIST_VIEW_MODEL)) {
         PsychologistViewModel(dataSource = get<PsychologistDataSourceInterface>())
     }
     single<DetailsPsychologistDataSourceInterface> { DetailsPsychologistDataSource(repository = get<PsychologistRepositoryInterface>()) }
-    viewModel<PsychologistDetailsViewModel>(named(DETAILS_PSYCHOLOGIST_VIEW_MODEL)){
+    viewModel<PsychologistDetailsViewModel>(named(DETAILS_PSYCHOLOGIST_VIEW_MODEL)) {
         PsychologistDetailsViewModel(dataSource = get<DetailsPsychologistDataSourceInterface>())
     }
 }

@@ -40,6 +40,7 @@
     <string name="email">E-mail</string>
     <string name="phone">Телефон</string>
     <string name="name">Имя</string>
+    <string name="user_default_name">Пользователь</string>
     <string name="load_photo">Загрузить фото</string>
     <string name="delete_photo">Удалить фото</string>
     <string name="message_exit">Нажмите еще раз, чтобы выйти!</string>

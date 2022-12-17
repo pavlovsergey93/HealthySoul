@@ -9,31 +9,31 @@ import kotlinx.coroutines.flow.callbackFlow
 
 class QuestionsRepository(private val db: FirebaseFirestore) : QuestionsRepositoryInterface {
 
-	companion object{
-		const val QUESTIONS_COLLECTION = "questions"
-	}
+    companion object {
+        const val QUESTIONS_COLLECTION = "questions"
+    }
 
-	override suspend fun getQuestion(questionId: String): Flow<DocumentSnapshot> =
-		callbackFlow {
-			var eventCollection: CollectionReference? = null
-			try {
-				eventCollection = db.collection(QUESTIONS_COLLECTION)
-			} catch (exception: Exception){
-				close(exception)
-			}
-			val subscription = eventCollection
-				?.document(questionId)
-				?.addSnapshotListener { value, error ->
-					if(value == null){
-						return@addSnapshotListener
-					}
-					if(error != null){
-						return@addSnapshotListener
-					}
-					trySend(value)
-				}
-			awaitClose{
-				subscription?.remove()
-			}
-		}
+    override suspend fun getQuestion(questionId: String): Flow<DocumentSnapshot> =
+        callbackFlow {
+            var eventCollection: CollectionReference? = null
+            try {
+                eventCollection = db.collection(QUESTIONS_COLLECTION)
+            } catch (exception: Exception) {
+                close(exception)
+            }
+            val subscription = eventCollection
+                ?.document(questionId)
+                ?.addSnapshotListener { value, error ->
+                    if (value == null) {
+                        return@addSnapshotListener
+                    }
+                    if (error != null) {
+                        return@addSnapshotListener
+                    }
+                    trySend(value)
+                }
+            awaitClose {
+                subscription?.remove()
+            }
+        }
 }

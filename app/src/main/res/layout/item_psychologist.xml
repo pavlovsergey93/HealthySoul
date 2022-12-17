@@ -68,10 +68,10 @@
             tools:text="profession" />
 
         <TextView
-            android:layout_marginHorizontal="@dimen/_8sdp"
             android:id="@+id/profile_text_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_8sdp"
             android:fontFamily="@font/roboto_condensed_regular"
             android:gravity="start"
             android:text="fdsafkdsl"
@@ -80,9 +80,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/profession_text_view" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/blue_grey_600"
-        android:layout_gravity="bottom"/>
+        android:layout_gravity="bottom"
+        android:background="@color/blue_grey_600" />
 </androidx.cardview.widget.CardView>

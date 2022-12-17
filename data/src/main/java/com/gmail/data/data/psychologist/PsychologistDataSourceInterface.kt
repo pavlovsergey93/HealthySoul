@@ -9,6 +9,3 @@ interface PsychologistDataSourceInterface {
     suspend fun insertItemPsychologistEntity(entity: RoomEntity)
     suspend fun deleteItemPsychologistEntity(entity: RoomEntity)
 }
-
-
-// getAll, getItem, insert/delete-Favorite, intentContact

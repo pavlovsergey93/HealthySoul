@@ -3,7 +3,6 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
-	//id("com.google.gms.google-services")
 }
 
 android {
@@ -56,7 +55,6 @@ android {
 
 dependencies {
 
-    //добавление зависимости для модулей
     implementation(project(":domain"))
     implementation(project(":data"))
 

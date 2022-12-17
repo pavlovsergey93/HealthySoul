@@ -33,10 +33,10 @@
         tools:text="БГУИР" />
 
     <TextView
-        android:layout_marginTop="@dimen/_8sdp"
         android:id="@+id/faculty_text_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
         android:text="@string/faculty"
         android:textColor="@color/blue_grey_900"
         android:textSize="@dimen/_16ssp"
@@ -58,11 +58,12 @@
         app:layout_constraintStart_toStartOf="@id/faculty_text_view"
         app:layout_constraintTop_toBottomOf="@id/faculty_text_view"
         tools:text="Психологии" />
+
     <TextView
-        android:layout_marginTop="@dimen/_8sdp"
         android:id="@+id/specialisation_text_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
         android:text="@string/specialisation"
         android:textColor="@color/blue_grey_900"
         android:textSize="@dimen/_16ssp"
@@ -84,11 +85,12 @@
         app:layout_constraintStart_toStartOf="@id/specialisation_text_view"
         app:layout_constraintTop_toBottomOf="@id/specialisation_text_view"
         tools:text="Психолог-консультант" />
+
     <TextView
-        android:layout_marginTop="@dimen/_8sdp"
         android:id="@+id/year_text_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
         android:text="@string/year"
         android:textColor="@color/blue_grey_900"
         android:textSize="@dimen/_16ssp"

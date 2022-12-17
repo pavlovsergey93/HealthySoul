@@ -4,22 +4,21 @@
         android:id="@id/notebook"
         android:icon="@drawable/ic_note"
         android:title="@string/notebook" />
-
     <item
         android:id="@id/psychologistsGraph"
-        android:title="@string/psychologists"
-        android:icon="@drawable/ic_baseline_people_outline_24"/>
-	<item
+        android:icon="@drawable/ic_baseline_people_outline_24"
+        android:title="@string/psychologists" />
+    <item
         android:id="@id/tests"
-        android:title="@string/tests"
-        android:icon="@drawable/ic_test"/>
+        android:icon="@drawable/ic_test"
+        android:title="@string/tests" />
     <item
         android:id="@id/favorites"
-        android:title="@string/favorites"
-        android:icon="@drawable/ic_baseline_favorite_24"/>
-	<item
+        android:icon="@drawable/ic_baseline_favorite_24"
+        android:title="@string/favorites" />
+    <item
         android:id="@id/profile"
-        android:title="@string/profile"
-        android:icon="@drawable/ic_outline_person_24"/>
+        android:icon="@drawable/ic_outline_person_24"
+        android:title="@string/profile" />
 
 </menu>

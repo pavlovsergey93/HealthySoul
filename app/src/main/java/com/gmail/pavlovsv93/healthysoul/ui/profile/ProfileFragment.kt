@@ -2,40 +2,27 @@ package com.gmail.pavlovsv93.healthysoul.ui.profile
 
 import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
-import android.app.AlertDialog
 import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.loader.content.CursorLoader
-import androidx.navigation.NavDeepLinkBuilder
-import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import coil.load
-import coil.transform.CircleCropTransformation
-import coil.transform.RoundedCornersTransformation
 import com.bumptech.glide.Glide
 import com.firebase.ui.auth.AuthUI
 import com.gmail.pavlovsv93.healthysoul.R
-import com.gmail.pavlovsv93.healthysoul.databinding.FragmentGreetingBinding
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentProfileBinding
-import com.gmail.pavlovsv93.healthysoul.ui.greeting_screen.GreetingFragment
-import com.gmail.pavlovsv93.healthysoul.ui.greeting_screen.GreetingFragmentDirections
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import java.io.File
-
 
 class ProfileFragment : Fragment() {
 
@@ -135,7 +122,7 @@ class ProfileFragment : Fragment() {
         val name =
             String.format(FirebaseAuth.getInstance().currentUser?.displayName ?: "пользователь")
         val number =
-            String.format(FirebaseAuth.getInstance().currentUser?.phoneNumber ?: "89111128956")
+            String.format(FirebaseAuth.getInstance().currentUser?.phoneNumber ?: "")
         val email = String.format(FirebaseAuth.getInstance().currentUser?.email ?: "")
         Glide.with(binding.profilePhoto.context)
             .load(image)

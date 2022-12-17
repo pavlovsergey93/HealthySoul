@@ -4,19 +4,19 @@ import android.view.View
 import com.google.android.material.snackbar.Snackbar
 
 fun View.showMessage(
-	str: String,
-	length: Int = Snackbar.LENGTH_SHORT
+    str: String,
+    length: Int = Snackbar.LENGTH_SHORT
 ) {
-	Snackbar.make(this, str, length).show()
+    Snackbar.make(this, str, length).show()
 }
 
 fun View.showMessage(
-	str: String,
-	length: Int = Snackbar.LENGTH_SHORT,
-	actionText: String,
-	action: (View) -> Unit
+    str: String,
+    length: Int = Snackbar.LENGTH_SHORT,
+    actionText: String,
+    action: (View) -> Unit
 ) {
-	Snackbar.make(this, str, length)
-		.setAction(actionText, action)
-		.show()
+    Snackbar.make(this, str, length)
+        .setAction(actionText, action)
+        .show()
 }

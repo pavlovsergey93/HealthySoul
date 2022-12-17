@@ -16,14 +16,14 @@ class TestsHintViewModel(
     private val stateFlow: MutableStateFlow<AppState> = MutableStateFlow(AppState.OnLoading)
 ) : ViewModel() {
 
-    fun getData() : StateFlow<AppState> = stateFlow.asStateFlow()
+    fun getData(): StateFlow<AppState> = stateFlow.asStateFlow()
 
-    fun getHint(hintId : String) = viewModelScope.launch(Dispatchers.IO) {
+    fun getHint(hintId: String) = viewModelScope.launch(Dispatchers.IO) {
         stateFlow.tryEmit(AppState.OnLoading)
         dataSource.getHint(hintId)
             .catch { exc ->
                 stateFlow.tryEmit(AppState.OnException(exc))
-            }.collect{ hint ->
+            }.collect { hint ->
                 stateFlow.tryEmit(AppState.OnSuccess(hint))
             }
     }

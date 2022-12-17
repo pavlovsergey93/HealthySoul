@@ -1,7 +1,6 @@
 package com.gmail.pavlovsv93.healthysoul.ui.notebook_screen
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.gmai.pavlovsv93.healtysoul.domain.models.notebook.Notebook
 import com.gmai.pavlovsv93.healtysoul.domain.models.notebook.NotebookDetails
 import com.gmail.pavlovsv93.healthysoul.R
-import com.gmail.pavlovsv93.healthysoul.adapters.NotebookAdapter
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentNotebookBinding
 import com.gmail.pavlovsv93.healthysoul.ui.note_screen.NoteFragment.Companion.ADD_NEW_NOTE
 import com.gmail.pavlovsv93.healthysoul.utils.DividerItemDecorator

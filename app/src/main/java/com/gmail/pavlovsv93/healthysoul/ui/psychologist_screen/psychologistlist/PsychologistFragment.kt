@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gmail.data.entity.PsychologistEntity
 import com.gmail.pavlovsv93.healthysoul.R
 import com.gmail.pavlovsv93.healthysoul.databinding.FragmentPsychologistBinding
-import com.gmail.pavlovsv93.healthysoul.databinding.ItemPsychologistBinding
 import com.gmail.pavlovsv93.healthysoul.di.PSYCHOLOGIST_VIEW_MODEL
 import com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen.details.PsychologistDetailsFragment
 import com.gmail.pavlovsv93.healthysoul.ui.psychologist_screen.psychologistlist.adapter.ClickedOnPsychologist
@@ -35,23 +34,24 @@ class PsychologistFragment : Fragment() {
 
     private val viewModel: PsychologistViewModel by viewModel(named(PSYCHOLOGIST_VIEW_MODEL))
 
-    private val adapter: PsychologistFragmentAdapter = PsychologistFragmentAdapter(object : ClickedOnPsychologist{
-        override fun onClick(id: String) {
-            val data = Bundle().apply {
-                putString(PsychologistDetailsFragment.ARG_ID_PSYCHOLOGIST, id)
+    private val adapter: PsychologistFragmentAdapter =
+        PsychologistFragmentAdapter(object : ClickedOnPsychologist {
+            override fun onClick(id: String) {
+                val data = Bundle().apply {
+                    putString(PsychologistDetailsFragment.ARG_ID_PSYCHOLOGIST, id)
+                }
+                findNavController().navigate(R.id.psychologistDetailsFragment, data)
             }
-            findNavController().navigate(R.id.psychologistDetailsFragment, data)
-        }
 
-        override fun deleteFavorite(psychologist: PsychologistEntity) {
-            viewModel.deleteFavorite(psychologist)
-        }
+            override fun deleteFavorite(psychologist: PsychologistEntity) {
+                viewModel.deleteFavorite(psychologist)
+            }
 
-        override fun addFavorite(psychologist: PsychologistEntity) {
-           viewModel.addFavorite(psychologist)
-        }
+            override fun addFavorite(psychologist: PsychologistEntity) {
+                viewModel.addFavorite(psychologist)
+            }
 
-    })
+        })
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -111,7 +111,7 @@ class PsychologistFragment : Fragment() {
         binding.fragmentPsychologistRecyclerView.adapter = adapter
 
         val swipe = ItemTouchHelper.END or ItemTouchHelper.START
-        val call = object : ItemTouchHelper.SimpleCallback(0, swipe){
+        val call = object : ItemTouchHelper.SimpleCallback(0, swipe) {
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
@@ -122,11 +122,11 @@ class PsychologistFragment : Fragment() {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
-                when(direction){
-                    ItemTouchHelper.END ->{
+                when (direction) {
+                    ItemTouchHelper.END -> {
                         adapter.addFavorite(position)
                     }
-                    ItemTouchHelper.START->{
+                    ItemTouchHelper.START -> {
                         adapter.deleteFavorite(position)
                     }
                 }

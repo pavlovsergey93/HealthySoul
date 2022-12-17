@@ -32,9 +32,11 @@ class PsychologistViewModel(
     fun deleteFavorite(psychologist: PsychologistEntity) = viewModelScope.launch {
         dataSource.deleteItemPsychologistEntity(createRoomEntity(psychologist))
     }
+
     fun addFavorite(psychologist: PsychologistEntity) = viewModelScope.launch {
         dataSource.insertItemPsychologistEntity(createRoomEntity(psychologist))
     }
+
     private fun createRoomEntity(psychologist: PsychologistEntity): RoomEntity =
         RoomEntity(
             primaryKey = psychologist.id,

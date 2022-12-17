@@ -7,9 +7,9 @@ import kotlinx.coroutines.flow.flow
 
 class GetAllInfoCase(
     private val profileRepository: ProfileRepository
-    ) {
-        suspend fun execute(): Flow<Profile> = flow {
-            val result = profileRepository.getAllNotes()
-            emit(result)
-        }
+) {
+    suspend fun execute(): Flow<Profile> = flow {
+        val result = profileRepository.getAllNotes()
+        emit(result)
+    }
 }

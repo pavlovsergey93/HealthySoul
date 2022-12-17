@@ -1,4 +1,4 @@
-package com.gmail.data.repository_implementation.notebook
+package com.gmail.data.repository.notebook
 
 import android.annotation.SuppressLint
 import com.firebase.ui.auth.AuthUI

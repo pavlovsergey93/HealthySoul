@@ -1,7 +1,6 @@
 package com.gmail.pavlovsv93.healthysoul.ui.note_screen
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -72,7 +71,7 @@ class NoteFragment : Fragment() {
         if (state.updateNote || state.saveNote || state.deleteNote) {
             findNavController().popBackStack()
         }
-        
+
         with(binding) {
             setVisibilityLoading()
             titleHead.setText(state.note.title)
@@ -81,7 +80,6 @@ class NoteFragment : Fragment() {
     }
 
     private fun setVisibilityLoading() {
-        Log.e("pie", "setVisibilityLoading: ", )
         with(binding) {
             groupLoading.visibility = View.VISIBLE
             groupNotLoading.visibility = View.GONE
@@ -89,7 +87,6 @@ class NoteFragment : Fragment() {
     }
 
     private fun setNotVisibilityLoading() {
-        Log.e("pie", "setNotVisibilityLoading: ", )
         with(binding) {
             groupLoading.visibility = View.GONE
             groupNotLoading.visibility = View.VISIBLE
