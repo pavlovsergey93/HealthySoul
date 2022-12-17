@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import coil.load
 import coil.transform.CircleCropTransformation
@@ -39,6 +38,7 @@ class PsychologistDetailsFragment : Fragment() {
         named(DETAILS_PSYCHOLOGIST_VIEW_MODEL)
     )
     private var idPsy: String? = null
+    private var psy: PsychologistEntity? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -71,7 +71,24 @@ class PsychologistDetailsFragment : Fragment() {
 
     private fun initFabContacts() {
         binding.fabContactsDetails.setOnClickListener {
-            // todo intent на контакт или выбор из контактов, а потом intent
+            var phone = ""
+            var email = ""
+
+            psy?.contacts?.forEach {
+                if (it.titleContact == "Телефон") {
+                    phone = it.contact
+                } else {
+                    email = it.contact
+                }
+            }
+
+            findNavController().navigate(
+                PsychologistDetailsFragmentDirections
+                    .actionPsychologistDetailsFragmentToPsychologistDetailsBottomSheetDialogFragment(
+                        phone = phone,
+                        email = email
+                    )
+            )
         }
     }
 
@@ -100,8 +117,8 @@ class PsychologistDetailsFragment : Fragment() {
             }
             is AppState.OnSuccess<*> -> {
                 binding.progressDetails.visibility = View.GONE
-                val psychologist = state.success as PsychologistEntity
-                displayDetails(psychologist)
+                psy = state.success as PsychologistEntity
+                psy?.let { displayDetails(it) }
             }
         }
     }
@@ -123,7 +140,7 @@ class PsychologistDetailsFragment : Fragment() {
             profileTextViewDetails.text = psychologist.profile
             rating.rating = psychologist.rating
             val containerView = binding.containerViewDetails
-            if (!psychologist.specialization.specialization.isNullOrEmpty()) {
+            if (psychologist.specialization.specialization.isNotEmpty()) {
                 psychologist.specialization.specialization.forEach { item ->
                     val specializationView = LayoutInflater.from(requireContext()).inflate(
                         R.layout.fragment_psychologist_details_specialisation,
@@ -136,7 +153,7 @@ class PsychologistDetailsFragment : Fragment() {
                     containerView.addView(specializationView)
                 }
             }
-            if (!psychologist.education.isNullOrEmpty()) {
+            if (psychologist.education.isNotEmpty()) {
                 psychologist.education.forEach { education ->
                     val educationView = LayoutInflater.from(requireContext()).inflate(
                         R.layout.fragment_psychologist_details_education,
@@ -155,12 +172,11 @@ class PsychologistDetailsFragment : Fragment() {
         }
     }
 
-    private val backCall = object : OnBackPressedCallback(true){
+    private val backCall = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
             findNavController().popBackStack()
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
