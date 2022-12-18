@@ -1,16 +1,19 @@
 # HealthySoul
 
-HealthySoul - это мобильное приложение, предназначеное для предоставления психологической помощи. 
+  *HealthySoul* - это мобильное приложение, предназначеное для предоставления психологической помощи. 
 Приложение поможет пользователю как самостоятельно разобраться с психологическими проблемами, так и найти специалиста, который поможет разобраться с психологической проблемой.
+
+# Превью
+----
+  Использование мобильного приложения HealthySoul позволит пользователям решать психологические проблемы здесь и сейчас. Если ты (пользователь) боишся, не готов, стесняешься или по другим причинам не можешь обратиться к специалисту, но хочешь решить психологическую проблему, тогда тебе точно надо установить приложение HealthySoul, ведь здесь ты найдешь категории часто возникающих психологических проблем и сможешь ее решить самостоятельно.
+  
+<img src="https://user-images.githubusercontent.com/82917171/208307185-3d9e4f04-11b9-414f-80ec-90703f042bdc.png" width="180" height="320"/>   <img src="https://user-images.githubusercontent.com/82917171/208307189-fad72ef7-60aa-4a85-9b8f-8eef51552ff7.png" width="180" height="320"/>   <img src="https://user-images.githubusercontent.com/82917171/208307193-05d6b85b-d3eb-482f-bb3c-20fb6ee4b585.png" width="180" height="320"/>   <img src="https://user-images.githubusercontent.com/82917171/208307201-6bdfadba-c50d-498e-820f-1982aedf0060.png" width="180" height="320"/> 
 
 # Возможности
 ----
 - Вести ежедневные записи
 - Подобрать себе подходящего специалиста
 - Самостоятельно разобраться с психологической проблемой
-
-<img src="https://user-images.githubusercontent.com/82917171/208307185-3d9e4f04-11b9-414f-80ec-90703f042bdc.png" width="180" height="320"/>   <img src="https://user-images.githubusercontent.com/82917171/208307189-fad72ef7-60aa-4a85-9b8f-8eef51552ff7.png" width="180" height="320"/>   <img src="https://user-images.githubusercontent.com/82917171/208307193-05d6b85b-d3eb-482f-bb3c-20fb6ee4b585.png" width="180" height="320"/>   <img src="https://user-images.githubusercontent.com/82917171/208307201-6bdfadba-c50d-498e-820f-1982aedf0060.png" width="180" height="320"/>
-  
 
 # В проекте принимают участие
 _____
