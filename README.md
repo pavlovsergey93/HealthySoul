@@ -8,7 +8,10 @@ HealthySoul - это мобильное приложение, предназна
 - Вести ежедневные записи
 - Подобрать себе подходящего специалиста
 - Самостоятельно разобраться с психологической проблемой
-![Screenshot_20221218_184454](https://user-images.githubusercontent.com/82917171/208307185-3d9e4f04-11b9-414f-80ec-90703f042bdc.png=100x30) ![Screenshot_20221218_184525](https://user-images.githubusercontent.com/82917171/208307189-fad72ef7-60aa-4a85-9b8f-8eef51552ff7.png) ![Screenshot_20221218_184539](https://user-images.githubusercontent.com/82917171/208307193-05d6b85b-d3eb-482f-bb3c-20fb6ee4b585.png) ![Screenshot_20221218_184555](https://user-images.githubusercontent.com/82917171/208307201-6bdfadba-c50d-498e-820f-1982aedf0060.png)
+
+<img src="https://user-images.githubusercontent.com/82917171/208307185-3d9e4f04-11b9-414f-80ec-90703f042bdc.png" width="180" height="320"/>   <img src="https://user-images.githubusercontent.com/82917171/208307189-fad72ef7-60aa-4a85-9b8f-8eef51552ff7.png" width="180" height="320"/>   <img src="https://user-images.githubusercontent.com/82917171/208307193-05d6b85b-d3eb-482f-bb3c-20fb6ee4b585.png" width="180" height="320"/>   <img src="https://user-images.githubusercontent.com/82917171/208307201-6bdfadba-c50d-498e-820f-1982aedf0060.png" width="180" height="320"/>
+  
+
 # В проекте принимают участие
 _____
 - Павлова Ольга - Практикующий психолог, психолог-сексолог, психолог-консультант (разработка вопросов самоанализа проблем)
